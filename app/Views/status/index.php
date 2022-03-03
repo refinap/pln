@@ -7,29 +7,6 @@
             <h1 class="text-center mt-2">Monitoring Realtime SCADA</h1>
             <h2 class="text-center mt-2">Unit Pelaksana Pelayanan Pelanggan (UP3)</h2>
 
-            <!--<a href="/status/create" class="btn btn-secondary mb-3">Tambah Data</a>-->
-
-            <!--<div class=" dropdown">
-                <button class="btn btn-primary dropdown-toggle mt-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Unit Pelaksana Pelayanan Pelanggan (UP3)
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Area Semarang</a></li>
-                    <li><a class="dropdown-item" href="#">Area Klaten</a></li>
-                    <li><a class="dropdown-item" href="#">Area Yogyakarya</a></li>
-                    <li><a class="dropdown-item" href="#">Area Surakarta</a></li>
-                    <li><a class="dropdown-item" href="#">Area Kudus</a></li>
-                    <li><a class="dropdown-item" href="#">Area Pekalongan</a></li>
-                    <li><a class="dropdown-item" href="#">Area Salatiga</a></li>
-                    <li><a class="dropdown-item" href="#">Area Cilacap</a></li>
-                    <li><a class="dropdown-item" href="#">Area Tegal</a></li>
-                    <li><a class="dropdown-item" href="#">Area Purwokerto</a></li>
-                    <li><a class="dropdown-item" href="#">Area Magelang</a></li>
-                    <li><a class="dropdown-item" href="#">Area Demak</a></li>
-                    <li><a class="dropdown-item" href="#">Area Sukoharjo</a></li>
-                </ul>
-            </div>-->
-
             <?php foreach ($apj as $a) : ?>
 
                 <a class="btn btn-primary mt-1" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -49,10 +26,6 @@
                     <h2>6. GI Pandeanlamper</h2>
                 </div>
             </div>
-
-
-
-
             <div style="min-height: 120px;">
                 <div class="collapse collapse-vertical" id="collapseWidthExample">
                     <div class="card card-body" style="width: 700px;">
@@ -77,7 +50,7 @@
                     </div>
                 </div>
             </div>
-
-
-
-            <?= $this->endSection(); ?>
+        </div>
+    </div>
+</div>
+<?= $this->endSection(); ?>
