@@ -16,8 +16,9 @@ class Status extends BaseController
     public function index()
     {
         #$status = $this->statusModel->findAll();
-        #$apj = $this->apjModel->where('APJ_DCC', null)->findAll();
-        $apj = $this->apjModel->findAll();
+        $apj = $this->apjModel->where('APJ_DCC IS NOT NULL', null, false)->findAll();
+
+        #$apj = $this->apjModel->findAll();
         $data = [
             #'title' => 'Status Realtime SCADA',
             #'status' => $status,
