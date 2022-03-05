@@ -8,24 +8,21 @@
             <h2 class="text-center mt-2">Unit Pelaksana Pelayanan Pelanggan (UP3)</h2>
 
             <?php foreach ($apj as $a) : ?>
-
                 <a class="btn btn-primary mt-1" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                     <?= $a['APJ_NAMA']; ?></a>
             <?php endforeach; ?>
 
             <div class="collapse" id="collapseExample">
                 <div class="card card-body">
-                    <h2>1. GI Krapyak</h2>
-                    <div class="badge bg-dark text-wrap" style="width: 6rem;" color="black-000;">KPK01</div>
-                    <div class="badge bg-danger text-wrap mt-1" style="width: 6rem;">close</div>
-
-                    <h2>2. GI Simpang Lima</h2>
-                    <h2>3. GI Kalisari</h2>
-                    <h2>4. GI Srondol</h2>
-                    <h2>5. GI Pudakpayung</h2>
-                    <h2>6. GI Pandeanlamper</h2>
+                    <h2><?php foreach ($gi as $g) : ?>
+                            <a class="btn btn-primary mt-1" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <?= $g['GARDU_INDUK_NAMA']; ?></a>
+                        <?php endforeach; ?>
+                    </h2>
                 </div>
             </div>
+
+
             <div style="min-height: 120px;">
                 <div class="collapse collapse-vertical" id="collapseWidthExample">
                     <div class="card card-body" style="width: 700px;">

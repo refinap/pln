@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\apjModel;
+use App\Models\giModel;
 
 class Status extends BaseController
 {
@@ -11,18 +12,21 @@ class Status extends BaseController
     {
         #$this->statusModel = new StatusModel();
         $this->apjModel = new apjModel();
+        $this->giModel = new giModel();
     }
 
     public function index()
     {
         #$status = $this->statusModel->findAll();
         $apj = $this->apjModel->where('APJ_DCC IS NOT NULL', null, false)->findAll();
-
+        $gi = $this->giModel->where('APJ_ID', 1)->findAll();
         #$apj = $this->apjModel->findAll();
+
         $data = [
             #'title' => 'Status Realtime SCADA',
             #'status' => $status,
-            'apj' => $apj
+            'apj' => $apj,
+            'gi' => $gi
         ];
 
         return view('status/index', $data);

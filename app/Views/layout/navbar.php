@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" class="side-navbar z-index-40">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
             <img class="navbar-brand-dark" src="/image/pln.png" width=40 alt="menuimage">
