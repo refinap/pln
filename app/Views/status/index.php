@@ -22,15 +22,13 @@
 
                             <?php foreach ($incoming as $i) : ?>
                                 <div class="btn-group-vertical">
-                                    <p class="fs-3" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                        <?= $i['NAMA_ALIAS_INCOMING']; ?></p>
+                                    <p class="fs-3"><?= $i['NAMA_ALIAS_INCOMING']; ?></p>
                                 <?php endforeach; ?>
                                 </div>
 
                                 <?php foreach ($cubicle as $c) : ?>
                                     <div class="btn-group-vertical">
-                                        <p class="fs-5" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                            <?= $c['CUBICLE_NAME']; ?></p>
+                                        <p class="fs-5"><?= $c['CUBICLE_NAME']; ?></p>
                                     <?php endforeach; ?>
                                     </div>
                     </h1>

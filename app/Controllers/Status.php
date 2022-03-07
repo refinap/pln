@@ -25,11 +25,11 @@ class Status extends BaseController
         $apj = $this->apjModel->where('APJ_DCC IS NOT NULL', null, false)->findAll();
         $gi = $this->giModel->where('APJ_ID', 1)->findAll();
         $incoming = $this->incomingModel->where('GARDU_INDUK_ID', 2)->findAll();
-        $cubicle = $this->cubicleModel->where('INCOMING_ID', 4 & 6)->findAll();
+        $cubicle = $this->cubicleModel->where('INCOMING_ID', 4)->findAll();
         #$apj = $this->apjModel->findAll();
 
         $data = [
-            #'title' => 'Status Realtime SCADA',
+            'title' => 'Status Realtime SCADA',
             #'status' => $status,
             'apj' => $apj,
             'gi' => $gi,
@@ -52,7 +52,6 @@ class Status extends BaseController
     public function save()
     {
         $this->statusModel->save([
-
             'Kode' => $this->request->getVar('Kode'),
             'nama_trafo' => $this->request->getVar('nama_trafo'),
             'nama_pmt' => $this->request->getVar('nama_pmt')
