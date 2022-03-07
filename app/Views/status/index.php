@@ -20,24 +20,43 @@
                                     <?= $g['GARDU_INDUK_NAMA']; ?></p>
                             <?php endforeach; ?>
 
-                            <?php foreach ($incoming as $i) : ?>
-                                <div class="btn-group-vertical">
-                                    <p class="fs-3"><?= $i['NAMA_ALIAS_INCOMING']; ?></p>
-                                <?php endforeach; ?>
-                                </div>
 
-                                <?php foreach ($cubicle as $c) : ?>
+
+                            <ul>
+                                <?php foreach ($incoming as $i) : ?>
                                     <div class="btn-group-vertical">
-                                        <p class="fs-5"><?= $c['CUBICLE_NAME']; ?></p>
-                                    <?php endforeach; ?>
+                                        <p class="fs-3"><?= $i['NAMA_ALIAS_INCOMING']; ?></p>
                                     </div>
+                                <?php endforeach; ?>
+                                <ul>
+
+                                    <ul>
+                                        <?php foreach ($cubicle as $c) : ?>
+                                            <?php if ($c['SCB'] === '1') : ?>
+                                                <div class="btn-group-vertical">
+                                                    <p class="fs-5"><?= $c['CUBICLE_NAME']; ?></p>
+                                                    <button type="button" class="btn btn-danger">Close</button>
+                                                </div>
+                                            <?php elseif ($c['SCB'] === '0') : ?>
+                                                <div class="btn-group-vertical">
+                                                    <p class="fs-5"><?= $c['CUBICLE_NAME']; ?></p>
+                                                    <button type="button" class="btn btn-success">Open</button>
+                                                </div>
+                                            <?php else : ?>
+                                                <div class="btn-group-vertical">
+                                                    <p class="fs-5"><?= $c['CUBICLE_NAME']; ?></p>
+                                                    <button type="button" class="btn btn-warning">Warning</button>
+                                                </div>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </ul>
                     </h1>
                 </div>
             </div>
 
 
 
-            <div style="min-height: 120px;">
+            <div style=" min-height: 120px;">
                 <div class="collapse collapse-vertical" id="collapseWidthExample">
                     <div class="card card-body" style="width: 700px;">
                         <table class="table">
