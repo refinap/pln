@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\apjModel;
 use App\Models\giModel;
 use App\Models\incomingModel;
+use App\Models\cubicleModel;
 
 class Status extends BaseController
 {
@@ -15,6 +16,7 @@ class Status extends BaseController
         $this->apjModel = new apjModel();
         $this->giModel = new giModel();
         $this->incomingModel = new incomingModel();
+        $this->cubicleModel = new cubicleModel();
     }
 
     public function index()
@@ -23,6 +25,7 @@ class Status extends BaseController
         $apj = $this->apjModel->where('APJ_DCC IS NOT NULL', null, false)->findAll();
         $gi = $this->giModel->where('APJ_ID', 1)->findAll();
         $incoming = $this->incomingModel->where('GARDU_INDUK_ID', 2)->findAll();
+        $cubicle = $this->cubicleModel->where('INCOMING_ID', 4 & 6)->findAll();
         #$apj = $this->apjModel->findAll();
 
         $data = [
@@ -30,7 +33,8 @@ class Status extends BaseController
             #'status' => $status,
             'apj' => $apj,
             'gi' => $gi,
-            'incoming' => $incoming
+            'incoming' => $incoming,
+            'cubicle' => $cubicle
         ];
 
         return view('status/index', $data);
