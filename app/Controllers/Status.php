@@ -22,11 +22,15 @@ class Status extends BaseController
     public function index()
     {
         #$status = $this->statusModel->findAll();
-        $apj = $this->apjModel->where('APJ_DCC IS NOT NULL', null, false)->findAll();
-        $gi = $this->giModel->where('APJ_ID', 1)->findAll();
-        $incoming = $this->incomingModel->where('GARDU_INDUK_ID', 2)->findAll();
-        $cubicle = $this->cubicleModel->where('INCOMING_ID', 4)->findAll();
         #$apj = $this->apjModel->findAll();
+        $apj = $this->apjModel->where('APJ_DCC IS NOT NULL', null, false)->findAll();
+        $gi = $this->giModel->findAll();
+        #$gi = $this->giModel->where('APJ_ID', 1)->findAll();
+        $incoming = $this->incomingModel->findAll();
+        #$incoming = $this->incomingModel->where('GARDU_INDUK_ID', 2)->findAll();
+        #$cubicle = $this->cubicleModel->findAll();
+        #$cubicle = $this->cubicleModel->where('INCOMING_ID', 4)->orLike('INCOMING_ID', 6)->findAll();
+        $cubicle = $this->cubicleModel->where('INCOMING_ID', 4)->findAll();
 
         $data = [
             'title' => 'Status Realtime SCADA',
