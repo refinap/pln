@@ -7,6 +7,7 @@
             <h1 class="text-center mt-2">Monitoring Realtime SCADA</h1>
             <h2 class="text-center mt-2">Unit Pelaksana Pelayanan Pelanggan (UP3)</h2>
 
+
             <?php foreach ($apj as $a) : ?>
                 <?php if ($a['APJ_ID'] === '1') : ?>
                     <a class="btn btn-primary mt-1" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
@@ -26,6 +27,8 @@
                         </div>
                     <?php endif; ?>
                 <?php endforeach; ?>
+
+
                 <?php foreach ($cubicle as $c) : ?>
                     <?php if ($c['SCB'] === '1') : ?><?php  ?>
                     <div class="btn-group-vertical">
@@ -43,8 +46,8 @@
                         <button type="button" class="btn btn-warning">Warning</button>
                     </div>
                 <?php endif; ?>
-
             <?php endforeach; ?>
+
 
             <?php foreach ($incoming as $i) : ?>
                 <?php if ($i['INCOMING_ID'] === '6') : ?>
