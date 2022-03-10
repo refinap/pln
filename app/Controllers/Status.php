@@ -29,7 +29,6 @@ class Status extends BaseController
         $incoming = $this->incomingModel->findAll();
         #$incoming = $this->incomingModel->where('GARDU_INDUK_ID', 2)->findAll();
         $cubicle = $this->cubicleModel->findAll();
-        #$cubicle = $this->cubicleModel->where('INCOMING_ID', 4)->orLike('INCOMING_ID', 6)->findAll();
         #$cubicle = $this->cubicleModel->where('INCOMING_ID', 4)->findAll();
 
         $data = [

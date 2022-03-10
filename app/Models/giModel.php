@@ -8,5 +8,5 @@ class giModel extends Model
 {
     protected $table = 'dc_gardu_induk';
     protected $useTimestamps = false;
-    protected $allowedFields = ['GARDU_INDUK_NAMA', 'GARDU_INDUK_ID'];
+    protected $allowedFields = ['GARDU_INDUK_ID', 'GARDU_INDUK_NAMA'];
 }

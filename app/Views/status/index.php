@@ -549,11 +549,6 @@
 
 
 
-
-
-
-
-
 <!-- Gardu Induk Kaliwungu -->
 <?php foreach ($gi as $g) : ?>
     <?php if ($g['GARDU_INDUK_ID'] === '4') : ?><?php  ?>
@@ -3119,6 +3114,9 @@
 </div>
 <?php endif; ?>
 <?php endforeach; ?>
+
+
+
 
 
 

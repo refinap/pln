@@ -8,5 +8,5 @@ class incomingModel extends Model
 {
     protected $table = 'dc_incoming_feeder';
     protected $useTimestamps = false;
-    protected $allowedFields = ['GARDU_INDUK_ID', 'INCOMING_ID'];
+    protected $allowedFields = ['INCOMING_ID', 'GARDU_INDUK_ID'];
 }

@@ -8,5 +8,5 @@ class apjModel extends Model
 {
     protected $table = 'dc_apj';
     protected $useTimestamps = false;
-    protected $allowedFields = ['APJ_NAMA', 'APJ_ID'];
+    protected $allowedFields = ['APJ_ID', 'APJ_NAMA'];
 }

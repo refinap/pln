@@ -8,10 +8,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" aria-current="page" href="/">Home</a>
+                <a class="nav-link" aria-current="page" href="/">Beranda</a>
                 <a class="nav-link" href="/status">Status</a>
-                <a class="nav-link" href="/pages/about">About</a>
-                <a class="nav-link" href="/pages/contact">Contact</a>
+                <a class="nav-link" href="/pages/about">Tentang</a>
+                <a class="nav-link" href="/pages/contact">Kontak</a>
             </div>
         </div>
     </div>

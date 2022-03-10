@@ -8,5 +8,5 @@ class cubicleModel extends Model
 {
     protected $table = 'dc_cubicle';
     protected $useTimestamps = false;
-    protected $allowedFields = ['INCOMING_ID', 'CUBICLE_NAME', 'SCB'];
+    protected $allowedFields = ['OUTGOING_ID', 'INCOMING_ID', 'CUBICLE_NAME', 'SCB'];
 }
