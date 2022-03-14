@@ -19,7 +19,6 @@ class Status extends BaseController
         $this->giModel = new giModel();
         $this->incomingModel = new incomingModel();
         $this->cubicleModel = new cubicleModel();
-        $this->cubicleModel = new cubicleModel();
     }
 
     public function index()
@@ -30,30 +29,30 @@ class Status extends BaseController
         foreach ($apj as $key => $item) {
             $gi = $this->giModel->where('APJ_ID', $item->APJ_ID)->findAll();
             // nak misal nmeh nambah incoming garik conto iki wae
+            // get data gardu induk
+            foreach ($gi as $gi_keys => $gi_items) {
+                $incoming = $this->incomingModel
+                    ->where('GARDU_INDUK_ID', $gi_items['GARDU_INDUK_ID'])->findAll();
+                $gi[$gi_keys]['incoming'] = $incoming;
 
+                // get data cubit
+                foreach ($gi as $gi_keys => $gi_items) {
+                    $incoming = $this->incomingModel
+                        ->where('GARDU_INDUK_ID', $gi_items['GARDU_INDUK_ID'])->findAll();
+                    $gi[$gi_keys]['incoming'] = $incoming;
+                };
+            };
 
             $apj[$key]->gi = $gi;
-            // $apj[$key]->incoming = $incoming; nggawe varibale podo kyk $gi;
         };
 
-        $gi = $this->giModel->get()->getResult();
-        foreach ($gi as $key => $item) {
-            $incoming = $this->incomingModel->where('GARDU_INDUK_ID', $item->GARDU_INDUK_ID)->findAll();
-            $gi[$key]->incoming = $incoming;
-        };
 
-        $incoming = $this->incomingModel->findAll();
-        $cubicle = $this->cubicleModel->findAll();
-
-
+        // return $this->response->setJSON($apj);
+        // exit;
 
         $data = [
             'title' => 'Status Realtime SCADA',
-            'apj' => $apj, //incudle data gi
-            'gi' => $gi,
-            // ngisor iki berarti ora kanggo
-            'incoming' => $incoming,
-            'cubicle' => $cubicle
+            'apj' => $apj
         ];
 
         return view('status/index', $data);
