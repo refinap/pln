@@ -14,12 +14,34 @@
                         <div class="collapse" class="btn-group" id="data-<?= $key + 1 ?>">
                             <div class="card card-body">
                                 <?php foreach ($a->gi as $g) : ?>
-                                    <?php echo $g['GARDU_INDUK_NAMA'] . "<br>"; ?>
+                                    <p class="fw-bold fs-4"><?php echo $g['GARDU_INDUK_NAMA'] . "<br>"; ?></p>
                                     <ul>
                                         <?php foreach ($g['incoming'] as $income) : ?>
-                                            <li><?php echo $income['NAMA_ALIAS_INCOMING']; ?></li>
+                                            <li>
+                                                <p class="fw-bold fs-5"><?php echo $income['NAMA_ALIAS_INCOMING']; ?></p>
+                                            </li>
                                             <?php foreach ($income['cubicle'] as $cubic) : ?>
-                                                <?php echo $cubic['CUBICLE_NAME']; ?>
+                                                <?php if ($cubic['SCB'] === '1') : ?>
+                                                    <div class="btn-group-vertical">
+                                                        <p class="fs-5"><?= $cubic['CUBICLE_NAME']; ?></p>
+                                                        <button type="button" class="btn btn-danger">Close</button>
+                                                    </div>
+                                                <?php elseif ($cubic['SCB'] === '0') : ?>
+                                                    <div class="btn-group-vertical">
+                                                        <p class="fs-5"><?= $cubic['CUBICLE_NAME']; ?></p>
+                                                        <button type="button" class="btn btn-success">Open</button>
+                                                    </div>
+                                                <?php elseif ($cubic['SCB'] === NULL) : ?>
+                                                    <div class="btn-group-vertical">
+                                                        <p class="fs-5"><?= $cubic['CUBICLE_NAME']; ?></p>
+                                                        <button type="button" class="btn btn-warning">Cadangan</button>
+                                                    </div>
+                                                <?php else : ?>
+                                                    <div class="btn-group-vertical">
+                                                        <p class="fs-5"><?= $cubic['CUBICLE_NAME']; ?></p>
+                                                        <button type="button" class="btn btn-dark">invalid</button>
+                                                    </div>
+                                                <?php endif; ?>
                                             <?php endforeach; ?>
                                         <?php endforeach; ?>
                                     </ul>
