@@ -36,7 +36,7 @@
     <script>
         window.setTimeout(function() {
             window.location.reload();
-        }, 50000);
+        }, 1000000);
     </script>
 </body>
 
