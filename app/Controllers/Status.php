@@ -29,20 +29,20 @@ class Status extends BaseController
         foreach ($apj as $key => $item) {
             $gi = $this->giModel->where('APJ_ID', $item->APJ_ID)->findAll();
             // nak misal nmeh nambah incoming garik conto iki wae
-            // get data gardu induk
+            // get data gardu induk dan incoming
+
             foreach ($gi as $gi_keys => $gi_items) {
                 $incoming = $this->incomingModel
                     ->where('GARDU_INDUK_ID', $gi_items['GARDU_INDUK_ID'])->findAll();
-                $gi[$gi_keys]['incoming'] = $incoming;
 
-                // get data cubit
-                foreach ($gi as $gi_keys => $gi_items) {
-                    $incoming = $this->incomingModel
-                        ->where('GARDU_INDUK_ID', $gi_items['GARDU_INDUK_ID'])->findAll();
-                    $gi[$gi_keys]['incoming'] = $incoming;
+                // get data cubicle
+                foreach ($incoming as $incoming_keys => $incoming_items) {
+                    $cubicle = $this->cubicleModel
+                        ->where('INCOMING_ID', $incoming_items['INCOMING_ID'])->findAll();
+                    $incoming[$incoming_keys]['cubicle'] = $cubicle;
                 };
+                $gi[$gi_keys]['incoming'] = $incoming;
             };
-
             $apj[$key]->gi = $gi;
         };
 
@@ -52,7 +52,8 @@ class Status extends BaseController
 
         $data = [
             'title' => 'Status Realtime SCADA',
-            'apj' => $apj
+            'apj' => $apj,
+            'incoming' => $incoming
         ];
 
         return view('status/index', $data);
