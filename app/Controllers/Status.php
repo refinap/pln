@@ -62,6 +62,31 @@ class Status extends BaseController
 
         return view('status/index', $data);
     }
+
+
+    // AJAX CLASS
+    // SIMPLE API => ARRRAY ORA JSON
+    public function cekstatus($id_kota)
+    {
+        $status = array(
+            'id'    => $id_kota,
+            'nama' => "ikan"
+        );
+
+        return $this->response->setJSON($status);
+    }
+
+    // SIMPLE API => ARRRAY ORA JSON
+    public function cekGi($id_gi)
+    {
+        $status = array(
+            'id'    => $id_gi,
+            'nama' => "ikan"
+        );
+
+        return $this->response->setJSON($status);
+    }
+
     public function tambah()
     {
         $data = [
@@ -69,13 +94,15 @@ class Status extends BaseController
         ];
         return view('status/tambah', $data);
     }
+
+
     public function save()
     {
         $this->apjModel->save([
             'APJ_NAMA' => $this->request->getvar('Area')
         ]);
         $this->cubicleModel->save([
-            'CUBICLE_NAME' => $this->request->getvar('kubikel')
+            'CUBICLE_NAME' => $this->request->getvar('cubicle')
         ]);
         $this->giModel->save([
             'GARDU_INDUK_NAMA' => $this->request->getvar('Gardu_induk')
