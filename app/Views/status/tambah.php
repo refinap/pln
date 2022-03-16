@@ -31,9 +31,9 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="kubikel" class="col-sm-2 col-form-label">Kubikel</label>
+                    <label for="cubicle" class="col-sm-2 col-form-label">Cubicle</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="kubikel" name="kubikel">
+                        <input type="text" class="form-control" id="cubicle" name="cubicle">
                     </div>
                 </div>
 
