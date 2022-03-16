@@ -6,9 +6,11 @@
         <div class="col">
             <h1 class="text-center mt-2">Monitoring Realtime SCADA</h1>
             <h2 class="text-center mt-2">Unit Pelaksana Pelayanan Pelanggan (UP3)</h2>
+
+            <a href="/status/tambah" class="btn btn-primary mb-3">Tambah Data</a><br>
             <?php foreach ($apj as $key => $a) : ?>
-                <button class="btn btn-primary mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#data-<?= $key + 1 ?>" aria-expanded="false" aria-controls="data-<?= $key + 1 ?>"> <?= $a->APJ_NAMA ?></button>
                 <br>
+                <button class="btn btn-primary mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#data-<?= $key + 1 ?>" aria-expanded="false" aria-controls="data-<?= $key + 1 ?>"> <?= $a->APJ_NAMA ?></button>
                 <div class="row">
                     <div class="col">
                         <div class="collapse" class="btn-group" id="data-<?= $key + 1 ?>">

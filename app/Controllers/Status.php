@@ -56,6 +56,33 @@ class Status extends BaseController
             'incoming' => $incoming
         ];
 
+        // if (empty($data['status'])) {
+        //     throw new \codeigniter\exceptions\pagenotfoundexception('apj' . 'incoming' . 'tidak ditemukan.');
+        // }
+
         return view('status/index', $data);
+    }
+    public function tambah()
+    {
+        $data = [
+            'title' => 'Tambah Data'
+        ];
+        return view('status/tambah', $data);
+    }
+    public function save()
+    {
+        $this->apjModel->save([
+            'APJ_NAMA' => $this->request->getvar('Area')
+        ]);
+        $this->cubicleModel->save([
+            'CUBICLE_NAME' => $this->request->getvar('kubikel')
+        ]);
+        $this->giModel->save([
+            'GARDU_INDUK_NAMA' => $this->request->getvar('Gardu_induk')
+        ]);
+        $this->incomingModel->save([
+            'MERK_TRAFO' => $this->request->getvar('trafo')
+        ]);
+        return redirect()->to('/status');
     }
 }
