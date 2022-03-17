@@ -7,48 +7,72 @@
             <h2 class="my-3"> Tambah Data</h2>
             <form action="/status/save" method="post">
                 <?= csrf_field(); ?>
+
                 <div class="row mb-3">
                     <label for="area" class="col-sm-2 col-form-label">Area</label>
                     <div class="col-sm-10">
-                        <select class="form-select area" aria-label="Default select example" id="area" name="area" autofocus>
+                        <select class="form-select data-exting" aria-label="Default select example" id="area" name="area" autofocus>
                             <option selected></option>
-                            <option value="ikan"> oke </option>
-                            <option value="penyu"> oke 1 </option>
-                            <!-- iki loop kota -->
-                            <!-- foreeach(){ 
-                                    <option value="3">Three</option>
-
-                                } -->
+                            <option value="APJ_ID">Semarang</option>
+                            <option value="lainnya">Lainnya.. </option>
                         </select>
+                        <div class="input-group  data-added mb-3" style="display: none;">
+                            <input type="text" style="display: none;" class="form-control data-added" placeholder="UP3 Baru" id="area" name="area" aria-describedby="button-addon1">
+                            <button class="btn btn-danger" type="button" id="btl-area-lainnya">Batal</button>
+                        </div>
+                        <input type="text" style="display: none;" class="form-control data-added" id="area" name="area">
                     </div>
                 </div>
+
+
                 <div class="row mb-3">
                     <label for="gardu_induk" class="col-sm-2 col-form-label">Gardu Induk</label>
                     <div class="col-sm-10">
                         <select class="form-select data-exting" aria-label="Default select example" id="gi" name="gi" autofocus>
                             <option selected></option>
-                            ...
+                            <option selected></option>
+                            <option value="GARDU_INDUK_ID">Bukit Semarang</option>
                             <option value="lainnya">Lainnya.. </option>
                         </select>
-
                         <div class="input-group  data-added mb-3" style="display: none;">
-                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" type="button" id="btl-gi-lainnya">Batal</button>
+                            <input type="text" style="display: none;" class="form-control data-added" placeholder="Gardu Induk Baru" id="gardu_induk" name="gardu_induk" aria-describedby="button-addon2">
+                            <button class="btn btn-danger" type="button" id="btl-gi-lainnya">Batal</button>
                         </div>
-
                         <input type="text" style="display: none;" class="form-control data-added" id="gardu induk" name="gardu_induk">
                     </div>
                 </div>
+
+
                 <div class="row mb-3">
                     <label for="trafo" class="col-sm-2 col-form-label">Trafo</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="trafo" name="trafo">
+                        <select class="form-select data-exting" aria-label="Default select example" id="trafo" name="trafo" autofocus>
+                            <option selected></option>
+                            <option value="INCOMING_ID"> Trafo01_BSB </option>
+                            <option value="lainnya">Lainnya.. </option>
+                        </select>
+                        <div class="input-group  data-added mb-3" style="display: none;">
+                            <input type="text" style="display: none;" class="form-control data-added" placeholder="Incoming Baru" id="trafo" name="trafo" aria-describedby="button-addon2">
+                            <button class="btn btn-danger" type="button" id="btl-trafo-lainnya">Batal</button>
+                        </div>
+                        <input type="text" style="display: none;" class="form-control data-added" id="trafo" name="trafo">
+
                     </div>
                 </div>
+
+
                 <div class="row mb-3">
                     <label for="cubicle" class="col-sm-2 col-form-label">Cubicle</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="cubicle" name="cubicle">
+                        <select class="form-select data-exting" aria-label="Default select example" id="cubicle" name="cubicle" autofocus>
+                            <option selected></option>
+                            <option value="lainnya">Lainnya.. </option>
+                        </select>
+                        <div class="input-group  data-added mb-3" style="display: none;">
+                            <input type="text" class="form-control" placeholder="Outgoing Baru" aria-label="Recipient's username" aria-describedby="button-addon1">
+                            <button class="btn btn-danger" type="button" id="btl-cubicle-lainnya">Batal</button>
+                        </div>
+                        <input type="text" style="display: none;" class="form-control data-added" id="cubicle" name="cubicle">
                     </div>
                 </div>
 
@@ -83,14 +107,15 @@
     });
 
     $("#gi").change(function() {
-        let id_area = $(this).val();
+        let id_gi = $(this).val();
 
-        if (id_area === 'lainnya') {
+        if (id_gi === 'lainnya') {
             console.log('cahnged')
             $('.data-exting').hide()
             $('.data-added').show()
             return;
         }
+
 
         // ajax kui wis maen type data array / JSON
         // ora dolan view
@@ -107,10 +132,29 @@
             }
         });
     });
+
+    $("#btl-area-lainnya").click(function() {
+
+        $('.data-area-exting').show()
+        $('.data-area-added').hide()
+    });
+
     $("#btl-gi-lainnya").click(function() {
 
         $('.data-gi-exting').show()
         $('.data-gi-added').hide()
+    });
+
+    $("#btl-trafo-lainnya").click(function() {
+
+        $('.data-trafo-exting').show()
+        $('.data-trafo-added').hide()
+    });
+
+    $("#btl-cubicle-lainnya").click(function() {
+
+        $('.data-cubicle-exting').show()
+        $('.data-cubicle-added').hide()
     });
 </script>
 <?= $this->endSection(); ?>

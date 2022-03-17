@@ -14,7 +14,6 @@ class Status extends BaseController
     public function __construct()
     {
         $this->db = db_connect();
-        #$this->statusModel = new StatusModel();
         $this->apjModel = new apjModel();
         $this->giModel = new giModel();
         $this->incomingModel = new incomingModel();
@@ -23,13 +22,9 @@ class Status extends BaseController
 
     public function index()
     {
-        #$status = $this->statusModel->findAll();
-
         $apj = $this->apjModel->where('APJ_DCC IS NOT NULL', null, false)->get()->getResult();
         foreach ($apj as $key => $item) {
             $gi = $this->giModel->where('APJ_ID', $item->APJ_ID)->findAll();
-            // nak misal nmeh nambah incoming garik conto iki wae
-            // get data gardu induk dan incoming
 
             foreach ($gi as $gi_keys => $gi_items) {
                 $incoming = $this->incomingModel
@@ -45,8 +40,6 @@ class Status extends BaseController
             };
             $apj[$key]->gi = $gi;
         };
-
-
         // return $this->response->setJSON($apj);
         // exit;
 
@@ -66,26 +59,28 @@ class Status extends BaseController
 
     // AJAX CLASS
     // SIMPLE API => ARRRAY ORA JSON
-    public function cekstatus($id_kota)
+    public function cekstatus($APJ_ID)
     {
-        $status = array(
-            'id'    => $id_kota,
-            'nama' => "ikan"
+        $statusapj = array(
+            'id'    => $APJ_ID,
+            'nama' => "APJ_NAMA"
         );
 
-        return $this->response->setJSON($status);
+        return $this->response->setJSON($statusapj);
     }
 
     // SIMPLE API => ARRRAY ORA JSON
-    public function cekGi($id_gi)
+    public function cekgi($GARDU_INDUK_ID)
     {
-        $status = array(
-            'id'    => $id_gi,
+
+        $statusgi = array(
+            'id'    => $GARDU_INDUK_ID,
             'nama' => "ikan"
         );
 
-        return $this->response->setJSON($status);
+        return $this->response->setJSON($statusgi);
     }
+
 
     public function tambah()
     {
