@@ -13,8 +13,11 @@
                     <div class="col-sm-10">
                         <select class="form-select data-exting" aria-label="Default select example" id="area" name="area" autofocus>
                             <option selected></option>
-                            <option value="APJ_ID">Semarang</option>
-                            <option value="lainnya">Lainnya.. </option>
+                            <?php foreach ($apj as $a) : ?>
+
+                                <option value="<?php echo $a->APJ_ID; ?>"><?php echo $a->APJ_NAMA; ?></option>
+                            <?php endforeach ?>
+
                         </select>
                         <div class="input-group  data-added mb-3" style="display: none;">
                             <input type="text" style="display: none;" class="form-control data-added" placeholder="UP3 Baru" id="area" name="area" aria-describedby="button-addon1">

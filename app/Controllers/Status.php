@@ -84,8 +84,10 @@ class Status extends BaseController
 
     public function tambah()
     {
+        $apj = $this->apjModel->where('APJ_DCC IS NOT NULL', null, false)->get()->getResult();
         $data = [
-            'title' => 'Tambah Data'
+            'title' => 'Tambah Data',
+            'apj' => $apj
         ];
         return view('status/tambah', $data);
     }
