@@ -59,14 +59,15 @@ class Status extends BaseController
 
     // AJAX CLASS
     // SIMPLE API => ARRRAY ORA JSON
+    //buat nampilin gi sesuai dengan area (up3)
     public function cekstatus($APJ_ID)
     {
-        $statusapj = array(
-            'id'    => $APJ_ID,
-            'nama' => "APJ_NAMA"
-        );
+        $gi = $this->giModel->where('APJ_ID', $APJ_ID)->findAll();
+        $data = [
+            'gi' => $gi
+        ];
 
-        return $this->response->setJSON($statusapj);
+        return $this->response->setJSON($data);
     }
 
     // SIMPLE API => ARRRAY ORA JSON

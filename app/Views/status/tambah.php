@@ -14,7 +14,6 @@
                         <select class="form-select data-exting" aria-label="Default select example" id="area" name="area" autofocus>
                             <option selected></option>
                             <?php foreach ($apj as $a) : ?>
-
                                 <option value="<?php echo $a->APJ_ID; ?>"><?php echo $a->APJ_NAMA; ?></option>
                             <?php endforeach ?>
 
@@ -27,6 +26,13 @@
                     </div>
                 </div>
 
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Nama</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="GARDU_INDUK_NAMA">
+
+                    </div>
+                </div>
 
                 <div class="row mb-3">
                     <label for="gardu_induk" class="col-sm-2 col-form-label">Gardu Induk</label>
