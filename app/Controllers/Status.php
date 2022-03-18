@@ -10,6 +10,7 @@ use App\Models\cubicleModel;
 class Status extends BaseController
 {
     protected $statusModel;
+    protected $cubicleModel;
     private $db;
     public function __construct()
     {
@@ -109,5 +110,16 @@ class Status extends BaseController
             'MERK_TRAFO' => $this->request->getvar('trafo')
         ]);
         return redirect()->to('/status');
+    }
+    public function informasi()
+    {
+        $cubicle = $this->cubicleModel->findAll();
+        $data = [
+            'title' => 'informasi',
+            'cubicle' => $cubicle
+        ];
+        // $cubicleModel = new \app\models\cubicleModel();
+
+        return view('status/informasi', $data);
     }
 }
