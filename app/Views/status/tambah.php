@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-8">
-            <h2 class="my-3"> Tambah Data</h2>
+            <h2 class="my-3"> Tambah Data Cubicle</h2>
             <form action="/status/save" method="post">
                 <?= csrf_field(); ?>
 
@@ -18,36 +18,21 @@
                             <?php endforeach ?>
 
                         </select>
-                        <div class="input-group  data-added mb-3" style="display: none;">
-                            <input type="text" style="display: none;" class="form-control data-added" placeholder="UP3 Baru" id="area" name="area" aria-describedby="button-addon1">
-                            <button class="btn btn-danger" type="button" id="btl-area-lainnya">Batal</button>
-                        </div>
-                        <input type="text" style="display: none;" class="form-control data-added" id="area" name="area">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Nama</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="GARDU_INDUK_NAMA">
 
                     </div>
                 </div>
+
 
                 <div class="row mb-3">
                     <label for="gardu_induk" class="col-sm-2 col-form-label">Gardu Induk</label>
                     <div class="col-sm-10">
                         <select class="form-select data-exting" aria-label="Default select example" id="gi" name="gi" autofocus>
                             <option selected></option>
-                            <option selected></option>
-                            <option value="GARDU_INDUK_ID">Bukit Semarang</option>
-                            <option value="lainnya">Lainnya.. </option>
+                            <!-- < ? php foreach ($incoming as $i) : ?>
+                                <option value="< ? echo $i->GARDU_INDUK_ID; ?>">< ?php echo $a->GARDU_INDUK_NAMA; ?></option>
+                            < ? php endforeach  -->
                         </select>
-                        <div class="input-group  data-added mb-3" style="display: none;">
-                            <input type="text" style="display: none;" class="form-control data-added" placeholder="Gardu Induk Baru" id="gardu_induk" name="gardu_induk" aria-describedby="button-addon2">
-                            <button class="btn btn-danger" type="button" id="btl-gi-lainnya">Batal</button>
-                        </div>
-                        <input type="text" style="display: none;" class="form-control data-added" id="gardu induk" name="gardu_induk">
+
                     </div>
                 </div>
 
@@ -60,11 +45,11 @@
                             <option value="INCOMING_ID"> Trafo01_BSB </option>
                             <option value="lainnya">Lainnya.. </option>
                         </select>
-                        <div class="input-group  data-added mb-3" style="display: none;">
+                        <!-- <div class="input-group  data-added mb-3" style="display: none;">
                             <input type="text" style="display: none;" class="form-control data-added" placeholder="Incoming Baru" id="trafo" name="trafo" aria-describedby="button-addon2">
                             <button class="btn btn-danger" type="button" id="btl-trafo-lainnya">Batal</button>
                         </div>
-                        <input type="text" style="display: none;" class="form-control data-added" id="trafo" name="trafo">
+                        <input type="text" style="display: none;" class="form-control data-added" id="trafo" name="trafo"> -->
 
                     </div>
                 </div>
@@ -77,11 +62,11 @@
                             <option selected></option>
                             <option value="lainnya">Lainnya.. </option>
                         </select>
-                        <div class="input-group  data-added mb-3" style="display: none;">
+                        <!-- <div class="input-group  data-added mb-3" style="display: none;">
                             <input type="text" class="form-control" placeholder="Outgoing Baru" aria-label="Recipient's username" aria-describedby="button-addon1">
                             <button class="btn btn-danger" type="button" id="btl-cubicle-lainnya">Batal</button>
                         </div>
-                        <input type="text" style="display: none;" class="form-control data-added" id="cubicle" name="cubicle">
+                        <input type="text" style="display: none;" class="form-control data-added" id="cubicle" name="cubicle"> -->
                     </div>
                 </div>
 
@@ -95,20 +80,20 @@
 <?= $this->section('javascript'); ?>
 <script>
     $("#area").change(function() {
-        let id_area = $(this).val();
+        let $APJ_ID = $(this).val();
 
         // ajax kui wis maen type data array / JSON
         // ora dolan view
         $.ajax({
-            url: `http://localhost:8080/status/cekstatus/${id_area}`,
+            url: `http://localhost:8080/status/cekstatus/${$APJ_ID}`,
             success: function(result) {
                 console.log(result)
 
                 // golek looping sing pas nggo array, loop array using js
                 for (const child of result) {
                     $('#gi option:first').after($('<option />', {
-                        "value": child.id,
-                        text: child.nama
+                        "value": $GARDU_INDUK_ID,
+                        text: $GARDU_INDUK_NAMA
                     }));
                 }
             }
@@ -116,9 +101,9 @@
     });
 
     $("#gi").change(function() {
-        let id_gi = $(this).val();
+        let $GARDU_INDUK_ID = $(this).val();
 
-        if (id_gi === 'lainnya') {
+        if ($GARDU_INDUK_ID === 'lainnya') {
             console.log('cahnged')
             $('.data-exting').hide()
             $('.data-added').show()
@@ -129,13 +114,13 @@
         // ajax kui wis maen type data array / JSON
         // ora dolan view
         $.ajax({
-            url: "url/area/{id_area}",
+            url: "url/area/{APJ_ID}",
             success: function(result) {
                 console.log(result)
                 result.data.forEach(items => {
                     $('#gi option:first').after($('<option />', {
-                        "value": items.id,
-                        text: items.nama_gardu
+                        "value": $APJ_ID,
+                        text: $APJ_NAMA
                     }));
                 });
             }
