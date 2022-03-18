@@ -54,21 +54,13 @@
                     </div>
                 </div>
 
-
                 <div class="row mb-3">
-                    <label for="cubicle" class="col-sm-2 col-form-label">Cubicle</label>
+                    <label for="cubicle" class="col-sm-2 col-form-label">Cubicle:</label>
                     <div class="col-sm-10">
-                        <select class="form-select data-exting" aria-label="Default select example" id="cubicle" name="cubicle" autofocus>
-                            <option selected></option>
-                            <option value="lainnya">Lainnya.. </option>
-                        </select>
-                        <!-- <div class="input-group  data-added mb-3" style="display: none;">
-                            <input type="text" class="form-control" placeholder="Outgoing Baru" aria-label="Recipient's username" aria-describedby="button-addon1">
-                            <button class="btn btn-danger" type="button" id="btl-cubicle-lainnya">Batal</button>
-                        </div>
-                        <input type="text" style="display: none;" class="form-control data-added" id="cubicle" name="cubicle"> -->
+                        <input type="cubicle" class="form-control" id="cubicle" placeholder="Masukkan nama cubicle baru" name="cubicle">
                     </div>
                 </div>
+
 
                 <button type="submit" class="btn btn-primary">Tambah</button>
             </form>
@@ -137,18 +129,6 @@
 
         $('.data-gi-exting').show()
         $('.data-gi-added').hide()
-    });
-
-    $("#btl-trafo-lainnya").click(function() {
-
-        $('.data-trafo-exting').show()
-        $('.data-trafo-added').hide()
-    });
-
-    $("#btl-cubicle-lainnya").click(function() {
-
-        $('.data-cubicle-exting').show()
-        $('.data-cubicle-added').hide()
     });
 </script>
 <?= $this->endSection(); ?>

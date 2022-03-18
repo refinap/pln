@@ -74,21 +74,21 @@ class Status extends BaseController
     // SIMPLE API => ARRRAY ORA JSON
     public function cekgi($GARDU_INDUK_ID)
     {
+        $incoming = $this->incomingModel->where('GARDU_INDUK_ID', $GARDU_INDUK_ID)->findAll();
+        $data = [
+            'incoming'    => $incoming
+        ];
 
-        $statusgi = array(
-            'id'    => $GARDU_INDUK_ID,
-            'nama' => "ikan"
-        );
-
-        return $this->response->setJSON($statusgi);
+        return $this->response->setJSON($data);
     }
+
 
 
     public function tambah()
     {
         $apj = $this->apjModel->where('APJ_DCC IS NOT NULL', null, false)->get()->getResult();
         $data = [
-            'title' => 'Tambah Data',
+            'title' => 'Tambah Data Cubicle',
             'apj' => $apj
         ];
         return view('status/tambah', $data);
