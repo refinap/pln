@@ -92,6 +92,16 @@ class Status extends BaseController
         return $this->response->setJSON($data);
     }
 
+    public function getTrafo($id_gi)
+    {
+        $data_trafo = $this->incomingModel->where('GARDU_INDUK_ID', $id_gi)->findAll();
+        $data = [
+            'trafo'    => $data_trafo
+        ];
+
+        return $this->response->setJSON($data);
+    }
+
 
     public function tambah()
     {
@@ -118,7 +128,7 @@ class Status extends BaseController
         $this->cubicleModel->save([
             'APJ_ID' => $this->request->getvar('Cubicle'),
             'SUPPLY_APJ' => $this->request->getvar('Cubicle'),
-            'INCOMING_ID' => $this->request->getvar('Cubicle'),
+            'id_gi' => $this->request->getvar('Cubicle'),
             'CUBICLE_NAME' => $this->request->getvar('Cubicle'),
             'CUBICLE_TYPE' => $this->request->getvar('Cubicle'),
             'OPERATION_TYPE' => $this->request->getvar('Cubicle'),
@@ -206,9 +216,11 @@ class Status extends BaseController
         ]);
         return redirect()->to('/status');
     }
-    public function informasi()
+    public function informasi($id)
     {
-        $cubicle = $this->cubicleModel->findAll();
+        $cubicle = $this->cubicleModel
+            ->where('OUTGOING_ID', $id)->limit(15)
+            ->findAll();
         $data = [
             'title' => 'Informasi',
             'cubicle' => $cubicle

@@ -588,6 +588,7 @@
 </div>
 <?= $this->endSection(); ?>
 
+
 <?= $this->section('javascript'); ?>
 <script>
     $("#area").change(function() {
@@ -596,7 +597,6 @@
             url: `http://localhost:8080/status/cekstatus/${$APJ_ID}`,
             success: function(result) {
                 var result = [...result.gi];
-                console.log(result)
 
                 // golek looping sing pas nggo array, loop array using js
                 for (const child of result) {
@@ -608,17 +608,20 @@
             }
         });
     });
+
     $("#gi").change(function() {
         let $GARDU_INDUK_ID = $(this).val();
+
+        console.log($GARDU_INDUK_ID)
         $.ajax({
-            url: `http://localhost:8080/status/cekgi/${$GARDU_INDUK_ID}`,
+            url: `http://localhost:8080/status/getTrafo/${$GARDU_INDUK_ID}`,
             success: function(result) {
-                var result = [...result.incoming];
+                var result = [...result.trafo];
                 console.log(result)
 
                 // golek looping sing pas nggo array, loop array using js
                 for (const child of result) {
-                    $('#incoming option:first').after($('<option />', {
+                    $('#trafo option:first').after($('<option />', {
                         "value": child.INCOMING_ID,
                         text: child.NAMA_ALIAS_INCOMING
                     }));
@@ -627,54 +630,7 @@
         })
     });
 
-    $("#gi").change(function() {
-        let $GARDU_INDUK_ID = $(this).val();
 
-        if ($GARDU_INDUK_ID === 'lainnya') {
-            console.log('cahnged')
-            $('.data-exting').hide()
-            $('.data-added').show()
-            return;
-        }
-
-        // ajax kui wis maen type data array / JSON
-        // ora dolan view
-        $.ajax({
-            url: "url/area/{APJ_ID}",
-            success: function(result) {
-                console.log(result)
-                result.data.forEach(items => {
-                    $('#gi option:first').after($('<option />', {
-                        "value": APJ_ID,
-                        text: APJ_NAMA
-                    }));
-                });
-            }
-        });
-    });
-
-    $("#incoming").change(function() {
-        let $INCOMING_ID = $(this).val();
-
-        if ($INCOMING_ID === 'lainnya') {
-            console.log('cahnged')
-            $('.data-exting').hide()
-            $('.data-added').show()
-            return;
-        }
-        $.ajax({
-            url: "url/area/{GARDU_INDUK_ID}",
-            success: function(result) {
-                console.log(result)
-                result.data.forEach(items => {
-                    $('#incoming option:first').after($('<option />', {
-                        "value": GARDU_INDUK_ID,
-                        text: GARDU_INDUK_NAMA
-                    }));
-                });
-            }
-        });
-    });
 
     $("#btl-area-lainnya").click(function() {
 
