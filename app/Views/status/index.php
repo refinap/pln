@@ -39,7 +39,7 @@
                                                         <div class="d-flex justify-content-center">
                                                             <span class="fs-5"><?= $cubic['CUBICLE_NAME']; ?></span>
                                                         </div>
-                                                        <a href="/status/informasi/<?php echo $income['INCOMING_ID']; ?>" button type="button" class="btn btn-<?= $arr[0]; ?>"><?= $arr[1]; ?></button></a>
+                                                        <a href="/status/informasi/<?php echo $cubic['OUTGOING_ID']; ?>" button type="button" class="btn btn-<?= $arr[0]; ?>"><?= $arr[1]; ?></button></a>
                                                     </div>
                                                 <?php endforeach; ?>
                                             </div>

@@ -212,11 +212,10 @@ class Status extends BaseController
     public function informasi($id)
     {
         $cubicle = $this->cubicleModel
-            ->where('OUTGOING_ID', $id)->limit(15)
-            ->findAll();
+            ->where('OUTGOING_ID', $id)->first();
         $data = [
             'title' => 'Informasi',
-            'cubicle' => $cubicle
+            'c' => $cubicle
         ];
         // $cubicleModel = new \app\models\cubicleModel();
 
