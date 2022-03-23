@@ -6,7 +6,6 @@
         <div class="col-8">
             <div class="position-relative">
                 <a href="/status/index" button type="button" class="btn-close position-absolute top-0 end-0" aria-label="Close"></a></button>
-
                 <h2 class="my-3"> Tambah Data Cubicle</h2>
                 <form action="/status/save" method="post">
                     <?= csrf_field(); ?>
