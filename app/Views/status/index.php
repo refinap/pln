@@ -7,6 +7,11 @@
             <h1 class="text-center mt-2">Monitoring Realtime SCADA</h1>
             <h2 class="text-center mt-2">Unit Pelaksana Pelayanan Pelanggan (UP3)</h2>
             <a href="/status/tambah" class="btn btn-primary mb-3">Tambah Data Cubicle</a><br>
+            <?php if (session()->getFlashdata('pesan')) : ?>
+                <div class="alert alert-success" role="alert">
+                    <?= session()->getFlashdata('pesan'); ?>
+                </div>
+            <?php endif; ?>
             <div class="accordion" id="accordionExample">
                 <?php foreach ($apj as $key => $a) : ?>
                     <div class="accordion-item">
