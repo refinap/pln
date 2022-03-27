@@ -44,7 +44,7 @@
                     <div class="row mb-3">
                         <label for="APJ_ID" class="col-sm-2 col-form-label">APJ ID</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control <?= ($validation->hasError('APJ_ID')) ? 'is-invalid' : ''; ?>" id="APJ_ID" placeholder="" name="APJ_ID" value="<?= old('APJ_ID'); ?>">
+                            <input type="text" class="form-control <?= ($validation->hasError('APJ_ID')) ? 'is-invalid' : ''; ?>" id="APJ_ID" placeholder="" name="APJ_ID">
                             <div class="invalid-feedback">
                                 <?= $validation->getError('APJ_ID'); ?>
                             </div>
@@ -53,13 +53,13 @@
                     <div class="row mb-3">
                         <label for="SUPPLY_APJ" class="col-sm-2 col-form-label">SUPPLY APJ</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="SUPPLY_APJ" placeholder="" name="SUPPLY_APJ" value="<?= old('SUPPLY_APJ'); ?>">
+                            <input type="text" class="form-control" id="SUPPLY_APJ" placeholder="" name="SUPPLY_APJ">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="INCOMING_ID" class="col-sm-2 col-form-label">INCOMING ID</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control <?= ($validation->hasError('INCOMING_ID')) ? 'is-invalid' : ''; ?>" id="INCOMING_ID" placeholder="" name="INCOMING_ID" value="<?= old('INCOMING_ID'); ?>">
+                            <input type="text" class="form-control <?= ($validation->hasError('INCOMING_ID')) ? 'is-invalid' : ''; ?>" id="INCOMING_ID" placeholder="" name="INCOMING_ID">
                             <div class="invalid-feedback">
                                 <?= $validation->getError('INCOMING_ID'); ?>
                             </div>
@@ -68,7 +68,7 @@
                     <div class="row mb-3">
                         <label for="CUBICLE_NAME" class="col-sm-2 col-form-label">CUBICLE NAME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control <?= ($validation->hasError('CUBICLE_NAME')) ? 'is-invalid' : ''; ?>" id="CUBICLE_NAME" placeholder="" name="CUBICLE_NAME" value="<?= old('CUBICLE_NAME'); ?>">
+                            <input type="text" class="form-control <?= ($validation->hasError('CUBICLE_NAME')) ? 'is-invalid' : ''; ?>" id="CUBICLE_NAME" placeholder="" name="CUBICLE_NAME">
                             <div class="invalid-feedback">
                                 <?= $validation->getError('CUBICLE_NAME'); ?>
                             </div>
@@ -77,7 +77,7 @@
                     <div class="row mb-3">
                         <label for="CUBCILE_TYPE" class="col-sm-2 col-form-label">CUBCILE TYPE</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control <?= ($validation->hasError('CUBCILE_TYPE')) ? 'is-invalid' : ''; ?>" id="CUBCILE_TYPE" placeholder="" name="CUBCILE_TYPE" value="<?= old('CUBCILE_TYPE'); ?>">
+                            <input type="text" class="form-control <?= ($validation->hasError('CUBCILE_TYPE')) ? 'is-invalid' : ''; ?>" id="CUBCILE_TYPE" placeholder="" name="CUBCILE_TYPE">
                             <div class="invalid-feedback">
                                 <?= $validation->getError('CUBCILE_TYPE'); ?>
                             </div>
@@ -86,13 +86,13 @@
                     <div class="row mb-3">
                         <label for="OPERATION_TYPE" class="col-sm-2 col-form-label">OPERATION TYPE</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="OPERATION_TYPE" placeholder="" name="OPERATION_TYPE" value="<?= old('OPERATION_TYPE'); ?>">
+                            <input type="text" class="form-control" id="OPERATION_TYPE" placeholder="" name="OPERATION_TYPE">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="KETERANGAN" class="col-sm-2 col-form-label">KETERANGAN</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control <?= ($validation->hasError('KETERANGAN')) ? 'is-invalid' : ''; ?>" id="KETERANGAN" placeholder="" name="KETERANGAN" value="<?= old('KETERANGAN'); ?>">
+                            <input type="text" class="form-control <?= ($validation->hasError('KETERANGAN')) ? 'is-invalid' : ''; ?>" id="KETERANGAN" placeholder="" name="KETERANGAN">
                             <div class="invalid-feedback">
                                 <?= $validation->getError('KETERANGAN'); ?>
                             </div>
@@ -101,488 +101,488 @@
                     <div class="row mb-3">
                         <label for="RELAY" class="col-sm-2 col-form-label">RELAY</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="RELAY" placeholder="" name="RELAY" value=" <?= old('RELAY'); ?>">
+                            <input type="text" class="form-control" id="RELAY" placeholder="" name="RELAY">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="MERK_RELAY" class="col-sm-2 col-form-label">MERK RELAY</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="MERK_RELAY" placeholder="" name="MERK_RELAY" value="<?= old('MERK_RELAY'); ?>">
+                            <input type="text" class="form-control" id="MERK_RELAY" placeholder="" name="MERK_RELAY">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="NO_SERI_RELAY" class="col-sm-2 col-form-label">NO SERI RELAY</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="NO_SERI_RELAY" placeholder="" name="NO_SERI_RELAY" value="<?= old('NO_SERI_RELAY'); ?>">
+                            <input type="text" class="form-control" id="NO_SERI_RELAY" placeholder="" name="NO_SERI_RELAY">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="METER" class="col-sm-2 col-form-label">METER</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="METER" placeholder="" name="METER" value="<?= old('METER'); ?>">
+                            <input type="text" class="form-control" id="METER" placeholder="" name="METER">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="MERK_METER" class="col-sm-2 col-form-label">MERK METER</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="MERK_METER" placeholder="" name="MERK_METER" value="<?= old('MERK_METER'); ?>">
+                            <input type="text" class="form-control" id="MERK_METER" placeholder="" name="MERK_METER">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="NO_SERI_METER" class="col-sm-2 col-form-label">NO SERI METER</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="NO_SERI_METER" placeholder="" name="NO_SERI_METER" value="<?= old('NO_SERI_METER'); ?>">
+                            <input type="text" class="form-control" id="NO_SERI_METER" placeholder="" name="NO_SERI_METER">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="MERK_IO" class="col-sm-2 col-form-label">MERK IO</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="MERK_IO" placeholder="" name="MERK_IO" value="<?= old('MERK_IO'); ?>">
+                            <input type="text" class="form-control" id="MERK_IO" placeholder="" name="MERK_IO">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="NO_SERI_IO" class="col-sm-2 col-form-label">NO SERI IO</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="NO_SERI_IO" placeholder="" name="NO_SERI_IO" value="<?= old('NO_SERI_IO'); ?>">
+                            <input type="text" class="form-control" id="NO_SERI_IO" placeholder="" name="NO_SERI_IO">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="MERK_INTERFACE" class="col-sm-2 col-form-label">MERK INTERFACE</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="MERK_INTERFACE" placeholder="" name="MERK_INTERFACE" value="<?= old('MERK_INTERFACE'); ?>">
+                            <input type="text" class="form-control" id="MERK_INTERFACE" placeholder="" name="MERK_INTERFACE">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="NO_SERI_INTERFACE" class="col-sm-2 col-form-label">NO SERI INTERFACE</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="NO_SERI_INTERFACE" placeholder="" name="NO_SERI_INTERFACE" value="<?= old('NO_SERI_INTERFACE'); ?>">
+                            <input type="text" class="form-control" id="NO_SERI_INTERFACE" placeholder="" name="NO_SERI_INTERFACE">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="MERK_PS" class="col-sm-2 col-form-label">MERK PS</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="MERK_PS" placeholder="" name="MERK_PS" value="<?= old('MERK_PS'); ?>">
+                            <input type="text" class="form-control" id="MERK_PS" placeholder="" name="MERK_PS">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="SETTING_CT" class="col-sm-2 col-form-label">SETTING CT</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="SETTING_CT" placeholder="" name="SETTING_CT" value="<?= old('SETTING_CT'); ?>">
+                            <input type="text" class="form-control" id="SETTING CT" placeholder="" name="SETTING CT">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="SETTING_PT" class="col-sm-2 col-form-label">SETTING PT</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="SETTING_PT" placeholder="" name="SETTING_PT" value="<?= old('SETTING_PT'); ?>">
+                            <input type="text" class="form-control" id="SETTING_PT" placeholder="" name="SETTING_PT">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="MERK" class="col-sm-2 col-form-label">MERK</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="MERK" placeholder="" name="MERK" value="<?= old('MERK'); ?>">
+                            <input type="text" class="form-control" id="MERK" placeholder="" name="MERK">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="MERK_CUBICLE" class="col-sm-2 col-form-label">MERK CUBICLE</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="MERK_CUBICLE" placeholder="" name="MERK_CUBICLE" value="<?= old('MERK_CUBICLE'); ?>">
+                            <input type="text" class="form-control" id="MERK_CUBICLE" placeholder="" name="MERK_CUBICLE">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="NO_SERI" class="col-sm-2 col-form-label">NO SERI</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="NO_SERI" placeholder="" name="NO_SERI" value="<?= old('NO_SERI'); ?>">
+                            <input type="text" class="form-control" id="NO_SERI" placeholder="" name="NO_SERI">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="DIMENSI" class="col-sm-2 col-form-label">DIMENSI</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="DIMENSI" placeholder="" name="DIMENSI" value="<?= old('DIMENSI'); ?>">
+                            <input type="text" class="form-control" id="DIMENSI" placeholder="" name="DIMENSI">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="RNR" class="col-sm-2 col-form-label">RNR</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="RNR" placeholder="" name="RNR" value="<?= old('RNR'); ?>">
+                            <input type="text" class="form-control" id="RNR" placeholder="" name="RNR">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="TAHUN_OPERASI" class="col-sm-2 col-form-label">TAHUN OPERASI</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="TAHUN_OPERASI" placeholder="" name="TAHUN_OPERASI" value="<?= old('TAHUN_OPERASI'); ?>">
+                            <input type="text" class="form-control" id="TAHUN_OPERASI" placeholder="" name="TAHUN_OPERASI">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="OCR_TD" class="col-sm-2 col-form-label">OCR TD</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="OCR_TD" placeholder="" name="OCR_TD" value="<?= old('OCR_TD'); ?>">
+                            <input type="text" class="form-control" id="OCR_TD" placeholder="" name="OCR_TD">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="OCR_TMS_TD" class="col-sm-2 col-form-label">OCR TMS TD</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="OCR_TMS_TD" placeholder="" name="OCR_TMS_TD" value="<?= old('OCR_TMS_TD'); ?>">
+                            <input type="text" class="form-control" id="OCR_TMS_TD" placeholder="" name="OCR_TMS_TD">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="OCR_CURVA" class="col-sm-2 col-form-label">OCR CURVA</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="OCR_CURVA" placeholder="" name="OCR_CURVA" value="<?= old('OCR_CURVA'); ?>">
+                            <input type="text" class="form-control" id="OCR_CURVA" placeholder="" name="OCR_CURVA">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="OCR_INST" class="col-sm-2 col-form-label">OCR INST</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="OCR_INST" placeholder="" name="OCR_INST" value="<?= old('OCR_INST'); ?>">
+                            <input type="text" class="form-control" id="OCR_INST" placeholder="" name="OCR_INST">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="OCR_T_INST<" class="col-sm-2 col-form-label">OCR T INST</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="OCR_T_INST" placeholder="" name="OCR_T_INST" value="<?= old('OCR_T_INST'); ?>">
+                            <input type="text" class="form-control" id="OCR_T_INST" placeholder="" name="OCR_T_INST">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="GFR_TD" class="col-sm-2 col-form-label">GFR TD</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="GFR_TD" placeholder="" name="GFR_TD" value="<?= old('GFR_TD'); ?>">
+                            <input type="text" class="form-control" id="GFR_TD" placeholder="" name="GFR_TD">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="GFR_TMS_TD" class="col-sm-2 col-form-label">GFR TMS TD</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="GFR_TMS_TD" placeholder="" name="GFR_TMS_TD" value="<?= old('GFR_TMS_TD'); ?>">
+                            <input type="text" class="form-control" id="GFR_TMS_TD" placeholder="" name="GFR_TMS_TD">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="GFR_CURVA" class="col-sm-2 col-form-label">GFR CURVA</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="GFR_CURVA" placeholder="" name="GFR_CURVA" value="<?= old('GFR_CURVA'); ?>">
+                            <input type="text" class="form-control" id="GFR_CURVA" placeholder="" name="GFR_CURVA">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="GFR_INST" class="col-sm-2 col-form-label">GFR INST</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="GFR_INST" placeholder="" name="GFR_INST" value="<?= old('GFR_INST'); ?>">
+                            <input type="text" class="form-control" id="GFR_INST" placeholder="" name="GFR_INST">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="GFR_T_INST" class="col-sm-2 col-form-label">GFR T INST</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="GFR_T_INST" placeholder="" name="GFR_T_INST" value="<?= old('GFR_T_INST'); ?>">
+                            <input type="text" class="form-control" id="GFR_T_INST" placeholder="" name="GFR_T_INST">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="UPJ_ID" class="col-sm-2 col-form-label">UPJ ID</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="UPJ_ID" placeholder="" name="UPJ_ID" value="<?= old('UPJ_ID'); ?>">
+                            <input type="text" class="form-control" id="UPJ ID" placeholder="" name="UPJ ID">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="UPJ_ID2" class="col-sm-2 col-form-label">UPJ ID2</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="UPJ_ID2" placeholder="" name="UPJ_ID2" value="<?= old('UPJ_ID2'); ?>">
+                            <input type="text" class="form-control" id="UPJ_ID2" placeholder="" name="UPJ_ID2">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="OCR_HS1" class="col-sm-2 col-form-label">OCR HS1</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="OCR_HS1" placeholder="" name="OCR_HS1" value="<?= old('OCR_HS1'); ?>">
+                            <input type="text" class="form-control" id="OCR_HS1" placeholder="" name="OCR_HS1">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="OCR_T_HS1" class="col-sm-2 col-form-label">OCR T HS1</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="OCR_T_HS1" placeholder="" name="OCR_T_HS1" value="<?= old('OCR_T_HS1'); ?>">
+                            <input type="text" class="form-control" id="OCR_T_HS1" placeholder="" name="OCR_T_HS1">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="OCR_HS2" class="col-sm-2 col-form-label">OCR HS2</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="OCR_HS2" placeholder="" name="OCR_HS2" value="<?= old('OCR_HS2'); ?>">
+                            <input type="text" class="form-control" id="OCR_HS2" placeholder="" name="OCR_HS2">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="OCR_T_HS2" class="col-sm-2 col-form-label">OCR T HS2</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="OCR_T_HS2" placeholder="" name="OCR_T_HS2" value="<?= old('OCR_T_HS2'); ?>">
+                            <input type="text" class="form-control" id="OCR_T_HS2" placeholder="" name="OCR_T_HS2">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="GFR_HS1" class="col-sm-2 col-form-label">GFR HS1</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="GFR_HS1" placeholder="" name="GFR_HS1" value="<?= old('GFR_HS1'); ?>">
+                            <input type="text" class="form-control" id="GFR_HS1" placeholder="" name="GFR_HS1">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="GFR_T_HS1" class="col-sm-2 col-form-label">GFR T HS1</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="GFR_T_HS1" placeholder="" name="GFR_T_HS1" value="<?= old('GFR_T_HS1'); ?>">
+                            <input type="text" class="form-control" id="GFR_T_HS1" placeholder="" name="GFR_T_HS1">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="GFR_HS2" class="col-sm-2 col-form-label">GFR HS2</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="GFR_HS2" placeholder="" name="GFR_HS2" value="<?= old('GFR_HS2'); ?>">
+                            <input type="text" class="form-control" id="GFR_HS2" placeholder="" name="GFR_HS2">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="GFR_T_HS2" class="col-sm-2 col-form-label">GFR T HS2</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="GFR_T_HS2" placeholder="" name="GFR_T_HS2" value="<?= old('GFR_T_HS2'); ?>">
+                            <input type="text" class="form-control" id="GFR_T_HS2" placeholder="" name="GFR_T_HS2">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="USER_UPDATE" class="col-sm-2 col-form-label">USER UPDATE</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="USER_UPDATE" placeholder="" name="USER_UPDATE" value="<?= old('USER_UPDATE'); ?>">
+                            <input type="text" class="form-control" id="USER_UPDATE" placeholder="" name="USER_UPDATE">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="LAST_UPDATE" class="col-sm-2 col-form-label">LAST UPDATE</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="LAST_UPDATE" placeholder="" name="LAST_UPDATE" value="<?= old('LAST_UPDATE'); ?>">
+                            <input type="text" class="form-control" id="LAST_UPDATE" placeholder="" name="LAST_UPDATE">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IA" class="col-sm-2 col-form-label">IA</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IA" placeholder="" name="IA" value="<?= old('IA'); ?>">
+                            <input type="text" class="form-control" id="IA" placeholder="" name="IA">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IA_TIME" class="col-sm-2 col-form-label">IA TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IA_TIME" placeholder="" name="IA_TIME" value="<?= old('IA_TIME'); ?>">
+                            <input type="text" class="form-control" id="IA_TIME" placeholder="" name="IA_TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IB" class="col-sm-2 col-form-label">IB</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IB" placeholder="" name="IB" value="<?= old('IB'); ?>">
+                            <input type="text" class="form-control" id="IB" placeholder="" name="IB">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IB_TIME" class="col-sm-2 col-form-label">IB TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IB_TIME" placeholder="" name="IB_TIME" value="<?= old('IB_TIME'); ?>">
+                            <input type="text" class="form-control" id="IB_TIME" placeholder="" name="IB_TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IC" class="col-sm-2 col-form-label">IC</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IC" placeholder="" name="IC" value="<?= old('IC'); ?>">
+                            <input type="text" class="form-control" id="IC" placeholder="" name="IC">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IC_TIME" class="col-sm-2 col-form-label">IC TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IC_TIME" placeholder="" name="IC_TIME" value="<?= old('IC_TIME'); ?>">
+                            <input type="text" class="form-control" id="IC_TIME" placeholder="" name="IC_TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IN" class="col-sm-2 col-form-label">IN</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IN" placeholder="" name="IN" value="<?= old('IN'); ?>">
+                            <input type="text" class="form-control" id="IN" placeholder="" name="IN">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IN_TIME" class="col-sm-2 col-form-label">IN TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IN_TIME" placeholder="" name="IN_TIME" value="<?= old('IN_TIME'); ?>">
+                            <input type="text" class="form-control" id="IN_TIME" placeholder="" name="IN_TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IA2" class="col-sm-2 col-form-label">IA2</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IA2" placeholder="" name="IA2" value="<?= old('IA2'); ?>">
+                            <input type="text" class="form-control" id="IA2" placeholder="" name="IA2">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IA2_TIME" class="col-sm-2 col-form-label">IA2 TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IA2_TIME" placeholder="" name="IA2_TIME" value="<?= old('IA2_TIME'); ?>">
+                            <input type="text" class="form-control" id="IA2_TIME" placeholder="" name="IA2_TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IB2" class="col-sm-2 col-form-label">IB2</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IB2" placeholder="" name="IB2" value="<?= old('IB2'); ?>">
+                            <input type="text" class="form-control" id="IB2" placeholder="" name="IB2">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IB2_TIME" class="col-sm-2 col-form-label">IB2 TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IB2_TIME" placeholder="" name="IB2_TIME" value="<?= old('IB2_TIME'); ?>">
+                            <input type="text" class="form-control" id="IB2_TIME" placeholder="" name="IB2_TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IC2" class="col-sm-2 col-form-label">IC2</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IC2" placeholder="" name="IC2" value="<?= old('IC2'); ?>">
+                            <input type="text" class="form-control" id="IC2" placeholder="" name="IC2">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IC2_TIME" class="col-sm-2 col-form-label">IC2 TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IC2_TIME" placeholder="" name="IC2_TIME" value="<?= old('IC2_TIME'); ?>">
+                            <input type="text" class="form-control" id="IC2_TIME" placeholder="" name="IC2_TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IN2" class="col-sm-2 col-form-label">IN2</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IN2" placeholder="" name="IN2" value="<?= old('IN2'); ?>">
+                            <input type="text" class="form-control" id="IN2" placeholder="" name="IN2">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IN2_TIME" class="col-sm-2 col-form-label">IN2 TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IN2_TIME" placeholder="" name="IN2_TIME" value="<?= old('IN2_TIME'); ?>">
+                            <input type="text" class="form-control" id="IN2_TIME" placeholder="" name="IN2_TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="VLL" class="col-sm-2 col-form-label">VLL</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="VLL" placeholder="" name="VLL" value="<?= old('VLL'); ?>">
+                            <input type="text" class="form-control" id="VLL" placeholder="" name="VLL">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="VLL_TIME" class="col-sm-2 col-form-label">VLL TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="VLL_TIME" placeholder="" name="VLL_TIME" value="<?= old('VLL_TIME'); ?>">
+                            <input type="text" class="form-control" id="VLL TIME" placeholder="" name="VLL TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="KW" class="col-sm-2 col-form-label">KW</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="KW" placeholder="" name="KW" value="<?= old('KW'); ?>">
+                            <input type="text" class="form-control" id="KW" placeholder="" name="KW">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="KW_TIME" class="col-sm-2 col-form-label">KW TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="KW_TIME" placeholder="" name="KW_TIME" value="<?= old('KW_TIME'); ?>">
+                            <input type="text" class="form-control" id="KW_TIME" placeholder="" name="KW_TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="PF" class="col-sm-2 col-form-label">PF</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="PF" placeholder="" name="PF" value="<?= old('PF'); ?>">
+                            <input type="text" class="form-control" id="PF" placeholder="" name="PF">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="PF_TIME" class="col-sm-2 col-form-label">PF TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="PF_TIME" placeholder="" name="PF_TIME" value="<?= old('PF_TIME'); ?>">
+                            <input type="text" class="form-control" id="PF_TIME" placeholder="" name="PF_TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IFA" class="col-sm-2 col-form-label">IFA</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IFA" placeholder="" name="IFA" value="<?= old('IFA'); ?>">
+                            <input type="text" class="form-control" id="IFA" placeholder="" name="IFA">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IFA_TIME" class="col-sm-2 col-form-label">IFA TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IFA_TIME" placeholder="" name="IFA_TIME" value="<?= old('IFA_TIME'); ?>">
+                            <input type="text" class="form-control" id="IFA_TIME" placeholder="" name="IFA_TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IFB" class="col-sm-2 col-form-label">IFB</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IFB" placeholder="" name="IFB" value="<?= old('IFB'); ?>">
+                            <input type="text" class="form-control" id="IFB" placeholder="" name="IFB">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IFB_TIME" class="col-sm-2 col-form-label">IFB TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IFB_TIME" placeholder="" name="IFB_TIME" value="<?= old('IFB_TIME'); ?>">
+                            <input type="text" class="form-control" id="IFB_TIME" placeholder="" name="IFB_TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IFC" class="col-sm-2 col-form-label">IFC</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IFC" placeholder="" name="IFC" value="<?= old('IFC'); ?>">
+                            <input type="text" class="form-control" id="IFC" placeholder="" name="IFC">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IFC_TIME" class="col-sm-2 col-form-label">IFC TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IFC_TIME" placeholder="" name="IFC_TIME" value="<?= old('IFC_TIME'); ?>">
+                            <input type="text" class="form-control" id="IFC_TIME" placeholder="" name="IFC_TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IFN" class="col-sm-2 col-form-label">IFN</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IFN" placeholder="" name="IFN" value="<?= old('IFN'); ?>">
+                            <input type="text" class="form-control" id="IFN" placeholder="" name="IFN">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="IFN_TIME" class="col-sm-2 col-form-label">IFN TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="IFN_TIME" placeholder="" name="IFN_TIME" value="<?= old('IFN_TIME'); ?>">
+                            <input type="text" class="form-control" id="IFN_TIME" placeholder="" name="IFN_TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="SCB" class="col-sm-2 col-form-label">SCB</label>
                         <div class="col-sm-10">
-                            <input type="int" class="form-control" id="SCB" placeholder="" name="SCB" value="<?= old('SCB'); ?>">
+                            <input type="int" class="form-control" id="SCB" placeholder="" name="SCB">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="SCB_TIME" class="col-sm-2 col-form-label">SCB TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="SCB_TIME" placeholder="" name="SCB_TIME" value="<?= old('SCB_TIME'); ?>">
+                            <input type="text" class="form-control" id="SCB_TIME" placeholder="" name="SCB_TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="SLR" class="col-sm-2 col-form-label">SLR</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="SLR" placeholder="" name="SLR" value="<?= old('SLR'); ?>">
+                            <input type="text" class="form-control" id="SLR" placeholder="" name="SLR">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="SLR_TIME" class="col-sm-2 col-form-label">SLR TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="SLR_TIME" placeholder="" name="SLR_TIME" value="<?= old('SLR_TIME'); ?>">
+                            <input type="text" class="form-control" id="SLR_TIME" placeholder="" name="SLR_TIME">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="SRNR" class="col-sm-2 col-form-label">SRNR</label>
                         <div class="col-sm-10">
-                            <input type="int" class="form-control" id="SRNR" placeholder="" name="SRNR" value="<?= old('SRNR'); ?>">
+                            <input type="int" class="form-control" id="SRNR" placeholder="" name="SRNR">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="SRNR_TIME" class="col-sm-2 col-form-label">SRNR TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="SRNR_TIME" placeholder="" name="SRNR_TIME" value="<?= old('SRNR_TIME'); ?>">
+                            <input type="text" class="form-control" id="SRNR_TIME" placeholder="" name="SRNR_TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="SESW" class="col-sm-2 col-form-label">SESW</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="SESW" placeholder="" name="SESW" value="<?= old('SESW'); ?>">
+                            <input type="text" class="form-control" id="SESW" placeholder="" name="SESW">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="SESW_TIME" class="col-sm-2 col-form-label">SESW TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="SESW_TIME" placeholder="" name="SESW_TIME" value="<?= old('SESW_TIME'); ?>">
+                            <input type="text" class="form-control" id="SESW_TIME" placeholder="" name="SESW_TIME">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="SCBP" class="col-sm-2 col-form-label">SCBP</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="SCBP" placeholder="" name="SCBP" value="<?= old('SCBP'); ?>">
+                            <input type="text" class="form-control" id="SCBP" placeholder="" name="SCBP">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="SCBP_TIME" class="col-sm-2 col-form-label">SCBP TIME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="SCBP_TIME" placeholder="" name="SCBP_TIME" value="<?= old('SCBP_TIME'); ?>">
+                            <input type="text" class="form-control" id="SCBP_TIME" placeholder="" name="SCBP_TIME">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Tambah</button>

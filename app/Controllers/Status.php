@@ -131,7 +131,6 @@ class Status extends BaseController
             return redirect()->to('/status/tambah')->withInput()->with('validation', $validation);
         }
 
-
         $this->cubicleModel->save([
             'APJ_ID' => $this->request->getvar('APJ_ID'),
             'SUPPLY_APJ' => $this->request->getvar('SUPPLY_APJ'),
@@ -239,5 +238,94 @@ class Status extends BaseController
         // $cubicleModel = new \app\models\cubicleModel();
 
         return view('status/informasi', $data);
+    }
+
+    public function getInformasi($id)
+    {
+
+        $cubicle = $this->cubicleModel
+            ->where('OUTGOING_ID', $id)->first();
+
+        $data_cubicle = array(
+            array(
+                'name'  => 'IA',
+                'nilai'  => $cubicle['IA'],
+                'time'  => $cubicle['IA_TIME'],
+            ),
+            array(
+                'name'  => 'IB',
+                'nilai'  => $cubicle['IB'],
+                'time'  => $cubicle['IB_TIME'],
+            ),
+            array(
+                'name'  => 'IC',
+                'nilai'  => $cubicle['IC'],
+                'time'  => $cubicle['IC_TIME'],
+            ),
+            array(
+                'name'  => 'IN',
+                'nilai'  => $cubicle['IN'],
+                'time'  => $cubicle['IN_TIME'],
+            ),
+            array(
+                'name'  => 'IA2',
+                'nilai'  => $cubicle['IA2'],
+                'time'  => $cubicle['IA2_TIME'],
+            ),
+            array(
+                'name'  => 'IB2',
+                'nilai'  => $cubicle['IB2'],
+                'time'  => $cubicle['IB2_TIME'],
+            ),
+            array(
+                'name'  => 'IC2',
+                'nilai'  => $cubicle['IC2'],
+                'time'  => $cubicle['IC2_TIME'],
+            ),
+            array(
+                'name'  => 'IN2',
+                'nilai'  => $cubicle['IN2'],
+                'time'  => $cubicle['IN2_TIME'],
+            ),
+            array(
+                'name'  => 'VLL',
+                'nilai'  => $cubicle['VLL'],
+                'time'  => $cubicle['VLL_TIME'],
+            ),
+            array(
+                'name'  => 'KW',
+                'nilai'  => $cubicle['KW'],
+                'time'  => $cubicle['KW_TIME'],
+            ),
+            array(
+                'name'  => 'PF',
+                'nilai'  => $cubicle['PF'],
+                'time'  => $cubicle['PF_TIME'],
+            ),
+            array(
+                'name'  => 'IFA',
+                'nilai'  => $cubicle['IFA'],
+                'time'  => $cubicle['IFA_TIME'],
+            ),
+            array(
+                'name'  => 'IFB',
+                'nilai'  => $cubicle['IFB'],
+                'time'  => $cubicle['IFB_TIME'],
+            ),
+            array(
+                'name'  => 'IFC',
+                'nilai'  => $cubicle['IFC'],
+                'time'  => $cubicle['IFC_TIME'],
+            ),
+            array(
+                'name'  => 'IFN',
+                'nilai'  => $cubicle['IFN'],
+                'time'  => $cubicle['IFN_TIME'],
+            ),
+        );
+
+
+
+        return $this->response->setJSON(['data' => $data_cubicle]);
     }
 }
