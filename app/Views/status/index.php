@@ -97,32 +97,30 @@
 
 <?= $this->section('javascript'); ?>
 <script>
-    // function out(x) {
-    //     $('#modalData').modal('show').find('.modal-content').load('popup.php?id' + x);
-    // }
-
+    var table = $('#tableCubicle').DataTable({
+        "bDestroy": true,
+        "autoWidth": false,
+        "ordering": false,
+        "paging": false,
+        "lengthMenu": [
+            [-1],
+            ["All"]
+        ],
+        columns: [{
+                data: 'name'
+            },
+            {
+                data: 'nilai'
+            },
+            {
+                data: 'time'
+            }
+        ]
+    });
     $('.cubicle').click(function() {
         let id_cubicle = $(this).data('cubicle');
-        let table = $('#tableCubicle').DataTable({
-            "bDestroy": true,
-            "autoWidth": false,
-            "ordering": false,
-            "lengthMenu": [
-                [-1],
-                ["All"]
-            ],
-            ajax: `http://localhost:8080/status/getInformasi/${id_cubicle}`,
-            columns: [{
-                    data: 'name'
-                },
-                {
-                    data: 'nilai'
-                },
-                {
-                    data: 'time'
-                }
-            ]
-        });
+        table.clear();
+        table.ajax.url(`http://localhost:8080/status/getInformasi/${id_cubicle}`).load();
         setInterval(function() {
             console.log(1)
             table.ajax.reload();
