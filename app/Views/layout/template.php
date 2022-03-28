@@ -36,11 +36,11 @@
     <?= $this->renderSection('javascript'); ?>
 
     <!-- Auto refresh webpage every 5 seconds -->
-    <script>
+    <!-- <script>
         window.setTimeout(function() {
             window.location.reload();
         }, 500000);
-    </script>
+    </script> -->
 </body>
 
 </html>

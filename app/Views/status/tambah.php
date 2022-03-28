@@ -17,9 +17,7 @@
                                 <?php foreach ($apj as $a) : ?>
                                     <option value="<?php echo $a->APJ_ID; ?>"><?php echo $a->APJ_NAMA; ?></option>
                                 <?php endforeach ?>
-
                             </select>
-
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -44,10 +42,8 @@
                     <div class="row mb-3">
                         <label for="APJ_ID" class="col-sm-2 col-form-label">APJ ID</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control <?= ($validation->hasError('APJ_ID')) ? 'is-invalid' : ''; ?>" id="APJ_ID" placeholder="" name="APJ_ID">
-                            <div class="invalid-feedback">
-                                <?= $validation->getError('APJ_ID'); ?>
-                            </div>
+                            <input type="text" class="form-control" id="APJ_ID" placeholder="" name="APJ_ID">
+
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -59,28 +55,22 @@
                     <div class="row mb-3">
                         <label for="INCOMING_ID" class="col-sm-2 col-form-label">INCOMING ID</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control <?= ($validation->hasError('INCOMING_ID')) ? 'is-invalid' : ''; ?>" id="INCOMING_ID" placeholder="" name="INCOMING_ID">
-                            <div class="invalid-feedback">
-                                <?= $validation->getError('INCOMING_ID'); ?>
-                            </div>
+                            <input type="text" class="form-control" id="INCOMING_ID" placeholder="" name="INCOMING_ID">
+
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="CUBICLE_NAME" class="col-sm-2 col-form-label">CUBICLE NAME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control <?= ($validation->hasError('CUBICLE_NAME')) ? 'is-invalid' : ''; ?>" id="CUBICLE_NAME" placeholder="" name="CUBICLE_NAME">
-                            <div class="invalid-feedback">
-                                <?= $validation->getError('CUBICLE_NAME'); ?>
-                            </div>
+                            <input type="text" class="form-control" id="CUBICLE_NAME" placeholder="" name="CUBICLE_NAME">
+
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="CUBCILE_TYPE" class="col-sm-2 col-form-label">CUBCILE TYPE</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control <?= ($validation->hasError('CUBCILE_TYPE')) ? 'is-invalid' : ''; ?>" id="CUBCILE_TYPE" placeholder="" name="CUBCILE_TYPE">
-                            <div class="invalid-feedback">
-                                <?= $validation->getError('CUBCILE_TYPE'); ?>
-                            </div>
+                            <input type="text" class="form-control " id="CUBCILE_TYPE" placeholder="" name="CUBCILE_TYPE">
+
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -92,10 +82,8 @@
                     <div class="row mb-3">
                         <label for="KETERANGAN" class="col-sm-2 col-form-label">KETERANGAN</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control <?= ($validation->hasError('KETERANGAN')) ? 'is-invalid' : ''; ?>" id="KETERANGAN" placeholder="" name="KETERANGAN">
-                            <div class="invalid-feedback">
-                                <?= $validation->getError('KETERANGAN'); ?>
-                            </div>
+                            <input type="text" class="form-control " id="KETERANGAN" placeholder="" name="KETERANGAN">
+
                         </div>
                     </div>
                     <div class="row mb-3">

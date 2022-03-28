@@ -111,7 +111,7 @@ class Status extends BaseController
         $data = [
             'title' => 'Tambah Data Cubicle',
             'apj' => $apj,
-            'validation' => \Config\Services::validation()
+
         ];
         return view('status/tambah', $data);
     }
@@ -119,17 +119,6 @@ class Status extends BaseController
 
     public function save()
     {
-        // validasi input
-        if (!$this->validate([
-            'APJ_ID' => 'required',
-            'INCOMING_ID' => 'required',
-            'CUBICLE_NAME' => 'required',
-            'CUBICLE_TYPE' => 'required',
-            'KETERANGAN' => 'required',
-        ])) {
-            $validation = \Config\Services::validation();
-            return redirect()->to('/status/tambah')->withInput()->with('validation', $validation);
-        }
 
         $this->cubicleModel->save([
             'APJ_ID' => $this->request->getvar('APJ_ID'),
@@ -220,8 +209,6 @@ class Status extends BaseController
             'SCBP' => $this->request->getvar('SCBP'),
             'SCBP_TIME' => $this->request->getvar('SCBP_TIME'),
         ]);
-
-        session()->setFlashdata('pesan', 'Data cubicle berhasil ditambahkan');
 
         return redirect()->to('/status');
     }
