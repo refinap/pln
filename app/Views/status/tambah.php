@@ -17,7 +17,9 @@
                                 <?php foreach ($apj as $a) : ?>
                                     <option value="<?php echo $a->APJ_ID; ?>"><?php echo $a->APJ_NAMA; ?></option>
                                 <?php endforeach ?>
+
                             </select>
+
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -43,15 +45,14 @@
                         <label for="APJ_ID" class="col-sm-2 col-form-label">APJ ID</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="APJ_ID" placeholder="" name="APJ_ID">
-
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <!-- <div class="row mb-3">
                         <label for="SUPPLY_APJ" class="col-sm-2 col-form-label">SUPPLY APJ</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="SUPPLY_APJ" placeholder="" name="SUPPLY_APJ">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mb-3">
                         <label for="INCOMING_ID" class="col-sm-2 col-form-label">INCOMING ID</label>
                         <div class="col-sm-10">
@@ -134,7 +135,7 @@
                             <input type="text" class="form-control" id="NO_SERI_IO" placeholder="" name="NO_SERI_IO">
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <!-- <div class="row mb-3">
                         <label for="MERK_INTERFACE" class="col-sm-2 col-form-label">MERK INTERFACE</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="MERK_INTERFACE" placeholder="" name="MERK_INTERFACE">
@@ -145,7 +146,7 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="NO_SERI_INTERFACE" placeholder="" name="NO_SERI_INTERFACE">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mb-3">
                         <label for="MERK_PS" class="col-sm-2 col-form-label">MERK PS</label>
                         <div class="col-sm-10">
@@ -158,19 +159,19 @@
                             <input type="text" class="form-control" id="SETTING CT" placeholder="" name="SETTING CT">
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <!-- <div class="row mb-3">
                         <label for="SETTING_PT" class="col-sm-2 col-form-label">SETTING PT</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="SETTING_PT" placeholder="" name="SETTING_PT">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mb-3">
                         <label for="MERK" class="col-sm-2 col-form-label">MERK</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="MERK" placeholder="" name="MERK">
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <!-- <div class="row mb-3">
                         <label for="MERK_CUBICLE" class="col-sm-2 col-form-label">MERK CUBICLE</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="MERK_CUBICLE" placeholder="" name="MERK_CUBICLE">
@@ -193,7 +194,7 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="RNR" placeholder="" name="RNR">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mb-3">
                         <label for="TAHUN_OPERASI" class="col-sm-2 col-form-label">TAHUN OPERASI</label>
                         <div class="col-sm-10">
@@ -218,7 +219,7 @@
                             <input type="text" class="form-control" id="OCR_CURVA" placeholder="" name="OCR_CURVA">
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <!-- <div class="row mb-3">
                         <label for="OCR_INST" class="col-sm-2 col-form-label">OCR INST</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="OCR_INST" placeholder="" name="OCR_INST">
@@ -229,7 +230,7 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="OCR_T_INST" placeholder="" name="OCR_T_INST">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mb-3">
                         <label for="GFR_TD" class="col-sm-2 col-form-label">GFR TD</label>
                         <div class="col-sm-10">
@@ -248,7 +249,7 @@
                             <input type="text" class="form-control" id="GFR_CURVA" placeholder="" name="GFR_CURVA">
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <!-- <div class="row mb-3">
                         <label for="GFR_INST" class="col-sm-2 col-form-label">GFR INST</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="GFR_INST" placeholder="" name="GFR_INST">
@@ -259,7 +260,7 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="GFR_T_INST" placeholder="" name="GFR_T_INST">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mb-3">
                         <label for="UPJ_ID" class="col-sm-2 col-form-label">UPJ ID</label>
                         <div class="col-sm-10">
@@ -620,6 +621,43 @@
             }
         })
     });
+
+    //    ambil APJ_ID untuk isi data otomatis berdasar pilihan Area form select
+    // $("#APJ_ID").ready(function() {
+    //     let $APJ_ID = $(this).val();
+    //     $.ajax({
+    //         url: `http://localhost:8080/status/ceks/${$APJ_ID}`,
+    //         success: function(result) {
+    //             var result = [...result.APJ_ID];
+    //             console.log(result)
+
+    //             for (const child of result) {
+    //                 $('#area option:first').after($('<option />', {
+    //                     "value": child.APJ_ID,
+
+    //                 }));
+    //             }
+    //         }
+    //     })
+    // });
+
+    //    ambil INCOMING_ID untuk isi data otomatis berdasar pilihan Trafo from select
+    // $("#gi").ready(function() {
+    //     let $INCOMING_ID = $(this).val();
+    //     $.ajax({
+    //         url: `http://localhost:8080/status/cekgi/${$INCOMING_ID}`,
+    //         success: function(result) {
+
+    //         }
+    //     });
+    // });
+
+    // ====== How to Get the data-id Attribute of an Element Using jQuery =======
+    // $(document).ready(function(){
+    // $(".gallery li").on("click", function(){
+    //     var dataId = $(this).attr("data-id");
+    //     alert("The data-id of clicked item is: " + dataId);
+    // })
 
 
     $("#btl-area-lainnya").click(function() {
