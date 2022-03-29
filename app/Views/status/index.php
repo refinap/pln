@@ -6,8 +6,6 @@
         <div class="col">
             <h1 class="text-center mt-2">Monitoring Realtime SCADA</h1>
             <h2 class="text-center mt-2">Unit Pelaksana Pelayanan Pelanggan (UP3)</h2>
-            <a href="/status/tambah" class="btn btn-primary mb-3">Tambah Data Cubicle</a><br>
-
             <div class="accordion" id="accordionExample">
                 <?php foreach ($apj as $key => $a) : ?>
                     <div class="accordion-item">
@@ -17,7 +15,9 @@
                             </button>
                         </h2>
                         <div id="collapse<?= $a->APJ_ID ?>" class="accordion-collapse collapse" aria-labelledby="heading<?= $a->APJ_ID ?>" data-bs-parent="#accordionExample">
+
                             <div class="accordion-body">
+                                <a href="/status/tambah" class="btn btn-primary mb-3">Tambah Data Cubicle</a><br>
                                 <?php foreach ($a->gi as $g) : ?>
                                     <span class="fw-bold fs-4"> GI <?php echo $g['GARDU_INDUK_NAMA']; ?></span>
                                     <br>
@@ -82,7 +82,16 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                <a href="/status/edit/<?= $cubic['CUBICLE_NAME']; ?>" class="btn btn-warning">Edit Data Cubicle</a>
+
+                <form action="/index/<?= $cubic['OUTGOING_ID']; ?>" method="post" class="d-inline">
+                    <?= csrf_field(); ?>
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger " onclick="return confirm('Apakah Anda Yakin?')">Delete</button>
+                </form>
+
+                <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -120,7 +129,7 @@
         setInterval(function() {
             console.log(1)
             table.ajax.reload();
-        }, 1000);
+        }, 4000);
         $('#modalData').modal('show')
     });
 </script>

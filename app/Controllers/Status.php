@@ -310,9 +310,16 @@ class Status extends BaseController
                 'time'  => $cubicle['IFN_TIME'],
             ),
         );
-
-
-
         return $this->response->setJSON(['data' => $data_cubicle]);
+    }
+    public function delete($id)
+    {
+
+        $$this->cubicleModel->delete($id);
+
+        $session = session();
+        $session->setFlashdata("success", "Data berhasil di hapus");
+
+        return redirect()->to('/index');
     }
 }
