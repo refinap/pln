@@ -318,7 +318,7 @@ class Status extends BaseController
         $$this->cubicleModel->delete($id);
 
         $session = session();
-        $session->setFlashdata("success", "Data berhasil di hapus");
+        $session->setFlashdata("success", "Data berhasil dihapus");
 
         return redirect()->to('/index');
     }

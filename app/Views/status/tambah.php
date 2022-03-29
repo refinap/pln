@@ -585,8 +585,13 @@
 
 <?= $this->section('javascript'); ?>
 <script>
-    $("#area").change(function() {
+    $("#area").change(function() { // nak misal mau ganti otomatis dari index => window reday then get area_id
+        // let $APJ_ID = js get id parameter area_id;
+        //console.log( "ready!" );
         let $APJ_ID = $(this).val();
+        $('#APJ_ID').val($APJ_ID);
+        $('#gi').empty().append('<option></option>');;
+
         $.ajax({
             url: `http://localhost:8080/status/cekstatus/${$APJ_ID}`,
             success: function(result) {
@@ -604,8 +609,9 @@
 
     $("#gi").change(function() {
         let $GARDU_INDUK_ID = $(this).val();
-
         console.log($GARDU_INDUK_ID)
+        $('#trafo').empty().append('<option></option>');;
+
         $.ajax({
             url: `http://localhost:8080/status/getTrafo/${$GARDU_INDUK_ID}`,
             success: function(result) {
@@ -622,43 +628,11 @@
         })
     });
 
-    //    ambil APJ_ID untuk isi data otomatis berdasar pilihan Area form select
-    // $("#APJ_ID").ready(function() {
-    //     let $APJ_ID = $(this).val();
-    //     $.ajax({
-    //         url: `http://localhost:8080/status/ceks/${$APJ_ID}`,
-    //         success: function(result) {
-    //             var result = [...result.APJ_ID];
-    //             console.log(result)
-
-    //             for (const child of result) {
-    //                 $('#area option:first').after($('<option />', {
-    //                     "value": child.APJ_ID,
-
-    //                 }));
-    //             }
-    //         }
-    //     })
-    // });
-
-    //    ambil INCOMING_ID untuk isi data otomatis berdasar pilihan Trafo from select
-    // $("#gi").ready(function() {
-    //     let $INCOMING_ID = $(this).val();
-    //     $.ajax({
-    //         url: `http://localhost:8080/status/cekgi/${$INCOMING_ID}`,
-    //         success: function(result) {
-
-    //         }
-    //     });
-    // });
-
-    // ====== How to Get the data-id Attribute of an Element Using jQuery =======
-    // $(document).ready(function(){
-    // $(".gallery li").on("click", function(){
-    //     var dataId = $(this).attr("data-id");
-    //     alert("The data-id of clicked item is: " + dataId);
-    // })
-
+    $("#trafo").change(function() {
+        let $TRAFO_ID = $(this).val();
+        $('#INCOMING_ID').val($TRAFO_ID);
+        console.log($TRAFO_ID)
+    });
 
     $("#btl-area-lainnya").click(function() {
 
