@@ -314,8 +314,13 @@ class Status extends BaseController
     }
     public function delete($id)
     {
+        // $cubicle = $this->cubicleModel
+        //     ->where('OUTGOING_ID', $id)->first();
+        $this->cubicleModel->delete($id);
 
-        $$this->cubicleModel->delete($id);
+        // $data = [
+        //     'c' => $cubicle
+        // ];
 
         $session = session();
         $session->setFlashdata("success", "Data berhasil dihapus");

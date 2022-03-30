@@ -41,25 +41,18 @@
                         </div>
                     </div>
 
-                    <div class="row mb-3">
-                        <label for="APJ_ID" class="col-sm-2 col-form-label">APJ ID</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="APJ_ID" placeholder="" name="APJ_ID">
-                        </div>
-                    </div>
+                    <input type="hidden" class="" id="APJ_ID" name="APJ_ID">
+
+
                     <!-- <div class="row mb-3">
                         <label for="SUPPLY_APJ" class="col-sm-2 col-form-label">SUPPLY APJ</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="SUPPLY_APJ" placeholder="" name="SUPPLY_APJ">
                         </div>
                     </div> -->
-                    <div class="row mb-3">
-                        <label for="INCOMING_ID" class="col-sm-2 col-form-label">INCOMING ID</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="INCOMING_ID" placeholder="" name="INCOMING_ID">
 
-                        </div>
-                    </div>
+                    <input type="hidden" class="form-control" id="INCOMING_ID" placeholder="" name="INCOMING_ID">
+
                     <div class="row mb-3">
                         <label for="CUBICLE_NAME" class="col-sm-2 col-form-label">CUBICLE NAME</label>
                         <div class="col-sm-10">
