@@ -33,6 +33,7 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Pages::index');
 
+$routes->get('/status/edit/(:segmwnt)', 'status::edit/$1');
 $routes->delete('/index/(:num)', 'status::delete/$1');
 /*
  * --------------------------------------------------------------------

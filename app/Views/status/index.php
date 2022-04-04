@@ -84,7 +84,7 @@
             </div>
             <div class="modal-footer">
 
-                <a href="/status/edit/ <?= $cubicle['CUBICLE_NAME']; ?>" class="btn btn-warning">Edit Data Cubicle</a>
+                <a href="/status/edit/ <?= $cubicle['OUTGOING_ID']; ?>" class="btn btn-warning">Edit Data Cubicle</a>
 
                 <form action="/status/delete/ <?= $cubicle['OUTGOING_ID']; ?>" method="post" class="d-inline">
                     <?= csrf_field(); ?>
