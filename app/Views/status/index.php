@@ -6,6 +6,12 @@
         <div class="col">
             <h1 class="text-center mt-2">Monitoring Realtime SCADA</h1>
             <h2 class="text-center mt-2">Unit Pelaksana Pelayanan Pelanggan (UP3)</h2>
+            <?php if (session()->getFlashdata('pesan')) : ?>
+                <div class="alert alert-success" role="alert">
+                    <?= session()->getFlashdata('pesan'); ?>
+                </div>
+            <?php endif; ?>
+
             <div class="accordion" id="accordionExample">
                 <?php foreach ($apj as $key => $a) : ?>
                     <div class="accordion-item">
@@ -85,14 +91,14 @@
             </div>
             <div class="modal-footer">
 
-                <a id="edit" class="btn btn-warning">Edit Data Cubicle</a>
+                <a id="edit" class="btn btn-warning" style="min-width:75px;">Edit</a>
 
                 <form id="delete" method="post" class="d-inline">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="btn btn-danger " onclick="return confirm('Apakah Anda Yakin?')">Delete</button>
+                    <button type="submit" class="btn btn-danger" style="min-width:75px;" onclick="return confirm('Apakah Anda Yakin?')">Delete</button>
                 </form>
-                <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" style="min-width:75px;" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -129,16 +135,10 @@
         let cb_name = $(this).data('name');
         $('#cb_name').html(cb_name);
         $('#id_cubicle').html(id_cubicle)
-        // sing nggo id  delete ro edit seeting e ning ngisor iki
+
         $("a#edit").attr("href", `Status/edit/${id_cubicle}`);
         $('form#delete').attr('action', `Status/delete/${id_cubicle}`);
-        // dadi keyword e :
-        // sett id href dng js
 
-
-        // nko contoh url 
-        // `urllink/${id_cubbile}`
-        // ada 2 selection ning btn hapus ro edit
 
         table.clear();
         table.ajax.url(`http://localhost:8080/status/getInformasi/${id_cubicle}`).load();

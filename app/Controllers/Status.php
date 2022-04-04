@@ -218,7 +218,7 @@ class Status extends BaseController
             'SCBP' => $this->request->getvar('SCBP'),
             'SCBP_TIME' => $this->request->getvar('SCBP_TIME'),
         ]);
-        session()->setflashdata('pesan', 'Data Berhasil ditambah');
+        session()->setflashdata('pesan', 'Data cubicle berhasil ditambah');
         return redirect()->to('/status');
     }
 
@@ -326,18 +326,15 @@ class Status extends BaseController
     {
         $this->cubicleModel->where("OUTGOING_ID", $OUTGOING_ID)->delete();
 
-        $session = session();
-        $session->setFlashdata("success", "Data berhasil dihapus");
-
+        session()->setFlashdata('pesan', 'Data cubicle berhasil dihapus');
         return redirect()->to('status');
     }
 
     public function edit($OUTGOING_ID)
     {
-        // session();
 
         $apj = $this->apjModel->where('APJ_DCC IS NOT NULL', null, false)->get()->getResult();
-        $cubicle =  $this->cubicleModel->where("OUTGOING_ID", $OUTGOING_ID)->findAll();
+        $cubicle =  $this->cubicleModel->where("OUTGOING_ID", $OUTGOING_ID)->get()->getResult();
         $data = [
             'title' => 'Ubah Data Cubicle',
             'apj' => $apj,
@@ -348,7 +345,7 @@ class Status extends BaseController
     }
     public function update($OUTGOING_ID)
     {
-        $this->cubicleModel->save([
+        $this->cubicleModel->update([
             'OUTGOING_ID' => $OUTGOING_ID,
             'APJ_ID' => $this->request->getvar('APJ_ID'),
             'SUPPLY_APJ' => $this->request->getvar('SUPPLY_APJ'),
