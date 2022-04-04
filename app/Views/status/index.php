@@ -43,7 +43,7 @@
                                                                 <span class="fs-5"><?= $cubic['CUBICLE_NAME']; ?></span>
                                                             </div>
                                                             <!-- <button onclick="out(<?php echo $cubic['OUTGOING_ID']; ?>)" type="button" data-bs-toggle="modal" data-bs-target="#modalData" class="btn btn-<?= $arr[0]; ?>"><?= $arr[1]; ?></button></a> -->
-                                                            <button type="button" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" class="btn cubicle btn-<?= $arr[0]; ?>"><?= $arr[1]; ?></button></a>
+                                                            <button type="button" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="<?php echo $cubic['CUBICLE_NAME']; ?>" class="btn cubicle btn-<?= $arr[0]; ?>"><?= $arr[1]; ?></button></a>
                                                         </div>
                                                     <?php endforeach; ?>
                                                 </div>
@@ -65,12 +65,12 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="modalDataLabel">Informasi <?php echo $cubicle['CUBICLE_NAME']; ?></h2>
+                <!-- // ini kan nama cubicle sesuai yang diklik kan? -->
+                <h2 class="modal-title" id="modalDataLabel">Informasi <span id="cb_name"></span></h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <table id="tableCubicle" class="table table-bordered">
-                    <?php echo $cubicle['OUTGOING_ID'] ?>
                     <thead>
                         <tr>
                             <th scope="col">Keterangan</th>
@@ -122,8 +122,20 @@
             }
         ]
     });
+
     $('.cubicle').click(function() {
         let id_cubicle = $(this).data('cubicle');
+        let cb_name = $(this).data('name');
+        $('#cb_name').html(cb_name)
+
+        // sing nggo id  delete ro edit seeting e ning ngisor iki
+
+        // dadi keyword e :
+        // sett id href dng js
+        // nko contoh url 
+        // `urllink/${id_cubbile}`
+        // ada 2 selection ning btn hapus ro edit
+
         table.clear();
         table.ajax.url(`http://localhost:8080/status/getInformasi/${id_cubicle}`).load();
         setInterval(function() {
