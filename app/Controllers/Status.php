@@ -324,18 +324,13 @@ class Status extends BaseController
 
     public function delete($OUTGOING_ID)
     {
-        $cubicle = $this->cubicleModel->where("OUTGOING_ID", $OUTGOING_ID)->getResult();
-        // echo $OUTGOING_ID;
-        // var_dump($cubicle);
-        // exit();
+        $cubicle = $this->cubicleModel->where("OUTGOING_ID", $OUTGOING_ID)->delete();
+        echo $OUTGOING_ID;
+        var_dump($cubicle);
+        exit();
 
         $session = session();
         $session->setFlashdata("success", "Data berhasil dihapus");
-
-        // return view('status/index', $data);
-
-        // nak delete ngene digawe redirect wae
-        // nak muk return view,... nko sing /delete dadi halaman,
 
         return redirect()->to('status');
     }

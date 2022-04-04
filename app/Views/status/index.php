@@ -70,6 +70,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <span id="id_cubicle"></span>
                 <table id="tableCubicle" class="table table-bordered">
                     <thead>
                         <tr>
@@ -84,9 +85,9 @@
             </div>
             <div class="modal-footer">
 
-                <a href="/status/edit/ <?= $cubicle['OUTGOING_ID']; ?>" class="btn btn-warning">Edit Data Cubicle</a>
+                <a id="edit" class="btn btn-warning">Edit Data Cubicle</a>
 
-                <form action="/status/delete/ <?= $cubicle['OUTGOING_ID']; ?>" method="post" class="d-inline">
+                <form id="delete" method="post" class="d-inline">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="_method" value="DELETE">
                     <button type="submit" class="btn btn-danger " onclick="return confirm('Apakah Anda Yakin?')">Delete</button>
@@ -126,12 +127,15 @@
     $('.cubicle').click(function() {
         let id_cubicle = $(this).data('cubicle');
         let cb_name = $(this).data('name');
-        $('#cb_name').html(cb_name)
-
+        $('#cb_name').html(cb_name);
+        $('#id_cubicle').html(id_cubicle)
         // sing nggo id  delete ro edit seeting e ning ngisor iki
-
+        $("a#edit").attr("href", `status/edit/${id_cubicle}`);
+        $('form#form-delete').attr('action', `status/delete/${id_cubicle}`);
         // dadi keyword e :
         // sett id href dng js
+
+
         // nko contoh url 
         // `urllink/${id_cubbile}`
         // ada 2 selection ning btn hapus ro edit
