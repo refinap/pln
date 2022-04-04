@@ -324,10 +324,7 @@ class Status extends BaseController
 
     public function delete($OUTGOING_ID)
     {
-        $cubicle = $this->cubicleModel->where("OUTGOING_ID", $OUTGOING_ID)->delete();
-        echo $OUTGOING_ID;
-        var_dump($cubicle);
-        exit();
+        $this->cubicleModel->where("OUTGOING_ID", $OUTGOING_ID)->delete();
 
         $session = session();
         $session->setFlashdata("success", "Data berhasil dihapus");
@@ -338,11 +335,13 @@ class Status extends BaseController
     public function edit($OUTGOING_ID)
     {
         // session();
+
         $apj = $this->apjModel->where('APJ_DCC IS NOT NULL', null, false)->get()->getResult();
+        $cubicle =  $this->cubicleModel->where("OUTGOING_ID", $OUTGOING_ID)->findAll();
         $data = [
             'title' => 'Ubah Data Cubicle',
             'apj' => $apj,
-            'cubicle' => $this->cubicleModel->getcubicle($OUTGOING_ID)
+            'cubicle' => $cubicle
 
         ];
         return view('status/edit', $data);

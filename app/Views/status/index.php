@@ -130,8 +130,8 @@
         $('#cb_name').html(cb_name);
         $('#id_cubicle').html(id_cubicle)
         // sing nggo id  delete ro edit seeting e ning ngisor iki
-        $("a#edit").attr("href", `status/edit/${id_cubicle}`);
-        $('form#form-delete').attr('action', `status/delete/${id_cubicle}`);
+        $("a#edit").attr("href", `Status/edit/${id_cubicle}`);
+        $('form#delete').attr('action', `Status/delete/${id_cubicle}`);
         // dadi keyword e :
         // sett id href dng js
 
