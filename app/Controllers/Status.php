@@ -42,13 +42,22 @@ class Status extends BaseController
             };
             $apj[$key]->gi = $gi;
         };
-        // return $this->response->setJSON($apj);
+
+        $cubicle = $this->cubicleModel->first();
+
+        // $cubicle = $this->cubicleModel->find($OUTGOING_ID);
+        // $cubicle = $this->cubicleModel->findColumn('CUBICLE_NAME');
+        // $cubicle = $this->cubicleModel->findAll();
+        // $cubicle = $this->cubicleModel->where('OUTGOING_ID', $OUTGOING_ID)->findAll();
+
+        // return $this->response->setJSON($apj);   
         // exit;
 
         $data = [
             'title' => 'Status Realtime SCADA',
             'apj' => $apj,
-            'incoming' => $incoming
+            'incoming' => $incoming,
+            'cubicle' => $cubicle
         ];
 
         // if (empty($data['status'])) {
@@ -312,19 +321,29 @@ class Status extends BaseController
         );
         return $this->response->setJSON(['data' => $data_cubicle]);
     }
-    public function delete($id)
-    {
-        // $cubicle = $this->cubicleModel
-        //     ->where('OUTGOING_ID', $id)->first();
-        $this->cubicleModel->delete($id);
 
-        // $data = [
-        //     'c' => $cubicle
-        // ];
+    public function delete($OUTGOING_ID)
+    {
+        $cubicle = $this->cubicleModel->where("OUTGOING_ID", $OUTGOING_ID)->delete();
+
+        $data = [
+            'cubicle'    => $cubicle
+        ];
 
         $session = session();
         $session->setFlashdata("success", "Data berhasil dihapus");
 
-        return redirect()->to('/index');
+        return view('status/index', $data);
+    }
+
+    public function edit($OUTGOING_ID)
+    {
+        $cubicle = $this->cubicleModel
+            ->where('OUTGOING_ID', $OUTGOING_ID)->findAll();
+        $data = [
+            'cubicle' => $cubicle
+        ];
+
+        return view('status/edit', $data);
     }
 }

@@ -65,11 +65,12 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="modalDataLabel">Informasi</h2>
+                <h2 class="modal-title" id="modalDataLabel">Informasi <?php echo $cubicle['CUBICLE_NAME']; ?></h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <table id="tableCubicle" class="table table-bordered">
+                    <?php echo $cubicle['OUTGOING_ID'] ?>
                     <thead>
                         <tr>
                             <th scope="col">Keterangan</th>
@@ -83,14 +84,13 @@
             </div>
             <div class="modal-footer">
 
-                <a href="/status/edit/<?= $cubic['CUBICLE_NAME']; ?>" class="btn btn-warning">Edit Data Cubicle</a>
+                <a href="/status/edit/ <?= $cubicle['CUBICLE_NAME']; ?>" class="btn btn-warning">Edit Data Cubicle</a>
 
-                <form action="/index/<?= $cubic['OUTGOING_ID']; ?>" method="post" class="d-inline">
+                <form action="/status/delete/ <?= $cubicle['OUTGOING_ID']; ?>" method="post" class="d-inline">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="_method" value="DELETE">
                     <button type="submit" class="btn btn-danger " onclick="return confirm('Apakah Anda Yakin?')">Delete</button>
                 </form>
-
                 <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
             </div>
         </div>
