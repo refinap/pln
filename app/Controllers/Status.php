@@ -318,6 +318,31 @@ class Status extends BaseController
                 'nilai'  => $cubicle['IFN'],
                 'time'  => $cubicle['IFN_TIME'],
             ),
+            array(
+                'name'  => 'SCB',
+                'nilai'  => $cubicle['SCB'],
+                'time'  => $cubicle['SCB_TIME'],
+            ),
+            array(
+                'name'  => 'SLR',
+                'nilai'  => $cubicle['SLR'],
+                'time'  => $cubicle['SLR_TIME'],
+            ),
+            array(
+                'name'  => 'SRNR',
+                'nilai'  => $cubicle['SRNR'],
+                'time'  => $cubicle['SRNR_TIME'],
+            ),
+            array(
+                'name'  => 'SESW',
+                'nilai'  => $cubicle['SESW'],
+                'time'  => $cubicle['SESW_TIME'],
+            ),
+            array(
+                'name'  => 'SCBP',
+                'nilai'  => $cubicle['SCBP'],
+                'time'  => $cubicle['SCBP_TIME'],
+            ),
         );
         return $this->response->setJSON(['data' => $data_cubicle]);
     }
@@ -332,15 +357,21 @@ class Status extends BaseController
 
     public function edit($OUTGOING_ID)
     {
-
         $apj = $this->apjModel->where('APJ_DCC IS NOT NULL', null, false)->get()->getResult();
-        $cubicle =  $this->cubicleModel->where("OUTGOING_ID", $OUTGOING_ID)->get()->getResult();
+        $cubicle =  $this->cubicleModel->where("OUTGOING_ID", $OUTGOING_ID)->first();
+        // $gi = $this->cubicleModel->where('INCOMING_ID', $cubicle['INCOMING_ID'])->first();
+        $trafo = $this->incomingModel->where('INCOMING_ID', $cubicle['INCOMING_ID'])->first();
+        // var_dump($trafo);
+        // exit();
+
         $data = [
             'title' => 'Ubah Data Cubicle',
             'apj' => $apj,
+            'trafo' => $trafo,
             'cubicle' => $cubicle
-
         ];
+
+        // session()->setFlashdata('pesan', 'Data cubicle berhasil diubah');
         return view('status/edit', $data);
     }
     public function update($OUTGOING_ID)

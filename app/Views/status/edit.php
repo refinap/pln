@@ -13,20 +13,18 @@
                     <div class="row mb-3">
                         <label for="area" class="col-sm-2 col-form-label">Area</label>
                         <div class="col-sm-10">
-                            <select class="form-select data-exting" aria-label="Default select example" id="area" name="area" autofocus>
+                            <select disabled class="form-select data-exting" aria-label="Default select example" id="area" name="area" autofocus>
                                 <option selected></option>
                                 <?php foreach ($apj as $a) : ?>
-                                    <option value="<?php echo $a->APJ_ID; ?>"><?php echo $a->APJ_NAMA; ?></option>
+                                    <option <?= ($cubicle['APJ_ID'] == $a->APJ_ID) ? 'selected' : null; ?> value="<?php echo $a->APJ_ID; ?>"><?php echo $a->APJ_NAMA; ?></option>
                                 <?php endforeach ?>
-
                             </select>
-
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="gardu_induk" class="col-sm-2 col-form-label">Gardu Induk</label>
                         <div class="col-sm-10">
-                            <select class="form-select data-exting" aria-label="Default select example" id="gi" name="gi" autofocus value="<?= $cubicle['gi']; ?>">
+                            <select disabled class="form-select data-exting" aria-label="Default select example" id="gi" name="gi" autofocus>
                                 <option selected></option>
                             </select>
                         </div>
@@ -36,8 +34,8 @@
                     <div class="row mb-3">
                         <label for="trafo" class="col-sm-2 col-form-label">Trafo</label>
                         <div class="col-sm-10">
-                            <select class="form-select data-exting" aria-label="Default select example" id="trafo" name="trafo" autofocusvalue="<?= $cubicle['trafo']; ?>">
-                                <option selected></option>
+                            <select disabled class="form-select data-exting" aria-label="Default select example" id="trafo" name="trafo">
+                                <option value="<?php echo $trafo['INCOMING_ID']; ?>"><?php echo $trafo['NAMA_ALIAS_INCOMING']; ?></option>
                             </select>
                         </div>
                     </div>
@@ -64,7 +62,7 @@
                     <div class="row mb-3">
                         <label for="CUBCILE_TYPE" class="col-sm-2 col-form-label">CUBCILE TYPE</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control " id="CUBCILE_TYPE" placeholder="" name="CUBCILE_TYPE" value="<?= $cubicle['CUBCILE_TYPE']; ?>">
+                            <input type="text" class="form-control " id="CUBCILE_TYPE" placeholder="" name="CUBCILE_TYPE" value="<?= $cubicle['CUBICLE_TYPE']; ?>">
 
                         </div>
                     </div>
@@ -574,82 +572,4 @@
         </div>
     </div>
 </div>
-<?= $this->endSection(); ?>
-
-
-<?= $this->section('javascript'); ?>
-<script>
-    $("#area").change(function() { // nak misal mau ganti otomatis dari index => window reday then get area_id
-        // let $APJ_ID = js get id parameter area_id;
-        //console.log( "ready!" );
-        let $APJ_ID = $(this).val();
-        $('#APJ_ID').val($APJ_ID);
-        $('#gi').empty().append('<option></option>');;
-
-        $.ajax({
-            url: `http://localhost:8080/status/cekstatus/${$APJ_ID}`,
-            success: function(result) {
-                var result = [...result.gi];
-
-                for (const child of result) {
-                    $('#gi option:first').after($('<option />', {
-                        "value": child.GARDU_INDUK_ID,
-                        text: child.GARDU_INDUK_NAMA
-                    }));
-                }
-            }
-        });
-    });
-
-    $("#gi").change(function() {
-        let $GARDU_INDUK_ID = $(this).val();
-        console.log($GARDU_INDUK_ID)
-        $('#trafo').empty().append('<option></option>');;
-
-        $.ajax({
-            url: `http://localhost:8080/status/getTrafo/${$GARDU_INDUK_ID}`,
-            success: function(result) {
-                var result = [...result.trafo];
-                console.log(result)
-
-                for (const child of result) {
-                    $('#trafo option:first').after($('<option />', {
-                        "value": child.INCOMING_ID,
-                        text: child.NAMA_ALIAS_INCOMING
-                    }));
-                }
-            }
-        })
-    });
-
-    $("#trafo").change(function() {
-        let $TRAFO_ID = $(this).val();
-        $('#INCOMING_ID').val($TRAFO_ID);
-        console.log($TRAFO_ID)
-    });
-
-    $("#btl-area-lainnya").click(function() {
-
-        $('.data-area-exting').show()
-        $('.data-area-added').hide()
-    });
-
-    $("#btl-gi-lainnya").click(function() {
-
-        $('.data-gi-exting').show()
-        $('.data-gi-added').hide()
-    });
-
-    $("#btl-incoming-lainnya").click(function() {
-
-        $('.data-incoming-exting').show()
-        $('.data-incoming-added').hide()
-    });
-
-    $("#btl-cubicle-lainnya").click(function() {
-
-        $('.data-cubicle-exting').show()
-        $('.data-cubicle-added').hide()
-    });
-</script>
 <?= $this->endSection(); ?>
