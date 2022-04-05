@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<div class="container">
+<div class="container cubicle-wrapper">
     <div class="row">
         <div class="col">
             <h1 class="text-center mt-2">Monitoring Realtime SCADA</h1>
@@ -48,7 +48,7 @@
                                                             <div class="d-flex justify-content-center">
                                                                 <span class="fs-5"><?= $cubic['CUBICLE_NAME']; ?></span>
                                                             </div>
-                                                            <!-- <button onclick="out(<?php echo $cubic['OUTGOING_ID']; ?>)" type="button" data-bs-toggle="modal" data-bs-target="#modalData" class="btn btn-<?= $arr[0]; ?>"><?= $arr[1]; ?></button></a> -->
+                                                            <!-- <button onclick="out(< ?php echo $cubic['OUTGOING_ID']; ?>)" type="button" data-bs-toggle="modal" data-bs-target="#modalData" class="btn btn-<?= $arr[0]; ?>"><?= $arr[1]; ?></button></a> -->
                                                             <button type="button" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="<?php echo $cubic['CUBICLE_NAME']; ?>" class="btn cubicle btn-<?= $arr[0]; ?>"><?= $arr[1]; ?></button></a>
                                                         </div>
                                                     <?php endforeach; ?>
@@ -71,12 +71,11 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <!-- // ini kan nama cubicle sesuai yang diklik kan? -->
                 <h2 class="modal-title" id="modalDataLabel">Informasi <span id="cb_name"></span></h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <span id="id_cubicle"></span>
+                <!-- <span id="id_cubicle"></span> -->
                 <table id="tableCubicle" class="table table-bordered">
                     <thead>
                         <tr>
@@ -92,7 +91,6 @@
             <div class="modal-footer">
 
                 <a id="edit" class="btn btn-warning" style="min-width:75px;">Edit</a>
-
                 <form id="delete" method="post" class="d-inline">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="_method" value="DELETE">
@@ -108,12 +106,18 @@
 
 <?= $this->section('javascript'); ?>
 <script>
+    // sample
+    // setInterval(function() {
+    //     $('.cubicle-wrapper').load('popup.php');
+    // }, 750);
+
     var table = $('#tableCubicle').DataTable({
         "bDestroy": true,
         "autoWidth": false,
         "ordering": false,
         "paging": false,
         "bFilter": false,
+        "info": false,
         "lengthMenu": [
             [-1],
             ["All"]
