@@ -7,7 +7,7 @@ $item_open = $params['open'];
 
 <div class="row">
       <div class="col">
-            <h1>data open <?php $item_open ?></h1>
+            <h1><?php $item_open ?></h1>
             <h1 class="text-center mt-2">Monitoring Realtime SCADA</h1>
             <h2 class="text-center mt-2">Unit Pelaksana Pelayanan Pelanggan (UP3)</h2>
             <?php if (session()->getFlashdata('pesan')) : ?>
