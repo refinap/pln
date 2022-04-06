@@ -8,7 +8,7 @@
                 <a href="/status/index" button type="button" class="btn-close position-absolute top-0 end-0" aria-label="Close"></a></button>
                 <h2 class="my-3"> Ubah Data Cubicle</h2>
 
-                <form action="/status/update/<?= $cubicle['OUTGOING_ID']; ?>" method="post">
+                <form action="/status/update/ <?= $cubicle['OUTGOING_ID']; ?>" method="post">
                     <?= csrf_field(); ?>
                     <div class="row mb-3">
                         <label for="area" class="col-sm-2 col-form-label">Area</label>
@@ -21,15 +21,6 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <label for="gardu_induk" class="col-sm-2 col-form-label">Gardu Induk</label>
-                        <div class="col-sm-10">
-                            <select disabled class="form-select data-exting" aria-label="Default select example" id="gi" name="gi" autofocus>
-                                <option selected></option>
-                            </select>
-                        </div>
-                    </div>
-
 
                     <div class="row mb-3">
                         <label for="trafo" class="col-sm-2 col-form-label">Trafo</label>
@@ -40,22 +31,28 @@
                         </div>
                     </div>
 
-                    <input type="hidden" class="" id="APJ_ID" name="APJ_ID">
-
-
-                    <!-- <div class="row mb-3">
-                        <label for="SUPPLY_APJ" class="col-sm-2 col-form-label">SUPPLY APJ</label>
+                    <div class="row mb-3">
+                        <label for="APJ_ID" class="col-sm-2 col-form-label">APJ ID</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="SUPPLY_APJ" placeholder="" name="SUPPLY_APJ">
+                            <input type="text" class="form-control" id="APJ_ID" placeholder="" name="APJ_ID" value="<?= $cubicle['APJ_ID']; ?>">
                         </div>
-                    </div> -->
+                    </div>
+                    <!-- <input type="hidden" class="" id="APJ_ID" name="APJ_ID"> -->
+
+                    <div class="row mb-3">
+                        <label for="INCOMING_ID" class="col-sm-2 col-form-label">INCOMING ID</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="INCOMING_ID" placeholder="" name="INCOMING_ID" value="<?= $cubicle['INCOMING_ID']; ?>">
+                        </div>
+                    </div>
+
 
                     <input type="hidden" class="form-control" id="INCOMING_ID" placeholder="" name="INCOMING_ID">
 
                     <div class="row mb-3">
                         <label for="CUBICLE_NAME" class="col-sm-2 col-form-label">CUBICLE NAME</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="CUBICLE_NAME" placeholder="" name="CUBICLE_NAME">
+                            <input type="text" class="form-control" id="CUBICLE_NAME" placeholder="" name="CUBICLE_NAME" value="<?= $cubicle['CUBICLE_NAME']; ?>">
 
                         </div>
                     </div>
@@ -127,7 +124,7 @@
                             <input type="text" class="form-control" id="NO_SERI_IO" placeholder="" name="NO_SERI_IO" value="<?= $cubicle['NO_SERI_IO']; ?>">
                         </div>
                     </div>
-                    <!-- <div class="row mb-3">
+                    <div class="row mb-3">
                         <label for="MERK_INTERFACE" class="col-sm-2 col-form-label">MERK INTERFACE</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="MERK_INTERFACE" placeholder="" name="MERK_INTERFACE">
@@ -138,7 +135,7 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="NO_SERI_INTERFACE" placeholder="" name="NO_SERI_INTERFACE">
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row mb-3">
                         <label for="MERK_PS" class="col-sm-2 col-form-label">MERK PS</label>
                         <div class="col-sm-10">
@@ -151,19 +148,19 @@
                             <input type="text" class="form-control" id="SETTING CT" placeholder="" name="SETTING_CT" value="<?= $cubicle['SETTING_CT']; ?>">
                         </div>
                     </div>
-                    <!-- <div class="row mb-3">
+                    <div class="row mb-3">
                         <label for="SETTING_PT" class="col-sm-2 col-form-label">SETTING PT</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="SETTING_PT" placeholder="" name="SETTING_PT">
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row mb-3">
                         <label for="MERK" class="col-sm-2 col-form-label">MERK</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="MERK" placeholder="" name="MERK" value="<?= $cubicle['MERK']; ?>">
                         </div>
                     </div>
-                    <!-- <div class="row mb-3">
+                    <div class="row mb-3">
                         <label for="MERK_CUBICLE" class="col-sm-2 col-form-label">MERK CUBICLE</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="MERK_CUBICLE" placeholder="" name="MERK_CUBICLE">
@@ -186,7 +183,7 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="RNR" placeholder="" name="RNR">
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row mb-3">
                         <label for="TAHUN_OPERASI" class="col-sm-2 col-form-label">TAHUN OPERASI</label>
                         <div class="col-sm-10">
@@ -211,7 +208,7 @@
                             <input type="text" class="form-control" id="OCR_CURVA" placeholder="" name="OCR_CURVA" value="<?= $cubicle['OCR_CURVA']; ?>">
                         </div>
                     </div>
-                    <!-- <div class="row mb-3">
+                    <div class="row mb-3">
                         <label for="OCR_INST" class="col-sm-2 col-form-label">OCR INST</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="OCR_INST" placeholder="" name="OCR_INST">
@@ -222,7 +219,7 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="OCR_T_INST" placeholder="" name="OCR_T_INST">
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row mb-3">
                         <label for="GFR_TD" class="col-sm-2 col-form-label">GFR TD</label>
                         <div class="col-sm-10">
@@ -241,7 +238,7 @@
                             <input type="text" class="form-control" id="GFR_CURVA" placeholder="" name="GFR_CURVA" value="<?= $cubicle['GFR_CURVA']; ?>">
                         </div>
                     </div>
-                    <!-- <div class="row mb-3">
+                    <div class="row mb-3">
                         <label for="GFR_INST" class="col-sm-2 col-form-label">GFR INST</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="GFR_INST" placeholder="" name="GFR_INST">
@@ -252,7 +249,7 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="GFR_T_INST" placeholder="" name="GFR_T_INST">
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row mb-3">
                         <label for="UPJ_ID" class="col-sm-2 col-form-label">UPJ ID</label>
                         <div class="col-sm-10">

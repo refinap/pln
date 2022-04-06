@@ -22,6 +22,33 @@ class Status extends BaseController
         $this->cubicleModel = new cubicleModel();
     }
 
+    public function cIndexStatus()
+    {
+        $view = \Config\Services::renderer();
+        $apj = $this->apjModel->where('APJ_DCC IS NOT NULL', null, false)->get()->getResult();
+        foreach ($apj as $key => $item) {
+            $gi = $this->giModel->where('APJ_ID', $item->APJ_ID)->findAll();
+
+            foreach ($gi as $gi_keys => $gi_items) {
+                $incoming = $this->incomingModel
+                    ->where('GARDU_INDUK_ID', $gi_items['GARDU_INDUK_ID'])->findAll();
+
+                // get data cubicle
+                foreach ($incoming as $incoming_keys => $incoming_items) {
+                    $cubicle = $this->cubicleModel
+                        ->where('INCOMING_ID', $incoming_items['INCOMING_ID'])->findAll();
+                    $incoming[$incoming_keys]['cubicle'] = $cubicle;
+                };
+                $gi[$gi_keys]['incoming'] = $incoming;
+            };
+            $apj[$key]->gi = $gi;
+        };
+
+
+        return $view->setVar('apj', $apj)
+            ->render('status/component/render_index');
+    }
+
     public function index()
     {
         $apj = $this->apjModel->where('APJ_DCC IS NOT NULL', null, false)->get()->getResult();
@@ -374,13 +401,12 @@ class Status extends BaseController
         // session()->setFlashdata('pesan', 'Data cubicle berhasil diubah');
         return view('status/edit', $data);
     }
+
     public function update($OUTGOING_ID)
     {
-        $this->cubicleModel->update([
-            'OUTGOING_ID' => $OUTGOING_ID,
-            'APJ_ID' => $this->request->getvar('APJ_ID'),
+        $data = [
+
             'SUPPLY_APJ' => $this->request->getvar('SUPPLY_APJ'),
-            'INCOMING_ID' => $this->request->getvar('INCOMING_ID'),
             'CUBICLE_NAME' => $this->request->getvar('CUBICLE_NAME'),
             'CUBICLE_TYPE' => $this->request->getvar('CUBICLE_TYPE'),
             'OPERATION_TYPE' => $this->request->getvar('OPERATION_TYPE'),
@@ -465,7 +491,12 @@ class Status extends BaseController
             'SESW_TIME' => $this->request->getvar('SESW_TIME'),
             'SCBP' => $this->request->getvar('SCBP'),
             'SCBP_TIME' => $this->request->getvar('SCBP_TIME'),
-        ]);
+        ];
+
+        $this->cubicleModel->where('OUTGOING_ID', $OUTGOING_ID)
+            ->set($data)
+            ->update();
+
         session()->setflashdata('pesan', 'Data Berhasil diubah');
         return redirect()->to('/status');
     }
