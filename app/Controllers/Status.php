@@ -265,9 +265,70 @@ class Status extends BaseController
 
     public function getInformasi($id)
     {
-
         $cubicle = $this->cubicleModel
             ->where('OUTGOING_ID', $id)->first();
+
+        // SCB
+        if ($cubicle['SCB'] === '1') {
+            $arr = array('danger', 'Close');
+        } elseif ($cubicle['SCB'] === '0') {
+            $arr = array('success', 'Open');
+        } elseif ($cubicle['SCB'] === NULL) {
+            $arr = array('warning', 'Cadangan');
+        } else {
+            $arr = array('dark', 'invalid');
+        }
+        $btnscb =  '<button type="button" style="min-width:100px" data-cubicle=" ' . $cubicle['OUTGOING_ID'] . ' "
+        data-name=" ' . $cubicle['CUBICLE_NAME'] . ' "
+        class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
+
+        // SLR
+        if ($cubicle['SLR'] === '1') {
+            $arr = array('danger', 'Remote');
+        } elseif ($cubicle['SLR'] === '0') {
+            $arr = array('success', 'Local');
+        } else {
+            $arr = array('dark', 'invalid');
+        }
+        $btnslr =  '<button style="min-width:100px" type="button" data-cubicle=" ' . $cubicle['OUTGOING_ID'] . ' "
+        data-name=" ' . $cubicle['CUBICLE_NAME'] . ' "
+        class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
+
+        // SRNR
+        if ($cubicle['SRNR'] === '1') {
+            $arr = array('danger', 'Ready');
+        } elseif ($cubicle['SRNR'] === '0') {
+            $arr = array('success', 'Not Ready');
+        } else {
+            $arr = array('dark', 'invalid');
+        }
+        $btnsrnr =  '<button style="min-width:100px" type="button" data-cubicle=" ' . $cubicle['OUTGOING_ID'] . ' "
+data-name=" ' . $cubicle['CUBICLE_NAME'] . ' "
+class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
+
+        // SESW 
+        if ($cubicle['SESW'] === '1') {
+            $arr = array('danger', 'Grounding');
+        } elseif ($cubicle['SESW'] === '0') {
+            $arr = array('success', 'Not Grounding');
+        } else {
+            $arr = array('dark', 'invalid');
+        }
+        $btnsesw =  '<button style="min-width:100px" type="button" data-cubicle=" ' . $cubicle['OUTGOING_ID'] . ' "
+data-name=" ' . $cubicle['CUBICLE_NAME'] . ' "
+class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
+
+        // SCBP 
+        if ($cubicle['SCBP'] === '1') {
+            $arr = array('danger', 'Rack In');
+        } elseif ($cubicle['SCBP'] === '0') {
+            $arr = array('success', 'Rack Out');
+        } else {
+            $arr = array('dark', 'invalid');
+        }
+        $btnscbp =  '<button style="min-width:100px" type="button" data-cubicle=" ' . $cubicle['OUTGOING_ID'] . ' "
+data-name=" ' . $cubicle['CUBICLE_NAME'] . ' "
+class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
 
         $data_cubicle = array(
             array(
@@ -347,27 +408,27 @@ class Status extends BaseController
             ),
             array(
                 'name'  => 'SCB',
-                'nilai'  => $cubicle['SCB'],
+                'nilai'  => $btnscb,
                 'time'  => $cubicle['SCB_TIME'],
             ),
             array(
                 'name'  => 'SLR',
-                'nilai'  => $cubicle['SLR'],
+                'nilai'  => $btnslr,
                 'time'  => $cubicle['SLR_TIME'],
             ),
             array(
                 'name'  => 'SRNR',
-                'nilai'  => $cubicle['SRNR'],
+                'nilai'  => $btnsrnr,
                 'time'  => $cubicle['SRNR_TIME'],
             ),
             array(
                 'name'  => 'SESW',
-                'nilai'  => $cubicle['SESW'],
+                'nilai'  => $btnsesw,
                 'time'  => $cubicle['SESW_TIME'],
             ),
             array(
                 'name'  => 'SCBP',
-                'nilai'  => $cubicle['SCBP'],
+                'nilai'  => $btnscbp,
                 'time'  => $cubicle['SCBP_TIME'],
             ),
         );
