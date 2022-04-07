@@ -128,7 +128,7 @@
                             <input type="text" class="form-control" id="NO_SERI_IO" placeholder="" name="NO_SERI_IO">
                         </div>
                     </div>
-                    <!-- <div class="row mb-3">
+                    <div class="row mb-3">
                         <label for="MERK_INTERFACE" class="col-sm-2 col-form-label">MERK INTERFACE</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="MERK_INTERFACE" placeholder="" name="MERK_INTERFACE">
@@ -139,7 +139,7 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="NO_SERI_INTERFACE" placeholder="" name="NO_SERI_INTERFACE">
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row mb-3">
                         <label for="MERK_PS" class="col-sm-2 col-form-label">MERK PS</label>
                         <div class="col-sm-10">
@@ -152,19 +152,19 @@
                             <input type="text" class="form-control" id="SETTING CT" placeholder="" name="SETTING CT">
                         </div>
                     </div>
-                    <!-- <div class="row mb-3">
+                    <div class="row mb-3">
                         <label for="SETTING_PT" class="col-sm-2 col-form-label">SETTING PT</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="SETTING_PT" placeholder="" name="SETTING_PT">
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row mb-3">
                         <label for="MERK" class="col-sm-2 col-form-label">MERK</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="MERK" placeholder="" name="MERK">
                         </div>
                     </div>
-                    <!-- <div class="row mb-3">
+                    <div class="row mb-3">
                         <label for="MERK_CUBICLE" class="col-sm-2 col-form-label">MERK CUBICLE</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="MERK_CUBICLE" placeholder="" name="MERK_CUBICLE">
@@ -187,7 +187,7 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="RNR" placeholder="" name="RNR">
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row mb-3">
                         <label for="TAHUN_OPERASI" class="col-sm-2 col-form-label">TAHUN OPERASI</label>
                         <div class="col-sm-10">
@@ -212,7 +212,7 @@
                             <input type="text" class="form-control" id="OCR_CURVA" placeholder="" name="OCR_CURVA">
                         </div>
                     </div>
-                    <!-- <div class="row mb-3">
+                    <div class="row mb-3">
                         <label for="OCR_INST" class="col-sm-2 col-form-label">OCR INST</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="OCR_INST" placeholder="" name="OCR_INST">
@@ -223,7 +223,7 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="OCR_T_INST" placeholder="" name="OCR_T_INST">
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row mb-3">
                         <label for="GFR_TD" class="col-sm-2 col-form-label">GFR TD</label>
                         <div class="col-sm-10">
@@ -242,7 +242,7 @@
                             <input type="text" class="form-control" id="GFR_CURVA" placeholder="" name="GFR_CURVA">
                         </div>
                     </div>
-                    <!-- <div class="row mb-3">
+                    <div class="row mb-3">
                         <label for="GFR_INST" class="col-sm-2 col-form-label">GFR INST</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="GFR_INST" placeholder="" name="GFR_INST">
@@ -253,7 +253,7 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="GFR_T_INST" placeholder="" name="GFR_T_INST">
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row mb-3">
                         <label for="UPJ_ID" class="col-sm-2 col-form-label">UPJ ID</label>
                         <div class="col-sm-10">

@@ -81,9 +81,9 @@
                 <table id="tableCubicle" class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">Keterangan</th>
-                            <th scope="col">Nilai</th>
-                            <th scope="col">Waktu</th>
+                            <th scope="col" style="text-align:center">Keterangan</th>
+                            <th scope="col" style="text-align:center">Nilai</th>
+                            <th scope="col" style="text-align:center">Waktu</th>
                         </tr>
                     </thead>
                     <tbody>
