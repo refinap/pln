@@ -67,7 +67,7 @@
 
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <!-- <div class="row mb-3">
                         <label for="OPERATION_TYPE" class="col-sm-2 col-form-label">OPERATION TYPE</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="OPERATION_TYPE" placeholder="" name="OPERATION_TYPE">
@@ -566,7 +566,7 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="SCBP_TIME" placeholder="" name="SCBP_TIME">
                         </div>
-                    </div>
+                    </div> -->
                     <button type="submit" class="btn btn-primary">Tambah</button>
                 </form>
             </div>
