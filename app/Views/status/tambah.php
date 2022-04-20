@@ -30,8 +30,6 @@
                             </select>
                         </div>
                     </div>
-
-
                     <div class="row mb-3">
                         <label for="trafo" class="col-sm-2 col-form-label">Trafo</label>
                         <div class="col-sm-10">
@@ -157,14 +155,14 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="SETTING_PT" placeholder="" name="SETTING_PT">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mb-3">
                         <label for="MERK" class="col-sm-2 col-form-label">MERK</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="MERK" placeholder="" name="MERK">
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <!-- <div class="row mb-3">
                         <label for="MERK_CUBICLE" class="col-sm-2 col-form-label">MERK CUBICLE</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="MERK_CUBICLE" placeholder="" name="MERK_CUBICLE">
@@ -187,7 +185,7 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="RNR" placeholder="" name="RNR">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mb-3">
                         <label for="TAHUN_OPERASI" class="col-sm-2 col-form-label">TAHUN OPERASI</label>
                         <div class="col-sm-10">
@@ -200,7 +198,7 @@
                             <input type="text" class="form-control" id="OCR_TD" placeholder="" name="OCR_TD">
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <!-- <div class="row mb-3">
                         <label for="OCR_TMS_TD" class="col-sm-2 col-form-label">OCR TMS TD</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="OCR_TMS_TD" placeholder="" name="OCR_TMS_TD">

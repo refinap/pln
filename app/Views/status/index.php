@@ -90,7 +90,8 @@
                             <th scope="col" style="text-align:center">Waktu</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-center">
+
                     </tbody>
                 </table>
             </div>
