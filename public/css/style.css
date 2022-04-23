@@ -1,3 +1,7 @@
 .table > tbody > tr > * {
   vertical-align: middle;
 }
+
+.card-header-color {
+  background-color: #a6a6a6;
+}
