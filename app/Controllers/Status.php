@@ -51,17 +51,21 @@ class Status extends BaseController
 
     public function index()
     {
-        $apj = $this->apjModel->where('APJ_DCC IS NOT NULL', null, false)->get()->getResult();
+        $apj = $this->apjModel->select('APJ_ID, APJ_NAMA')->where('APJ_DCC IS NOT NULL', null, false)->get()->getResult();
         foreach ($apj as $key => $item) {
-            $gi = $this->giModel->where('APJ_ID', $item->APJ_ID)->findAll();
+            $gi = $this->giModel
+                ->select('GARDU_INDUK_ID, APJ_ID, GARDU_INDUK_NAMA')
+                ->where('APJ_ID', $item->APJ_ID)->findAll();
 
             foreach ($gi as $gi_keys => $gi_items) {
                 $incoming = $this->incomingModel
+                    ->select('INCOMING_ID, GARDU_INDUK_ID, NAMA_ALIAS_INCOMING')
                     ->where('GARDU_INDUK_ID', $gi_items['GARDU_INDUK_ID'])->findAll();
 
                 // get data cubicle
                 foreach ($incoming as $incoming_keys => $incoming_items) {
                     $cubicle = $this->cubicleModel
+                        ->select('OUTGOING_ID, APJ_ID, CUBICLE_NAME, MERK, IA, IB, IC, IN, IA2, IB2, IC2, IN2, VLL, KW,, IFA, IFB, IFC, IFN, SCB, SLR, SRNR, SESW, SCBP')
                         ->where('INCOMING_ID', $incoming_items['INCOMING_ID'])->findAll();
                     $incoming[$incoming_keys]['cubicle'] = $cubicle;
                 };
@@ -77,7 +81,7 @@ class Status extends BaseController
         // $cubicle = $this->cubicleModel->findAll();
         // $cubicle = $this->cubicleModel->where('OUTGOING_ID', $OUTGOING_ID)->findAll();
 
-        // return $this->response->setJSON($apj);   
+        // return $this->response->setJSON($apj);
         // exit;
 
         $data = [

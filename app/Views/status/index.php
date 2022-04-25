@@ -19,7 +19,7 @@
                 <?php foreach ($apj as $key => $a) : ?>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading<?= $a->APJ_ID ?>">
-                            <button class="accordion-button fw-bold fs-5" data-acc="<?= $key ?>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $a->APJ_ID ?>" aria-expanded="true" aria-controls="collapse<?= $a->APJ_ID ?>">
+                            <button class="accordion-button fs-5" data-acc="<?= $key ?>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $a->APJ_ID ?>" aria-expanded="true" aria-controls="collapse<?= $a->APJ_ID ?>">
                                 <?= $a->APJ_NAMA ?>
                             </button>
                         </h2>
@@ -29,7 +29,7 @@
                                 <!-- <a href="/status/tambah" class="btn btn-primary mb-3">Tambah Data Cubicle</a><br> -->
                                 <div class="container">
                                     <?php foreach ($a->gi as $g) : ?>
-                                        <span class="fw-bold fs-4"> GI <?php echo $g['GARDU_INDUK_NAMA']; ?></span>
+                                        <span class="fs-4"> GI <?php echo $g['GARDU_INDUK_NAMA']; ?></span>
                                         <br>
                                         <div class="card  border-dark mb-3">
                                             <div class="card-body">
@@ -45,19 +45,17 @@
                                                             NAMA_ALIAS_INCOMING: isian nama,
                                                             cubicle: [
                                                                 OUTGOING_ID: isian id,
-                                                                CUBICLE_NAME: isian nama
-                                                                status: [
-                                                                    grounding: 0,
-                                                                    relay: 1,
-                                                                    rack: 0,
-                                                                    local_remote: 0,
-                                                                    OC: 1
-                                                                ]
+                                                                CUBICLE_NAME: isian nama,
+                                                                grounding: 0,
+                                                                relay: 1,
+                                                                rack: 0,
+                                                                local_remote: 0,
+                                                                OpenClose SCB: 1
                                                             ]
                                                         ]
                                                     -->
 
-                                                    <div class="col-md-12 text-center" 6>
+                                                    <div class="col-md-12 text-center">
                                                         <?php foreach ($g['incoming'] as $income) : ?>
                                                             <span class="fw-bold fs-5"><?php echo $income['NAMA_ALIAS_INCOMING']; ?></span>
                                                             <br>
@@ -65,13 +63,13 @@
                                                                 <?php foreach ($income['cubicle'] as $cubic) : ?>
                                                                     <?php
                                                                     if ($cubic['SCB'] === '1') {
-                                                                        $arr = array('primary', 'detail');
+                                                                        $arr = array('primary', 'Detail');
                                                                     } elseif ($cubic['SCB'] === '0') {
-                                                                        $arr = array('primary', 'detail');
+                                                                        $arr = array('primary', 'Detail');
                                                                     } elseif ($cubic['SCB'] === NULL) {
-                                                                        $arr = array('primary', 'detail');
+                                                                        $arr = array('primary', 'Detail');
                                                                     } else {
-                                                                        $arr = array('primary', 'detail');
+                                                                        $arr = array('primary', 'Detail');
                                                                     }
                                                                     ?>
 
@@ -84,38 +82,54 @@
                                                                     </div> -->
 
 
-                                                                    <div class="col-md-3  text-center">
+                                                                    <div class="col-sm-6 col-md-6 col-lg-3  text-center">
                                                                         <div class="card my-2 text-center">
-                                                                            <div class="card-body px-0 pb-0">
-                                                                                <p class="fs-5"><?= $cubic['CUBICLE_NAME']; ?></p>
-                                                                                <button type="button" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="<?php echo $cubic['CUBICLE_NAME']; ?>" class="btn cubicle btn-<?= $arr[0]; ?>"><?= $arr[1]; ?></button></a>
+                                                                            <!-- <div class="card-header text-center card-header-color">
+                                                                                <h3 class="fs-5"><?= $cubic['CUBICLE_NAME']; ?></h3>
+                                                                            </div> -->
+                                                                            <button type="button" class="card-header text-center card-header-color btn-secondary cubicle btn-<?= $arr[0]; ?>" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="<?php echo $cubic['CUBICLE_NAME']; ?>">
+                                                                                <h3 class="fs-5"><?= $cubic['CUBICLE_NAME']; ?></h3>
+                                                                            </button>
+                                                                            <div class="card-body">
 
                                                                                 <div class="wrapper-status position-relative">
-                                                                                    <img class="img-fluid" src="/image/close.png" alt="">
-                                                                                    <!-- < ?php echo $cubic['status']['grounding'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/groundd.png" alt="">' : null ?> -->
-                                                                                    <?php echo true ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/ground.png" alt="">' : null ?>
-                                                                                    <img class="img-fluid position-absolute top-0 end-0" src="/image/lokal.png" alt="">
-                                                                                    <img class="img-fluid position-absolute top-0 start-50 translate-middle-x" src="/image/rackin.png" alt="">
-                                                                                    <img class="img-fluid position-absolute top-0 start-0" src="/image/ready.png" alt="">
-                                                                                </div>
-                                                                                <div class="d-flex flex-row w-100  bd-highlight">
-                                                                                    <div class="p-2 bd-highlight border border-dark">IA =</div>
-                                                                                    <div class="p-2 bd-highlight border border-dark">IB =</div>
-                                                                                    <div class="p-2 bd-highlight border border-dark">IC =</div>
-                                                                                    <div class="p-2 bd-highlight border border-dark">IN =</div>
-                                                                                </div>
-                                                                                <div class="d-flex flex-row w-100  bd-highlight">
-                                                                                    <div class="p-2 bd-highlight border border-dark">VLL =</div>
-                                                                                    <div class="p-2 bd-highlight border border-dark">KW =</div>
-                                                                                    <div class="p-2 bd-highlight border border-dark">PF =</div>
+                                                                                    <?php
+                                                                                    $img = "open";
+                                                                                    if ($cubic['SCB']  == '0') {
+                                                                                        $img = 'open';
+                                                                                    } elseif ($cubic['SCB'] == 1) {
+                                                                                        $img = 'close';
+                                                                                    } elseif ($cubic['SCB'] == null) {
+                                                                                        $img = 'cadangan';
+                                                                                    } else {
+                                                                                        $img = 'invalid';
+                                                                                    }
+
+                                                                                    ?>
+                                                                                    <img class="img-fluid" src="/image/<?php echo $img ?>.png" alt="">
+                                                                                    <?php echo $cubic['SESW'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/ground.png" alt="">' : null ?>
+
+                                                                                    <?php echo $cubic['SCBP'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/rackin.png" alt="">' : null ?>
+
+                                                                                    <?php echo $cubic['SLR'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/remote.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="/image/lokal.png" alt="">' ?>
+
+                                                                                    <?php echo $cubic['SCBP'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/rackin.png" alt="">' : null ?>
+
+                                                                                    <?php echo $cubic['SRNR'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/ready.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="/image/notready.png" alt="">' ?>
+
                                                                                 </div>
                                                                             </div>
-                                                                            <!-- <div class="card-footer text-muted">
-                                                                                2 days ago
-                                                                            </div> -->
+                                                                            <div class="card-footer py-0 text-muted">
+                                                                                <div class="row">
+                                                                                    <div class="col-4 border border-dark"> <strong><u>IA</u></strong> <br> <?php echo $cubic['IA'] ?? 0 ?> </div>
+                                                                                    <div class="col-4 border border-dark"> <strong><u>IB</u></strong> <br> <?php echo $cubic['IB'] ?? 0 ?> </div>
+                                                                                    <div class="col-4 border border-dark"> <strong><u>IC</u></strong> <br> <?php echo $cubic['IC'] ?? 0 ?> </div>
+                                                                                    <div class="col-4 border border-dark"> <strong><u>IN</u></strong> <br> <?php echo $cubic['IN'] ?? 0 ?> </div>
+                                                                                    <div class="col-4 border border-dark"> <strong><u>VLL</u></strong> <br> <?php echo $cubic['VLL'] ?? 0 ?> </div>
+                                                                                    <div class="col-4 border border-dark"> <strong><u>KW</u></strong> <br> <?php echo $cubic['KW'] ?? 0 ?> </div>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
-
-
                                                                     </div>
                                                                 <?php endforeach; ?>
                                                             </div>
