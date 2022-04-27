@@ -35,26 +35,6 @@
                                             <div class="card-body">
                                                 <div class="row mt-3">
 
-                                                    <!-- 
-                                                        .:. Struktur data :
-                                                        note:
-                                                        data nilai bolean bersitar true = 1 / true / !NULL
-                                                        data nilai bolean bersitar false = 0 / false / NULL
-                                                        
-                                                        incoming = [
-                                                            NAMA_ALIAS_INCOMING: isian nama,
-                                                            cubicle: [
-                                                                OUTGOING_ID: isian id,
-                                                                CUBICLE_NAME: isian nama,
-                                                                grounding: 0,
-                                                                relay: 1,
-                                                                rack: 0,
-                                                                local_remote: 0,
-                                                                OpenClose SCB: 1
-                                                            ]
-                                                        ]
-                                                    -->
-
                                                     <div class="col-md-12 text-center">
                                                         <?php foreach ($g['incoming'] as $income) : ?>
                                                             <span class="fw-bold fs-5"><?php echo $income['NAMA_ALIAS_INCOMING']; ?></span>
@@ -107,13 +87,11 @@
 
                                                                                     ?>
                                                                                     <img class="img-fluid" src="/image/<?php echo $img ?>.png" alt="">
-                                                                                    <?php echo $cubic['SESW'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/ground.png" alt="">' : null ?>
+                                                                                    <?php echo $cubic['SESW'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/ground.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="/image/notground.png" alt="">' ?>
 
                                                                                     <?php echo $cubic['SCBP'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/rackin.png" alt="">' : null ?>
 
                                                                                     <?php echo $cubic['SLR'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/remote.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="/image/lokal.png" alt="">' ?>
-
-                                                                                    <?php echo $cubic['SCBP'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/rackin.png" alt="">' : null ?>
 
                                                                                     <?php echo $cubic['SRNR'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/ready.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="/image/notready.png" alt="">' ?>
 
@@ -142,8 +120,8 @@
                                 </div>
                             </div>
                         </div>
-                    <?php endforeach; ?>
                     </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
