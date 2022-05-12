@@ -3,5 +3,105 @@
 }
 
 .card-header-color {
-  background-color: #a6a6a6;
+  background-color: #212529;
+}
+
+/* body{
+  padding-top: 70px;
+  background-color: #fff;
+} */
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+/* Menu sidebar */
+.sidebar {
+  height: 100%; /* Tinggi Penuh 100% */
+  width: 0; /* lebar 0 - ubah ini dengan JavaScript */
+  position: fixed; /* Stay ditempat dibawah top navbar :) */
+  z-index: 1; /* Stay diatas */
+  border-right: 1px solid;
+  left: 0;
+  top: 0;
+  padding-top: 70px;
+  background-color: #fff; /* putih */
+  overflow-x: hidden; /* Nonaktifkan horizontal scroll */
+  transition: 0s; /* Efek transisi 0,5 detik untuk meluncur di sidebar */
+}
+
+/* Link sidebar */
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0s;
+}
+
+/* Saat Anda mengarahkan mouse ke link navigasi, ubah warnanya */
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+/* Posisikan dan style tombol close (pojok kanan atas) */
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Tombol yang digunakan untuk membuka sidebar */
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #212529;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 0px 20px 20px 0;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+/* Style konten halaman - gunakan ini jika Anda ingin mendorong konten halaman ke kanan saat Anda membuka navigasi samping */
+#main {
+  transition: margin-left 0.5s; /* Jika Anda menginginkan efek transisi */
+  padding: 20px;
+}
+
+/* Pada layar yang lebih kecil, yang tingginya kurang dari 450px, ubah style sidenav (lebih sedikit padding dan ukuran font yang lebih kecil) */
+@media screen and (max-height: 450px) {
+  .sidebar {
+    padding-top: 15px;
+  }
+  .sidebar a {
+    font-size: 18px;
+  }
+}
+
+#menu-btn {
+  background-color: #100901;
+  color: #fff;
+  overflow-x: hidden;
+  /* margin-left: -163px; */
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.42857;
 }

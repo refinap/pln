@@ -307,20 +307,30 @@ class Status extends BaseController
             $arr = array('dark', 'invalid');
         }
         $btnsrnr =  '<button style="min-width:100px" type="button" data-cubicle=" ' . $cubicle['OUTGOING_ID'] . ' "
-data-name=" ' . $cubicle['CUBICLE_NAME'] . ' "
-class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
+        data-name=" ' . $cubicle['CUBICLE_NAME'] . ' "
+        class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
+
+        // SESW 
+        // if ($cubicle['SESW'] === '1') {
+        //     $arr = array('danger', 'Grounding');
+        // } else {
+        //     $arr = array('success', 'Not Grounding');
+        // }
+        // $btnsesw =  '<button style="min-width:100px" type="button" data-cubicle=" ' . $cubicle['OUTGOING_ID'] . ' "
+        // data-name=" ' . $cubicle['CUBICLE_NAME'] . ' "
+        // class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
 
         // SESW 
         if ($cubicle['SESW'] === '1') {
             $arr = array('danger', 'Grounding');
-        } elseif ($cubicle['SESW'] === '0') {
+        } elseif ($cubicle['SESW'] === '0, null') {
             $arr = array('success', 'Not Grounding');
         } else {
             $arr = array('dark', 'invalid');
         }
         $btnsesw =  '<button style="min-width:100px" type="button" data-cubicle=" ' . $cubicle['OUTGOING_ID'] . ' "
-data-name=" ' . $cubicle['CUBICLE_NAME'] . ' "
-class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
+        data-name=" ' . $cubicle['CUBICLE_NAME'] . ' "
+        class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
 
         // SCBP 
         if ($cubicle['SCBP'] === '1') {
