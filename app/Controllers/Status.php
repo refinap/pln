@@ -6,6 +6,7 @@ use App\Models\apjModel;
 use App\Models\giModel;
 use App\Models\incomingModel;
 use App\Models\cubicleModel;
+use App\Models\historyModel;
 use Config\Services;
 
 class Status extends BaseController
@@ -20,9 +21,10 @@ class Status extends BaseController
         $this->giModel = new giModel();
         $this->incomingModel = new incomingModel();
         $this->cubicleModel = new cubicleModel();
+        $this->historyModel = new historyModel();
     }
 
-    public function cIndexStatus()
+    public function IndexStatus()
     {
         $view = \Config\Services::renderer();
         $apj = $this->apjModel->where('APJ_DCC IS NOT NULL', null, false)->get()->getResult();
