@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 <?= $this->section('content'); ?>
 
-<button class="openbtn" onclick="openNav()" id="menu-btn">i</button>
+<button class="openbtn" onclick="openNav()" id="menu-btn" style="position: fixed;top: 50%;"><i class="fa-solid fa-circle-info"></i></button>
 <div class="container possition-relative">
     <!-- <div class="container cubicle-wrapper"> -->
 
@@ -45,23 +45,6 @@
                                     <!-- <a href="/status/tambah" class="btn btn-primary mb-3">Tambah Data Cubicle</a><br> -->
                                     <div class="container">
                                         <?php foreach ($a->gi as $g) : ?>
-                                            <!-- <div id="bs-canvas-right" class="bs-canvas bs-canvas-anim bs-canvas-right position-fixed bg-light h-100"></div>
-                                            <button class="btn btn-primary btn-circle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">i</button>
-                                            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-                                                <div class="offcanvas-header">
-                                                    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Keterangan</h5>
-                                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                                                </div>
-                                                <div class="offcanvas-body">
-                                                    <p><img width=50 src="/image/readyy.png" alt="">Ready</p>
-                                                    <p><img width=50 src="/image/notreadyy.png" alt="">Not Ready</p>
-                                                    <p><img width=50 src="/image/remotee.png" alt="">Remote</p>
-                                                    <p><img width=50 src="/image/lokall.png" alt="">Local</p>
-                                                    <p><img width=50 src="/image/rackinn.png" alt="">Rack In</p>
-                                                    <p><img width=50 src="/image/notgroundd.png" alt="">Not Ground</p>
-                                                    <p><img width=50 src="/image/groundd.png" alt="">Ground</p>
-                                                </div>
-                                            </div> -->
                                             <span class="fs-4"> GI <?php echo $g['GARDU_INDUK_NAMA']; ?></span>
                                             <br>
                                             <div class="card  border-dark mb-3">
@@ -105,7 +88,6 @@
                                                                                 </button>
 
                                                                                 <div class="card-body">
-
                                                                                     <div class="wrapper-status position-relative">
                                                                                         <?php
                                                                                         $img = "open";
@@ -132,13 +114,14 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="card-footer py-0 text-muted">
+
                                                                                     <div class="row">
-                                                                                        <div class="col-4 border border-dark"> <strong><u>IA</u></strong> <br> <?php echo $cubic['IA'] ?? 0 ?> </div>
-                                                                                        <div class="col-4 border border-dark"> <strong><u>IB</u></strong> <br> <?php echo $cubic['IB'] ?? 0 ?> </div>
-                                                                                        <div class="col-4 border border-dark"> <strong><u>IC</u></strong> <br> <?php echo $cubic['IC'] ?? 0 ?> </div>
-                                                                                        <div class="col-4 border border-dark"> <strong><u>IN</u></strong> <br> <?php echo $cubic['IN'] ?? 0 ?> </div>
-                                                                                        <div class="col-4 border border-dark"> <strong><u>VLL</u></strong> <br> <?php echo $cubic['VLL'] ?? 0 ?> </div>
-                                                                                        <div class="col-4 border border-dark"> <strong><u>KW</u></strong> <br> <?php echo $cubic['KW'] ?? 0 ?> </div>
+                                                                                        <div class="col-4 border border-dark"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="IA"><u>IA</u></strong> <br> <?php echo $cubic['IA'] ?? 0 ?> </div>
+                                                                                        <div class="col-4 border border-dark"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="IB"><u>IB</u></strong> <br> <?php echo $cubic['IB'] ?? 0 ?> </div>
+                                                                                        <div class="col-4 border border-dark"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="IC"><u>IC</u></strong> <br> <?php echo $cubic['IC'] ?? 0 ?> </div>
+                                                                                        <div class="col-4 border border-dark"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="IN"><u>IN</u></strong> <br> <?php echo $cubic['IN'] ?? 0 ?> </div>
+                                                                                        <div class="col-4 border border-dark"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="VLL"><u>VLL</u></strong> <br> <?php echo $cubic['VLL'] ?? 0 ?> </div>
+                                                                                        <div class="col-4 border border-dark"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="KW"><u>KW</u></strong> <br> <?php echo $cubic['KW'] ?? 0 ?> </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -198,6 +181,42 @@
         </div>
     </div>
 
+
+    <!-- Modal history -->
+    <div class="modal fade" id="modalDataHistory" tabindex="-1" aria-labelledby="modalDataLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="modalDataLabel">History <span id="cb_history"></span></h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <span id="id_cubicle"></span> -->
+                    <table id="tableCubicleHistory" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="text-align:center">Nilai</th>
+                                <th scope="col" style="text-align:center">Waktu</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+
+                    <!-- <a id="edit" class="btn btn-warning" style="min-width:75px;">Edit</a>
+                <form id="delete" method="post" class="d-inline">
+                    < ?= csrf_field(); ?>
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger" style="min-width:75px;" onclick="return confirm('Apakah Anda Yakin?')">Delete</button>
+                </form> -->
+                    <button type="button" class="btn btn-secondary" style="min-width:75px;" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <?= $this->endSection(); ?>
 
     <?= $this->section('javascript'); ?>
@@ -230,6 +249,8 @@
         //     $('.cubicle-wrapper').load(`/status/cIndexStatus?open=${item}`);
         // }, 5000);
 
+
+        //js info
         $('.cubicle').click(function() {
             let id_cubicle = $(this).data('cubicle');
             let cb_name = $(this).data('name');
@@ -249,6 +270,18 @@
             $('#modalData').modal('show')
         });
 
+
+        //js history
+        $('.cubicle-history').click(function() {
+            let id_cubicle = $(this).data('cubicle');
+            let cb_history = $(this).data('name'); // ambil atribut data name
+            $('#cb_history').html(cb_history); //rewrite cb_history , history IA
+            tableHistory.clear();
+            tableHistory.ajax.url(`http://localhost:8080/status/getHistory/${id_cubicle}/${cb_history}`).load();
+            $('#modalDataHistory').modal('show')
+        });
+
+        //table info
         var table = $('#tableCubicle').DataTable({
             "bDestroy": true,
             "autoWidth": false,
@@ -265,6 +298,28 @@
                 },
                 {
                     data: 'nilai'
+                },
+                {
+                    data: 'time'
+                }
+            ]
+        });
+
+
+        //table history
+        var tableHistory = $('#tableCubicleHistory').DataTable({
+            "bDestroy": true,
+            "autoWidth": true,
+            "ordering": false,
+            "paging": false,
+            "bFilter": false,
+            "info": false,
+            "lengthMenu": [
+                [-1],
+                ["All"]
+            ],
+            columns: [{
+                    data: 'name'
                 },
                 {
                     data: 'time'

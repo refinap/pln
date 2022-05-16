@@ -6,6 +6,7 @@ use App\Models\apjModel;
 use App\Models\giModel;
 use App\Models\incomingModel;
 use App\Models\cubicleModel;
+use App\Models\historyModel;
 use Config\Services;
 
 class Status extends BaseController
@@ -20,9 +21,10 @@ class Status extends BaseController
         $this->giModel = new giModel();
         $this->incomingModel = new incomingModel();
         $this->cubicleModel = new cubicleModel();
+        $this->historyModel = new historyModel();
     }
 
-    public function cIndexStatus()
+    public function IndexStatus()
     {
         $view = \Config\Services::renderer();
         $apj = $this->apjModel->where('APJ_DCC IS NOT NULL', null, false)->get()->getResult();
@@ -261,8 +263,6 @@ class Status extends BaseController
             'title' => 'Informasi',
             'c' => $cubicle
         ];
-
-        // $cubicleModel = new \app\models\cubicleModel();
 
         return view('status/informasi', $data);
     }
@@ -574,5 +574,31 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
 
         session()->setflashdata('pesan', 'Data Berhasil diubah');
         return redirect()->to('/status');
+    }
+    public function history($id)
+    {
+        $history = $this->historyModel
+            ->where('OUTGOING_METER_ID', $id)->first();
+        $data = [
+            'title' => 'History',
+            'h' => $history
+        ];
+        return view('status/history', $data);
+    }
+
+    public function getHistory($id, $cb_history)
+    {
+        $querySelect = "$cb_history, $cb_history" . "_TIME"; //
+        $history = $this->historyModel
+            ->select($querySelect)
+            ->where("$cb_history IS NOT NULL", null, false)
+            ->where('OUTGOING_METER_ID', $id)->get()->getResult();
+        $data_history = array_map(function ($value) use ($cb_history) {
+            return (array) [
+                'name' => $value->{"$cb_history"},
+                'time' => $value->{"$cb_history" . "_TIME"},
+            ];
+        }, $history);
+        return $this->response->setJSON(['data' => $data_history]);
     }
 }
