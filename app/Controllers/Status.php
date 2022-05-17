@@ -592,7 +592,7 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
         $history = $this->historyModel
             ->select($querySelect)
             ->where("$cb_history IS NOT NULL", null, false)
-            ->where('OUTGOING_METER_ID', $id)->get()->getResult();
+            ->where('OUTGOING_ID', $id)->get()->getResult();
         $data_history = array_map(function ($value) use ($cb_history) {
             return (array) [
                 'name' => $value->{"$cb_history"},

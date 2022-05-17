@@ -187,7 +187,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title" id="modalDataLabel">History <span id="cb_history"></span></h2>
+                    <h2 class="modal-title" id="modalDataLabel">Riwayat Beban <span id="cb_history"></span></h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -205,13 +205,6 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-
-                    <!-- <a id="edit" class="btn btn-warning" style="min-width:75px;">Edit</a>
-                <form id="delete" method="post" class="d-inline">
-                    < ?= csrf_field(); ?>
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="btn btn-danger" style="min-width:75px;" onclick="return confirm('Apakah Anda Yakin?')">Delete</button>
-                </form> -->
                     <button type="button" class="btn btn-secondary" style="min-width:75px;" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -276,8 +269,14 @@
             let id_cubicle = $(this).data('cubicle');
             let cb_history = $(this).data('name'); // ambil atribut data name
             $('#cb_history').html(cb_history); //rewrite cb_history , history IA
+
             tableHistory.clear();
             tableHistory.ajax.url(`http://localhost:8080/status/getHistory/${id_cubicle}/${cb_history}`).load();
+
+            setInterval(function() { //refresh data tiap 5 menit
+                console.log(1)
+                tableHistory.ajax.reload();
+            }, 300000);
             $('#modalDataHistory').modal('show')
         });
 
@@ -310,14 +309,10 @@
         var tableHistory = $('#tableCubicleHistory').DataTable({
             "bDestroy": true,
             "autoWidth": true,
-            "ordering": false,
-            "paging": false,
-            "bFilter": false,
-            "info": false,
-            "lengthMenu": [
-                [-1],
-                ["All"]
-            ],
+            "ordering": true,
+            "paging": true,
+            "bFilter": true,
+            "lengthChange": true,
             columns: [{
                     data: 'name'
                 },
