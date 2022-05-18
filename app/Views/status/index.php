@@ -181,13 +181,13 @@
         </div>
     </div>
 
-
     <!-- Modal history -->
     <div class="modal fade" id="modalDataHistory" tabindex="-1" aria-labelledby="modalDataLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title" id="modalDataLabel">Riwayat Beban <span id="cb_history"></span></h2>
+                    <h2 class="modal-title" id="modalDataLabel">Riwayat Beban <span id="cb_history"></span> <a href="/status/chart" class="btn btn-default"><img src="/image/grafik.png" width=25 alt=""></a>
+                    </h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -204,13 +204,16 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" style="min-width:75px;" data-bs-dismiss="modal">Close</button>
-                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" style="min-width:75px;" data-bs-dismiss="modal">Close</button></div>
             </div>
         </div>
     </div>
+
+    <canvas id="myChart" width="400" height="400"></canvas>
+
     <?= $this->endSection(); ?>
+
+
 
     <?= $this->section('javascript'); ?>
     <script>
@@ -263,23 +266,6 @@
             $('#modalData').modal('show')
         });
 
-
-        //js history
-        $('.cubicle-history').click(function() {
-            let id_cubicle = $(this).data('cubicle');
-            let cb_history = $(this).data('name'); // ambil atribut data name
-            $('#cb_history').html(cb_history); //rewrite cb_history , history IA
-
-            tableHistory.clear();
-            tableHistory.ajax.url(`http://localhost:8080/status/getHistory/${id_cubicle}/${cb_history}`).load();
-
-            setInterval(function() { //refresh data tiap 5 menit
-                console.log(1)
-                tableHistory.ajax.reload();
-            }, 300000);
-            $('#modalDataHistory').modal('show')
-        });
-
         //table info
         var table = $('#tableCubicle').DataTable({
             "bDestroy": true,
@@ -304,6 +290,21 @@
             ]
         });
 
+        //js history
+        $('.cubicle-history').click(function() {
+            let id_cubicle = $(this).data('cubicle');
+            let cb_history = $(this).data('name'); // ambil atribut data name
+            $('#cb_history').html(cb_history); //rewrite cb_history , history IA
+
+            tableHistory.clear();
+            tableHistory.ajax.url(`http://localhost:8080/status/getHistory/${id_cubicle}/${cb_history}`).load();
+
+            setInterval(function() { //refresh data tiap 1 menit
+                console.log(1)
+                tableHistory.ajax.reload();
+            }, 60000);
+            $('#modalDataHistory').modal('show')
+        });
 
         //table history
         var tableHistory = $('#tableCubicleHistory').DataTable({
@@ -320,6 +321,44 @@
                     data: 'time'
                 }
             ]
+        });
+
+
+        //js line chart
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
         });
     </script>
     <?= $this->endSection(); ?>

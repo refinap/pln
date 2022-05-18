@@ -7,6 +7,7 @@ use App\Models\giModel;
 use App\Models\incomingModel;
 use App\Models\cubicleModel;
 use App\Models\historyModel;
+use App\Models\chartModel;
 use Config\Services;
 
 class Status extends BaseController
@@ -22,6 +23,7 @@ class Status extends BaseController
         $this->incomingModel = new incomingModel();
         $this->cubicleModel = new cubicleModel();
         $this->historyModel = new historyModel();
+        $this->historyModel = new chartModel();
     }
 
     public function IndexStatus()
@@ -587,6 +589,27 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
     }
 
     public function getHistory($id, $cb_history)
+    {
+        $querySelect = "$cb_history, $cb_history" . "_TIME"; //
+        $history = $this->historyModel
+            ->select($querySelect)
+            ->where("$cb_history IS NOT NULL", null, false)
+            ->where('OUTGOING_ID', $id)->get()->getResult();
+        $data_history = array_map(function ($value) use ($cb_history) {
+            return (array) [
+                'name' => $value->{"$cb_history"},
+                'time' => $value->{"$cb_history" . "_TIME"},
+            ];
+        }, $history);
+        return $this->response->setJSON(['data' => $data_history]);
+    }
+
+    public function chart()
+    {
+        return view('status/chart');
+    }
+
+    public function getChart($id, $cb_history)
     {
         $querySelect = "$cb_history, $cb_history" . "_TIME"; //
         $history = $this->historyModel
