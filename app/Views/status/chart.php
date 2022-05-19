@@ -20,9 +20,9 @@
 <script>
       const ctx = document.getElementById('myChart').getContext('2d');
       const myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
-                  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                  labels: ['date', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
                   datasets: [{
                         label: '# of Votes',
                         data: [12, 19, 3, 5, 2, 3],

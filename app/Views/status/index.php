@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 <?= $this->section('content'); ?>
 
-<button class="openbtn" onclick="openNav()" id="menu-btn" style="position: fixed;top: 50%;"><i class="fa-solid fa-circle-info"></i></button>
+<button class="openbtn" onclick="openNav()" data-toggle="tooltip" data-placement="top" title="Keterangan" id="menu-btn" style="position: fixed;top: 50%;"><i class="fa-solid fa-circle-info"></i></button>
 <div class="container possition-relative">
     <!-- <div class="container cubicle-wrapper"> -->
 
@@ -83,7 +83,7 @@
                                                                                 <!-- <div class="card-header text-center card-header-color">
                                                                                     <h3 class="fs-5"><?= $cubic['CUBICLE_NAME']; ?></h3>
                                                                                 </div> -->
-                                                                                <button type="button" class="card-header text-center card-header-color btn-secondary cubicle btn-<?= $arr[0]; ?>" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="<?php echo $cubic['CUBICLE_NAME']; ?>">
+                                                                                <button type="button" data-toggle="tooltip" data-placement="top" title="Informasi" class="card-header text-center card-header-color btn-secondary cubicle btn-<?= $arr[0]; ?>" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="<?php echo $cubic['CUBICLE_NAME']; ?>">
                                                                                     <h3 class="fs-5"><?= $cubic['CUBICLE_NAME']; ?></h3>
                                                                                 </button>
 
@@ -116,12 +116,12 @@
                                                                                 <div class="card-footer py-0 text-muted">
 
                                                                                     <div class="row">
-                                                                                        <div class="col-4 border border-dark"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="IA"><u>IA</u></strong> <br> <?php echo $cubic['IA'] ?? 0 ?> </div>
-                                                                                        <div class="col-4 border border-dark"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="IB"><u>IB</u></strong> <br> <?php echo $cubic['IB'] ?? 0 ?> </div>
-                                                                                        <div class="col-4 border border-dark"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="IC"><u>IC</u></strong> <br> <?php echo $cubic['IC'] ?? 0 ?> </div>
-                                                                                        <div class="col-4 border border-dark"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="IN"><u>IN</u></strong> <br> <?php echo $cubic['IN'] ?? 0 ?> </div>
-                                                                                        <div class="col-4 border border-dark"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="VLL"><u>VLL</u></strong> <br> <?php echo $cubic['VLL'] ?? 0 ?> </div>
-                                                                                        <div class="col-4 border border-dark"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="KW"><u>KW</u></strong> <br> <?php echo $cubic['KW'] ?? 0 ?> </div>
+                                                                                        <div class="col-4 border border-dark" data-toggle="tooltip" data-placement="top" title="History IA"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="IA"><u>IA</u></strong> <br> <?php echo $cubic['IA'] ?? 0 ?> </div>
+                                                                                        <div class="col-4 border border-dark" data-toggle="tooltip" data-placement="top" title="History IB"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="IB"><u>IB</u></strong> <br> <?php echo $cubic['IB'] ?? 0 ?> </div>
+                                                                                        <div class="col-4 border border-dark" data-toggle="tooltip" data-placement="top" title="History IC"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="IC"><u>IC</u></strong> <br> <?php echo $cubic['IC'] ?? 0 ?> </div>
+                                                                                        <div class="col-4 border border-dark" data-toggle="tooltip" data-placement="top" title="History IN"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="IN"><u>IN</u></strong> <br> <?php echo $cubic['IN'] ?? 0 ?> </div>
+                                                                                        <div class="col-4 border border-dark" data-toggle="tooltip" data-placement="top" title="History VLL"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="VLL"><u>VLL</u></strong> <br> <?php echo $cubic['VLL'] ?? 0 ?> </div>
+                                                                                        <div class="col-4 border border-dark" data-toggle="tooltip" data-placement="top" title="History KW"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="KW"><u>KW</u></strong> <br> <?php echo $cubic['KW'] ?? 0 ?> </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -186,7 +186,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title" id="modalDataLabel">Riwayat Beban <span id="cb_history"></span> <a href="/status/chart" class="btn btn-default"><img src="/image/grafik.png" width=25 alt=""></a>
+                    <h2 class="modal-title" id="modalDataLabel">Riwayat Beban <span id="cb_history"></span> <a href="/status/chart" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Grafik"><img src="/image/grafik.png" width=25 alt=""></a>
                     </h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
