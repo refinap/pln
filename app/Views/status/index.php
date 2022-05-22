@@ -175,7 +175,7 @@
                     <input type="hidden" name="_method" value="DELETE">
                     <button type="submit" class="btn btn-danger" style="min-width:75px;" onclick="return confirm('Apakah Anda Yakin?')">Delete</button>
                 </form> -->
-                    <button type="button" class="btn btn-secondary" style="min-width:75px;" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" style="min-width:75px;" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -186,11 +186,22 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title" id="modalDataLabel">Riwayat Beban <span id="cb_history"></span> <a href="/status/chart" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Grafik"><img src="/image/grafik.png" width=25 alt=""></a>
+                    <h2 class="modal-title" id="modalDataLabel">Riwayat Beban
+                        <span id="cb_history"></span>
+                        <a href="/status/chart" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Grafik"><img src="/image/grafik.png" width=25 alt=""></a>
                     </h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+
+                    <div>
+                        Start date:
+                        <input type="text" id="min" name="min" style="width: 145px;">
+                        End date:
+                        <input type="text" id="max" name="max" style="width: 145px;">
+                        <input type="button" name="search" id="search" value="Search" class="btn btn-secondary" style="width: 75px;">
+                    </div>
+
                     <!-- <span id="id_cubicle"></span> -->
                     <table id="tableCubicleHistory" class="table table-bordered">
                         <thead>
@@ -200,16 +211,13 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-
                         </tbody>
                     </table>
                 </div>
-                <div class="modal-footer"><button type="button" class="btn btn-secondary" style="min-width:75px;" data-bs-dismiss="modal">Close</button></div>
+                <div class="modal-footer"><button type="button" class="btn btn-danger" style="min-width:75px;" data-bs-dismiss="modal">Close</button></div>
             </div>
         </div>
     </div>
-
-    <canvas id="myChart" width="400" height="400"></canvas>
 
     <?= $this->endSection(); ?>
 
@@ -314,6 +322,11 @@
             "paging": true,
             "bFilter": true,
             "lengthChange": true,
+            dom: 'lBfrtip',
+            buttons: [
+                'csv', 'excel', 'pdf', 'print'
+            ],
+
             columns: [{
                     data: 'name'
                 },
@@ -323,41 +336,68 @@
             ]
         });
 
+        var minDate, maxDate;
+        // Custom filtering function which will search data in column four between two values
+        $.fn.dataTable.ext.search.push(
+            function(settings, data, dataIndex) {
+                var min = minDate.val();
+                var max = maxDate.val();
+                var date = new Date(data[4]);
 
-        //js line chart
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+                if (
+                    (min === null && max === null) ||
+                    (min === null && date <= max) ||
+                    (min <= date && max === null) ||
+                    (min <= date && date <= max)
+                ) {
+                    return true;
                 }
+                return false;
+                // table.draw();
+            }
+        );
+
+        $('#tableCubicleHistory').ready(function() {
+            // Create date inputs
+            minDate = new DateTime($('#min'), {
+                format: 'YYYY-MMMM-Do'
+            });
+            maxDate = new DateTime($('#max'), {
+                format: 'YYYY-MMMM-Do'
+            });
+            // DataTables initialisation
+            var table = $('#example').DataTable();
+            // Refilter the table
+            $('#min, #max').on('change', function() {
+                // table.draw();
+            });
+        });
+
+        $('#search').click(function() {
+            var min = $('#min').val();
+            var max = $('#max').val();
+            if (min != '' && max != '') {
+                $('#order_data').DataTable().destroy();
+                fetch_data('yes', min, max);
+            } else {
+                alert("Both Date is Required");
+            }
+
+            function fetch_data(is_date_search, min = '', max = '') {
+                var dataTable = $('#order_data').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "order": [],
+                    "ajax": {
+                        url: "fetch.php",
+                        type: "POST",
+                        data: {
+                            is_date_search: is_date_search,
+                            min: min,
+                            max: max
+                        }
+                    }
+                });
             }
         });
     </script>
