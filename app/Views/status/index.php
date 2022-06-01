@@ -7,9 +7,9 @@
 
     <div id="mySidebar" class="sidebar overflow-auto">
         <div class="title-bar navbar navbar-expand-l text-black overflow-auto" style="padding-top: 0.5rem; padding-bottom: 0.5rem;">
-            <h3 class="mb-0" style="height: 64.792px;">Keterangan
+            <h4 class="" style="height: 64.792px;">Keterangan
                 <button class="btn btn-white fs-3" onclick="closeNav()">&times;</button>
-            </h3>
+            </h4>
         </div>
         <p><img width=40 src="/image/readyy.png" alt="">Ready</p>
         <p><img width=40 src="/image/notreadyy.png" alt="">Not Ready</p>
@@ -23,6 +23,7 @@
     <div id="main">
         <div class="row overflow-auto">
             <div class="col">
+                <br>
                 <h1 class="text-center mt-2">Monitoring Realtime SCADA</h1>
                 <h2 class="text-center mt-2">Unit Pelaksana Pelayanan Pelanggan (UP3)</h2>
                 <?php if (session()->getFlashdata('pesan')) : ?>
@@ -188,7 +189,9 @@
                 <div class="modal-header">
                     <h2 class="modal-title" id="modalDataLabel">Riwayat Beban
                         <span id="cb_history"></span>
-                        <a href="/status/chart" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Grafik"><img src="/image/grafik.png" width=25 alt=""></a>
+                        <a href="/status/chart" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Grafik">
+                            <img src="/image/grafik.png" width=25 alt="">
+                        </a>
                     </h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -199,9 +202,9 @@
                         <input type="text" id="min" name="min" style="width: 145px;">
                         End date:
                         <input type="text" id="max" name="max" style="width: 145px;">
-                        <input type="button" name="search" id="search" value="Search" class="btn btn-secondary" style="width: 75px;">
+                        <!-- <input type="button" name="search" id="search" value="Search" class="btn btn-secondary" style="width: 75px;"> -->
                     </div>
-
+                    <br>
                     <!-- <span id="id_cubicle"></span> -->
                     <table id="tableCubicleHistory" class="table table-bordered">
                         <thead>
@@ -231,8 +234,8 @@
 
         /* Atur lebar sidebar menjadi 250px dan margin kiri konten halaman menjadi 250px */
         function openNav() {
-            document.getElementById("mySidebar").style.width = "200px";
-            document.getElementById("main").style.marginLeft = "200px";
+            document.getElementById("mySidebar").style.width = "180px";
+            document.getElementById("main").style.marginLeft = "180px";
         }
 
         /* Atur lebar sidebar menjadi 0 dan margin kiri konten halaman menjadi 0 */
@@ -311,6 +314,20 @@
                 console.log(1)
                 tableHistory.ajax.reload();
             }, 60000);
+
+            // set new atribut href with jquery
+            // $('.element').attr('href', newUrl);
+
+
+            // get a href -> modifikasi + id_cubicle + cb_history 
+            // var get = $(this).attr('href'); // gets the actual value
+            // var get =  $(this).prop('href');// gets the full URL always
+
+
+            // exp : `/status/chart/${id_cubicle}/${cb_history}`
+
+
+
             $('#modalDataHistory').modal('show')
         });
 
@@ -321,12 +338,14 @@
             "ordering": true,
             "paging": true,
             "bFilter": true,
-            "lengthChange": true,
+            "processing": true,
             dom: 'lBfrtip',
             buttons: [
-                'csv', 'excel', 'pdf', 'print'
+                'excel', 'print'
             ],
-
+            order: [
+                [1, 'desc']
+            ],
             columns: [{
                     data: 'name'
                 },
@@ -357,48 +376,20 @@
             }
         );
 
-        $('#tableCubicleHistory').ready(function() {
+        $('.cubicle-history').ready(function() {
             // Create date inputs
             minDate = new DateTime($('#min'), {
-                format: 'YYYY-MMMM-Do'
+                format: 'MMMM Do YYYY'
             });
             maxDate = new DateTime($('#max'), {
-                format: 'YYYY-MMMM-Do'
+                format: 'MMMM Do YYYY'
             });
             // DataTables initialisation
             var table = $('#example').DataTable();
             // Refilter the table
             $('#min, #max').on('change', function() {
-                // table.draw();
+                table.draw();
             });
-        });
-
-        $('#search').click(function() {
-            var min = $('#min').val();
-            var max = $('#max').val();
-            if (min != '' && max != '') {
-                $('#order_data').DataTable().destroy();
-                fetch_data('yes', min, max);
-            } else {
-                alert("Both Date is Required");
-            }
-
-            function fetch_data(is_date_search, min = '', max = '') {
-                var dataTable = $('#order_data').DataTable({
-                    "processing": true,
-                    "serverSide": true,
-                    "order": [],
-                    "ajax": {
-                        url: "fetch.php",
-                        type: "POST",
-                        data: {
-                            is_date_search: is_date_search,
-                            min: min,
-                            max: max
-                        }
-                    }
-                });
-            }
         });
     </script>
     <?= $this->endSection(); ?>

@@ -577,6 +577,7 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
         session()->setflashdata('pesan', 'Data Berhasil diubah');
         return redirect()->to('/status');
     }
+
     public function history($id)
     {
         $history = $this->historyModel
@@ -595,6 +596,7 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
             ->select($querySelect)
             ->where("$cb_history IS NOT NULL", null, false)
             ->where('OUTGOING_ID', $id)->get()->getResult();
+
         $data_history = array_map(function ($value) use ($cb_history) {
             return (array) [
                 'name' => $value->{"$cb_history"},
@@ -609,19 +611,43 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
         return view('status/chart');
     }
 
-    public function getChart($id, $cb_history)
+    public function getChart($outgoing_id, $cb_history)
     {
         $querySelect = "$cb_history, $cb_history" . "_TIME"; //
+
+        $curr_date = $this->request->getVar('start');
+        $end_date = $this->request->getVar('end');
+
         $history = $this->historyModel
             ->select($querySelect)
             ->where("$cb_history IS NOT NULL", null, false)
-            ->where('OUTGOING_ID', $id)->get()->getResult();
+            // ->groupBy("$cb_history" . "_TIME")
+            ->where('OUTGOING_ID', $outgoing_id);
+
+        $history = $history->get()->getResult();
+
         $data_history = array_map(function ($value) use ($cb_history) {
             return (array) [
-                'name' => $value->{"$cb_history"},
-                'time' => $value->{"$cb_history" . "_TIME"},
+                'value' => $value->{"$cb_history"},
+                'time' => date('m-d-Y', strtotime($value->{"$cb_history" . "_TIME"})),
             ];
         }, $history);
-        return $this->response->setJSON(['data' => $data_history]);
+
+        $curr_date && $data_history = array_filter($data_history, function ($var) use ($end_date, $curr_date) {
+            $evtime = Date('m-d-Y', strtotime($var['time']));
+            return $evtime <= Date('m-d-Y', strtotime($end_date)) && $evtime >= Date('m-d-Y', strtotime($curr_date));
+        });
+
+        // $result = array_reduce(array_values($data_history), function ($items, $item) {
+        //     if (!isset($items[$item['time']])) {
+        //         $items[$item['time']] = ['time' => $item['time'], 'value' => $item['value']];
+        //     } else {
+        //         $items[$item['time']]['value'] += $item['value'];
+        //     }
+        //     return $items;
+        // });
+
+        return $this->response->setJSON(['data' => array_values($data_history)]);
+        // return $this->response->setJSON(['data' => ($result)]);
     }
 }
