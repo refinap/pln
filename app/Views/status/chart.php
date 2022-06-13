@@ -20,8 +20,6 @@
             console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
       });
 
-
-
       const chartByPayment = async (params = '') => {
             console.log(1)
             byPaymentChart = echarts.init(document.getElementById('chart'));
@@ -61,20 +59,24 @@
                               type: 'inside'
                         }
                   ],
+
                   series: []
             };
 
-            // let history get param with js
+            // LET HISTORY GET PARAMETER WITH JS
+
+
+            // LET OUTGOING
             // let param = (new URL(document.location)).searchParams;
             // let data = param.get("data");
+            let baseUri = window.location.href
+            console.log(baseUri)
+            let url = new URL(`${baseUri}`)
+            let paramsy = new URLSearchParams(url.search);
+            let id_cubicle = paramsy.get('cubicle')
+            let cb_history = paramsy.get('history')
 
-            // let outgoing
-            // let param = (new URL(document.location)).searchParams;
-            // let data = param.get("data");
-
-
-
-            let data = await fetch(`/status/getChart/${95}/${'IC'}?${params}`);
+            let data = await fetch(`/status/getChart/${id_cubicle}/${cb_history}?${params}`);
             data.json().then(res => {
                   console.log(res);
                   label = res.data.map(i => i.time)
@@ -92,7 +94,11 @@
                         name: 'Nilai',
                         label: labelOption,
                         type: 'line',
-                        data: order
+                        data: order,
+                        label: {
+                              show: true,
+                              position: 'top'
+                        },
                   })
                   byPaymentChart.setOption(options, true)
             });

@@ -613,6 +613,7 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
 
     public function getChart($outgoing_id, $cb_history)
     {
+
         $querySelect = "$cb_history, $cb_history" . "_TIME"; //
 
         $curr_date = $this->request->getVar('start');
@@ -621,7 +622,7 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
         $history = $this->historyModel
             ->select($querySelect)
             ->where("$cb_history IS NOT NULL", null, false)
-            // ->groupBy("$cb_history" . "_TIME")
+            ->groupBy("$cb_history" . "_TIME")
             ->where('OUTGOING_ID', $outgoing_id);
 
         $history = $history->get()->getResult();
@@ -629,13 +630,13 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
         $data_history = array_map(function ($value) use ($cb_history) {
             return (array) [
                 'value' => $value->{"$cb_history"},
-                'time' => date('m-d-Y', strtotime($value->{"$cb_history" . "_TIME"})),
+                'time' => date('m-d-Y H:i:s', strtotime($value->{"$cb_history" . "_TIME"})),
             ];
         }, $history);
 
         $curr_date && $data_history = array_filter($data_history, function ($var) use ($end_date, $curr_date) {
-            $evtime = Date('m-d-Y', strtotime($var['time']));
-            return $evtime <= Date('m-d-Y', strtotime($end_date)) && $evtime >= Date('m-d-Y', strtotime($curr_date));
+            $evtime = Date('m-d-Y H:i:s', strtotime($var['time']));
+            return $evtime <= Date('m-d-Y H:i:s', strtotime($end_date)) && $evtime >= Date('m-d-Y H:i:s', strtotime($curr_date));
         });
 
         // $result = array_reduce(array_values($data_history), function ($items, $item) {

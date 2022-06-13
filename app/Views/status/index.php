@@ -51,7 +51,6 @@
                                             <div class="card  border-dark mb-3">
                                                 <div class="card-body">
                                                     <div class="row mt-3">
-
                                                         <div class="col-md-12 text-center">
                                                             <?php foreach ($g['incoming'] as $income) : ?>
                                                                 <span class="fw-bold fs-5"><?php echo $income['NAMA_ALIAS_INCOMING']; ?></span>
@@ -101,8 +100,8 @@
                                                                                         } else {
                                                                                             $img = 'invalid';
                                                                                         }
-
                                                                                         ?>
+
                                                                                         <img class="img-fluid" src="/image/<?php echo $img ?>.png" alt="">
                                                                                         <?php echo $cubic['SESW'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/ground.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="/image/notground.png" alt="">' ?>
 
@@ -189,7 +188,7 @@
                 <div class="modal-header">
                     <h2 class="modal-title" id="modalDataLabel">Riwayat Beban
                         <span id="cb_history"></span>
-                        <a href="/status/chart" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Grafik">
+                        <a href="/status/chart" class="btn btn-default cubicle-chart" data-toggle="tooltip" data-placement="top" title="Grafik">
                             <img src="/image/grafik.png" width=25 alt="">
                         </a>
                     </h2>
@@ -316,17 +315,7 @@
             }, 60000);
 
             // set new atribut href with jquery
-            // $('.element').attr('href', newUrl);
-
-
-            // get a href -> modifikasi + id_cubicle + cb_history 
-            // var get = $(this).attr('href'); // gets the actual value
-            // var get =  $(this).prop('href');// gets the full URL always
-
-
-            // exp : `/status/chart/${id_cubicle}/${cb_history}`
-
-
+            $('a.cubicle-chart').attr('href', `http://localhost:8080/status/chart?cubicle=${id_cubicle}&history=${cb_history}`);
 
             $('#modalDataHistory').modal('show')
         });
