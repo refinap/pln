@@ -19,45 +19,6 @@ nav {
   z-index: 10;
 }
 
-/* Menu sidebar */
-.sidebar {
-  height: 100%; /* Tinggi Penuh 100% */
-  width: 0; /* lebar 0 - ubah ini dengan JavaScript */
-  position: fixed; /* Stay ditempat dibawah top navbar :) */
-  z-index: 1; /* Stay diatas */
-  border-right: 1px solid;
-  left: 0;
-  top: 0;
-  padding-top: 70px;
-  background-color: #fff; /* putih */
-  overflow-x: hidden; /* Nonaktifkan horizontal scroll */
-  transition: 0s; /* Efek transisi 0,5 detik untuk meluncur di sidebar */
-}
-
-/* Link sidebar */
-.sidebar a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0s;
-}
-
-/* Saat Anda mengarahkan mouse ke link navigasi, ubah warnanya */
-.sidebar a:hover {
-  color: #f1f1f1;
-}
-
-/* Posisikan dan style tombol close (pojok kanan atas) */
-.sidebar .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
 /* Tombol yang digunakan untuk membuka sidebar */
 .openbtn {
   font-size: 20px;
