@@ -1,29 +1,31 @@
 <?= $this->extend('layout/template'); ?>
 <?= $this->section('content'); ?>
 
-<button class="openbtn" onclick="openNav()" data-toggle="tooltip" data-placement="top" title="Keterangan" id="menu-btn" style="position: fixed;top: 50%;"><i class="fa-solid fa-circle-info"></i></button>
+<button class="btn btn-dark openbtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="position: fixed;top: 50%;"><i class="fa-solid fa-circle-info"></i></button>
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Keterangan</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <p><img width=50 src="/image/readyy.png" alt="">Relay Ready</p>
+        <p><img width=50 src="/image/notreadyy.png" alt="">Relay Not Ready</p>
+        <p><img width=50 src="/image/remotee.png" alt="">Remote</p>
+        <p><img width=50 src="/image/lokall.png" alt="">Local</p>
+        <p><img width=50 src="/image/rackinn.png" alt="">CB Position Rack In</p>
+        <p><img width=50 src="/image/notgroundd.png" alt="">Earth Switch Not Ground</p>
+        <p><img width=50 src="/image/groundd.png" alt="">Earth Switch Ground</p>
+    </div>
+</div>
 <div class="container possition-relative">
     <!-- <div class="container cubicle-wrapper"> -->
-
-    <div id="mySidebar" class="sidebar overflow-auto">
-        <div class="title-bar navbar navbar-expand-l text-black overflow-auto" style="padding-top: 0.5rem; padding-bottom: 0.5rem;">
-            <h4 class="" style="height: 64.792px;">Keterangan
-                <button class="btn btn-white fs-3" onclick="closeNav()">&times;</button>
-            </h4>
-        </div>
-        <p><img width=40 src="/image/readyy.png" alt="">Ready</p>
-        <p><img width=40 src="/image/notreadyy.png" alt="">Not Ready</p>
-        <p><img width=40 src="/image/remotee.png" alt="">Remote</p>
-        <p><img width=40 src="/image/lokall.png" alt="">Local</p>
-        <p><img width=40 src="/image/rackinn.png" alt="">Rack In</p>
-        <p><img width=40 src="/image/notgroundd.png" alt="">Not Ground</p>
-        <p><img width=40 src="/image/groundd.png" alt="">Ground</p>
-    </div>
 
     <div id="main">
         <div class="row overflow-auto">
             <div class="col">
                 <br>
+
                 <h1 class="text-center mt-2">Monitoring Realtime SCADA</h1>
                 <h2 class="text-center mt-2">Unit Pelaksana Pelayanan Pelanggan (UP3)</h2>
                 <?php if (session()->getFlashdata('pesan')) : ?>
@@ -51,6 +53,7 @@
                                             <div class="card  border-dark mb-3">
                                                 <div class="card-body">
                                                     <div class="row mt-3">
+
                                                         <div class="col-md-12 text-center">
                                                             <?php foreach ($g['incoming'] as $income) : ?>
                                                                 <span class="fw-bold fs-5"><?php echo $income['NAMA_ALIAS_INCOMING']; ?></span>
@@ -103,13 +106,19 @@
                                                                                         ?>
 
                                                                                         <img class="img-fluid" src="/image/<?php echo $img ?>.png" alt="">
-                                                                                        <?php echo $cubic['SESW'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/ground.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="/image/notground.png" alt="">' ?>
+                                                                                        <!-- < ?php if ($cubic['SESW_INV'] == '1') {
+                                                                                            echo $cubic['SESW'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/ground.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="/image/notground.png" alt="">';
+                                                                                        } else {
+                                                                                            echo '<img class="img-fluid position-absolute top-0 start-0" src="/image/ground.png" alt="">';
+                                                                                        } ?> -->
 
-                                                                                        <?php echo $cubic['SCBP'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/rackin.png" alt="">' : null ?>
+                                                                                        <?php echo $cubic['SESW']  = 0 ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/ground.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="/image/notground.png" alt="">' ?>
 
-                                                                                        <?php echo $cubic['SLR'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/remote.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="/image/lokal.png" alt="">' ?>
+                                                                                        <?php echo $cubic['SCBP']  ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/rackin.png" alt="">' : null ?>
 
-                                                                                        <?php echo $cubic['SRNR'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/ready.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="/image/notready.png" alt="">' ?>
+                                                                                        <?php echo $cubic['SLR']  ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/remote.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="/image/lokal.png" alt="">' ?>
+
+                                                                                        <?php echo $cubic['SRNR']  ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/ready.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="/image/notready.png" alt="">' ?>
 
                                                                                     </div>
                                                                                 </div>
@@ -144,12 +153,12 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal informasi -->
     <div class="modal fade" id="modalData" tabindex="-1" aria-labelledby="modalDataLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title" id="modalDataLabel">Informasi <span id="cb_name"></span></h2>
+                    <h2 class="modal-title" id="modalDataLabel">Informasi Realtime <span id="cb_name"></span></h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -168,7 +177,6 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-
                     <!-- <a id="edit" class="btn btn-warning" style="min-width:75px;">Edit</a>
                 <form id="delete" method="post" class="d-inline">
                     < ?= csrf_field(); ?>
@@ -187,7 +195,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h2 class="modal-title" id="modalDataLabel">Riwayat Beban
-                        <span id="cb_history"></span>
+                        <span id="cb_history"></span> <span id="id_cubicle"></span>
                         <a href="/status/chart" class="btn btn-default cubicle-chart" data-toggle="tooltip" data-placement="top" title="Grafik">
                             <img src="/image/grafik.png" width=25 alt="">
                         </a>
@@ -196,13 +204,13 @@
                 </div>
                 <div class="modal-body">
 
-                    <div>
+                    <!-- <div>
                         Start date:
                         <input type="text" id="min" name="min" style="width: 145px;">
                         End date:
                         <input type="text" id="max" name="max" style="width: 145px;">
-                        <!-- <input type="button" name="search" id="search" value="Search" class="btn btn-secondary" style="width: 75px;"> -->
-                    </div>
+                        <input type="button" name="search" id="search" value="Search" class="btn btn-secondary" style="width: 75px;">
+                    </div> -->
                     <br>
                     <!-- <span id="id_cubicle"></span> -->
                     <table id="tableCubicleHistory" class="table table-bordered">
@@ -227,22 +235,6 @@
 
     <?= $this->section('javascript'); ?>
     <script>
-        // $('#navigator').click(function() {
-        //     $('div.sidenav').toggleClass('on');
-        // });
-
-        /* Atur lebar sidebar menjadi 250px dan margin kiri konten halaman menjadi 250px */
-        function openNav() {
-            document.getElementById("mySidebar").style.width = "180px";
-            document.getElementById("main").style.marginLeft = "180px";
-        }
-
-        /* Atur lebar sidebar menjadi 0 dan margin kiri konten halaman menjadi 0 */
-        function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("main").style.marginLeft = "0";
-        }
-
         // sample
         let item = 0;
         $('.accordion-item').click(function() {
@@ -265,7 +257,6 @@
 
             $("a#edit").attr("href", `Status/edit/${id_cubicle}`);
             $('form#delete').attr('action', `Status/delete/${id_cubicle}`);
-
 
             table.clear();
             table.ajax.url(`http://localhost:8080/status/getInformasi/${id_cubicle}`).load();
@@ -304,6 +295,10 @@
         $('.cubicle-history').click(function() {
             let id_cubicle = $(this).data('cubicle');
             let cb_history = $(this).data('name'); // ambil atribut data name
+            let cb_name = $(this).data('cubic');
+
+            $('#cb_name').html(cb_name);
+            $('#id_cubicle').html(id_cubicle);
             $('#cb_history').html(cb_history); //rewrite cb_history , history IA
 
             tableHistory.clear();

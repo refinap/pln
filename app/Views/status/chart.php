@@ -5,6 +5,13 @@
       <h1 class="mt-3">Grafik Beban</h1>
       <input type="text" name="daterange" value="05/01/2022 - 05/12/2022" />
       <div id="chart" style="width:100%; height:450px;"></div>
+      <!-- <button id="downloadCSV">Download Chart Data as CSV</button> -->
+
+      <a href="array_to_csv_download" download>
+            <button class="btn btn-success">
+                  Download as CSV
+            </button>
+      </a>
 </div>
 <?= $this->endSection(); ?>
 
@@ -38,7 +45,10 @@
                               saveAsImage: {
                                     show: true,
                                     title: "Save Image"
-                              }
+                              },
+                              dataView: {
+                                    readOnly: false
+                              },
                         }
                   },
                   xAxis: {
@@ -59,7 +69,6 @@
                               type: 'inside'
                         }
                   ],
-
                   series: []
             };
 
@@ -101,7 +110,7 @@
                         },
                   })
                   byPaymentChart.setOption(options, true)
-            });
+            })
       }
 </script>
 <?= $this->endSection(); ?>
