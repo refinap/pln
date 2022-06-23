@@ -5,13 +5,9 @@
       <h1 class="mt-3">Grafik Beban</h1>
       <input type="text" name="daterange" value="05/01/2022 - 05/12/2022" />
       <div id="chart" style="width:100%; height:450px;"></div>
-      <!-- <button id="downloadCSV">Download Chart Data as CSV</button> -->
-
-      <a href="array_to_csv_download" download>
-            <button class="btn btn-success">
-                  Download as CSV
-            </button>
-      </a>
+      <button class="btn btn-success" onclick="downlaodCsv()">
+            Download as CSV
+      </button>
 </div>
 <?= $this->endSection(); ?>
 
@@ -27,6 +23,9 @@
             console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
       });
 
+      var lineArray = new Array();
+
+      // function 1 untuk get data & set chart
       const chartByPayment = async (params = '') => {
             console.log(1)
             byPaymentChart = echarts.init(document.getElementById('chart'));
@@ -85,9 +84,11 @@
             let id_cubicle = paramsy.get('cubicle')
             let cb_history = paramsy.get('history')
 
+            // data ini berbentuk json array;
             let data = await fetch(`/status/getChart/${id_cubicle}/${cb_history}?${params}`);
             data.json().then(res => {
                   console.log(res);
+                  lineArray = res.data;
                   label = res.data.map(i => i.time)
                   options.xAxis.data = label;
                   const labelOption = {
@@ -111,6 +112,42 @@
                   })
                   byPaymentChart.setOption(options, true)
             })
+
+
+
+      }
+
+
+      // function ini unutk download aja
+      function downlaodCsv() {
+            var header = ['nilai', 'time']
+            const csvData = [];
+            csvData.push(header);
+
+            lineArray.forEach(function(infoArray, index) {
+                  var line = [infoArray.value, infoArray.time].join(",");
+                  csvData.push(index == 0 ? "\uFEFF" + line : line); // 為了讓Excel開啟csv，需加上BOM：\uFEFF
+            });
+            var csvContent = csvData.join("\n");
+
+            var blob = new Blob([csvContent], {
+                  type: "text/csv;charset=utf-8;"
+            });
+            var link = document.createElement("a");
+
+            if (link.download !== undefined) { // feature detection
+                  // Browsers that support HTML5 download attribute
+                  link.setAttribute("href", window.URL.createObjectURL(blob));
+                  link.setAttribute("download", "Data Riwayat Beban.csv");
+                  link.setAttribute("hidden", true);
+            } else {
+                  // it needs to implement server side export
+                  console.log('error');
+                  link.setAttribute("href", "#");
+            }
+            //link.innerHTML = "Export to CSV";
+            //document.body.appendChild(link);
+            link.click();
       }
 </script>
 <?= $this->endSection(); ?>

@@ -598,6 +598,7 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
                 'time' => $value->{"$cb_history" . "_TIME"},
             ];
         }, $history);
+
         return $this->response->setJSON(['data' => $data_history]);
     }
 
@@ -618,8 +619,8 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
             ->select($querySelect)
             ->where("$cb_history IS NOT NULL", null, false)
             ->groupBy("$cb_history" . "_TIME")
-            ->orderBy("$cb_history" . "_TIME", 'DESC')
-            ->limit(500)
+            // ->orderBy("$cb_history" . "_TIME", 'DESC')
+            // ->limit(500)
             ->where('OUTGOING_ID', $outgoing_id);
 
         $history = $history->get()->getResult();
@@ -647,20 +648,5 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
 
         return $this->response->setJSON(['data' => array_values($data_history)]);
         // return $this->response->setJSON(['data' => ($result)]);
-    }
-
-    function array_to_csv_download($array, $filename = "export.csv", $delimiter = ";")
-    {
-        header('Content-Type: application/csv');
-        header('Content-Disposition: attachment; filename="' . $filename . '";');
-
-        // open the "output" stream
-        // see http://www.php.net/manual/en/wrappers.php.php#refsect2-wrappers.php-unknown-unknown-unknown-descriptioq
-        $f = fopen('php://output', 'w');
-
-        foreach ($array as $line) {
-            fputcsv($f, $line, $delimiter);
-        }
-        fclose($f);
     }
 }
