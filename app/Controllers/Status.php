@@ -614,10 +614,13 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
 
         $curr_date = $this->request->getVar('start');
         $end_date = $this->request->getVar('end');
+        $cbHistoryColumn = $cb_history . "_TIME";
 
         $history = $this->historyModel
             ->select($querySelect)
             ->where("$cb_history IS NOT NULL", null, false)
+            ->where("DATE($cbHistoryColumn) <= '$end_date'")
+            ->where("DATE($cbHistoryColumn) >= '$curr_date'")
             ->groupBy("$cb_history" . "_TIME")
             // ->orderBy("$cb_history" . "_TIME", 'DESC')
             // ->limit(500)
@@ -632,10 +635,10 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
             ];
         }, $history);
 
-        $curr_date && $data_history = array_filter($data_history, function ($var) use ($end_date, $curr_date) {
-            $evtime = Date('m-d-Y H:i:s', strtotime($var['time']));
-            return $evtime <= Date('m-d-Y H:i:s', strtotime($end_date)) && $evtime >= Date('m-d-Y H:i:s', strtotime($curr_date));
-        });
+        // $curr_date && $data_history = array_filter($data_history, function ($var) use ($end_date, $curr_date) {
+        //     $evtime = Date('m-d-Y H:i:s', strtotime($var['time']));
+        //     return $evtime <= Date('m-d-Y H:i:s', strtotime($end_date)) && $evtime >= Date('m-d-Y H:i:s', strtotime($curr_date));
+        // });
 
         // $result = array_reduce(array_values($data_history), function ($items, $item) {
         //     if (!isset($items[$item['time']])) {

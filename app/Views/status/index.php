@@ -195,7 +195,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h2 class="modal-title" id="modalDataLabel">Riwayat Beban
-                        <span id="cb_history"></span> <span id="id_cubicle"></span>
+                        <span id="cb_history"></span>
                         <a href="/status/chart" class="btn btn-default cubicle-chart" data-toggle="tooltip" data-placement="top" title="Grafik">
                             <img src="/image/grafik.png" width=25 alt="">
                         </a>
