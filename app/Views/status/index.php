@@ -5,10 +5,14 @@
 
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Keterangan</h5>
+        <h3 class="offcanvas-title" id="offcanvasScrollingLabel">Keterangan</h3>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
+        <p><img width=60 src="/image/openn.png" alt="">Open</p>
+        <p><img width=60 src="/image/closee.png" alt="">Close</p>
+        <p><img width=60 src="/image/cadangann.png" alt="">Cadangan</p>
+        <p><img width=60 src="/image/invalidd.png" alt="">Invalid</p>
         <p><img width=50 src="/image/readyy.png" alt="">Relay Ready</p>
         <p><img width=50 src="/image/notreadyy.png" alt="">Relay Not Ready</p>
         <p><img width=50 src="/image/remotee.png" alt="">Remote</p>
@@ -122,8 +126,13 @@
 
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="card-footer py-0 text-muted">
 
+                                                                                <div class="card-footer py-0 text-muted">
+                                                                                    <h6 class="" id="l"> Grafik Beban
+                                                                                        <a href="/status/beban" class="btn btn-default cubicle-chart" data-toggle="tooltip" data-placement="top" title="Grafik">
+                                                                                            <img src="/image/grafik.png" width=20 alt="">
+                                                                                        </a>
+                                                                                    </h6>
                                                                                     <div class="row">
                                                                                         <div class="col-4 border border-dark" data-toggle="tooltip" data-placement="top" title="History IA"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="IA"><u>IA</u></strong> <br> <?php echo $cubic['IA'] ?? 0 ?> </div>
                                                                                         <div class="col-4 border border-dark" data-toggle="tooltip" data-placement="top" title="History IB"> <strong role="button" class="cubicle-history" data-cubicle="<?php echo $cubic['OUTGOING_ID']; ?>" data-name="IB"><u>IB</u></strong> <br> <?php echo $cubic['IB'] ?? 0 ?> </div>

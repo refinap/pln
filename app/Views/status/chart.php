@@ -2,8 +2,8 @@
 
 <?= $this->section('content'); ?>
 <div class="container">
-      <h1 class="mt-3">Grafik Beban</h1>
-      <input type="text" name="daterange" value="05/01/2022 - 05/12/2022" />
+      <h1 class="mt-3">Grafik Riwayat Beban <span id="cb_history"></span> </h1>
+      <input type="text" name="daterange" value="05/10/2022 - 06/10/2022" />
       <div id="chart" style="width:100%; height:450px;"></div>
       <button class="btn btn-success" onclick="downlaodCsv()">
             Download as CSV
@@ -34,6 +34,9 @@
                   tooltip: {
                         trigger: 'axis'
                   },
+                  // legend: {
+                  //       data: ['IA', 'IB', 'IC', 'Nilai']
+                  // },
                   toolbox: {
                         show: true,
                         feature: {
@@ -59,7 +62,7 @@
                         type: 'value',
                         name: 'Nilai',
                         includeZero: true,
-                        // interval: 5000
+                        // interval: 50
                   },
                   dataZoom: [{
                               startValue: '2022-05-01'
@@ -68,7 +71,22 @@
                               type: 'inside'
                         }
                   ],
-                  series: []
+                  series: [{
+                              name: 'IA',
+                              type: 'line',
+                              data: [120, 132, 133, 133.44, 133.67, 134, 134.11, 134.19, 134.29, 135, 136.21, 136.98, 138, 138.6, 139, 141, 142, 144, 144.7, 120, 132, 133, 133.44, 133.67, 134, 134.11, 134.19, 134.29, 135, 136.21, 136.98, 138, 138.6, 139, 141, 142, 144, 144.7, 133, 135, 135.5, 133, 136, 137, 136.9, 135, 133, 135, 135.5, 133, 136, 137, 136.9, 135, ]
+                        },
+                        {
+                              name: 'IB',
+                              type: 'line',
+                              data: [150, 151, 151.8, 152, 150, 150.6, 152, 152.7, 152.9, 154, 153, 153.6, 155, 150, 151, 151.8, 152, 150, 150.6, 152, 152.7, 152.9, 154, 153, 153.6, 155, 150, 151, 151.8, 152, 150, 150.6, 152, 152.7, 152.9, 154, 153, 153.6, 155, 150, 151, 151.8, 152, 150, 150.6, 152, 152.7, 152.9, 154, 153, 153.6, 155, ]
+                        },
+                        {
+                              name: 'IC',
+                              type: 'line',
+                              data: [90, 97, 98, 98.6, 99, 100, 97, 100, 101, 101.7, 102, 90, 97, 98, 98.6, 99, 100, 97, 100, 101, 101.7, 102, 90, 97, 98, 98.6, 99, 100, 97, 100, 101, 101.7, 102, 90, 97, 98, 98.6, 99, 100, 97, 100, 101, 101.7, 102, 103, 103.7, 103, 102, 101, 100, 99, 100.7, 99.8, 98, 101, 101.7, 103, 105, 100, 104.5, 100, 106]
+                        }
+                  ]
             };
 
             // LET HISTORY GET PARAMETER WITH JS
@@ -112,9 +130,6 @@
                   })
                   byPaymentChart.setOption(options, true)
             })
-
-
-
       }
 
 
