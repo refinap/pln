@@ -2,12 +2,10 @@
 
 <?= $this->section('content'); ?>
 <div class="container">
-      <h1 class="mt-3">Grafik Riwayat Beban</h1>
+      <h1 class="mt-3">Grafik Beban</h1>
       <input type="text" name="daterange" value="05/10/2022 - 06/10/2022" />
       <div id="chart" style="width:100%; height:450px;"></div>
-      <button class="btn btn-success" onclick="downlaodCsv()">
-            Download as CSV
-      </button>
+      <button class="btn btn-success" onclick="downlaodCsv()">Download as CSV</button>
 </div>
 <?= $this->endSection(); ?>
 
@@ -76,6 +74,7 @@
 
             // LET HISTORY GET PARAMETER WITH JS
 
+
             // LET OUTGOING
             // let param = (new URL(document.location)).searchParams;
             // let data = param.get("data");
@@ -87,7 +86,7 @@
             let cb_history = paramsy.get('history')
 
             // data ini berbentuk json array;
-            let data = await fetch(`/status/getChart/${id_cubicle}/${cb_history}?${params}`);
+            let data = await fetch(`/status/getBeban/${id_cubicle}/${cb_history}?${params}`);
             data.json().then(res => {
                   console.log(res);
                   lineArray = res.data;
@@ -103,14 +102,32 @@
 
                   order = res.data.map(i => i.value)
                   options.series.push({
-                        name: 'Nilai',
+                        name: 'Nilai 1',
                         label: labelOption,
                         type: 'line',
                         data: order,
                         label: {
                               show: true,
                               position: 'top'
-                        },
+                        }
+                  }, {
+                        name: 'Nilai 2',
+                        label: labelOption,
+                        type: 'line',
+                        data: order,
+                        label: {
+                              show: true,
+                              position: 'top'
+                        }
+                  }, {
+                        name: 'Nilai 3',
+                        label: labelOption,
+                        type: 'line',
+                        data: order,
+                        label: {
+                              show: true,
+                              position: 'top'
+                        }
                   })
                   byPaymentChart.setOption(options, true)
             })
@@ -124,7 +141,7 @@
 
             lineArray.forEach(function(infoArray, index) {
                   var line = [infoArray.value, infoArray.time].join(",");
-                  csvData.push(index == 0 ? "\uFEFF" + line : line); // 為了讓Excel開啟csv，需加上BOM：\uFEFF
+                  csvData.push(index == 0 ? "\uFEFF" + line : line);
             });
             var csvContent = csvData.join("\n");
 
@@ -136,7 +153,7 @@
             if (link.download !== undefined) { // feature detection
                   // Browsers that support HTML5 download attribute
                   link.setAttribute("href", window.URL.createObjectURL(blob));
-                  link.setAttribute("download", "Data Riwayat Beban.csv");
+                  link.setAttribute("download", "Data Beban.csv");
                   link.setAttribute("hidden", true);
             } else {
                   // it needs to implement server side export
