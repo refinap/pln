@@ -652,4 +652,39 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
         return $this->response->setJSON(['data' => array_values($data_history)]);
         // return $this->response->setJSON(['data' => ($result)]);
     }
+
+    public function beban()
+    {
+        return view('status/beban');
+    }
+
+    public function getBeban($outgoing_id, $cb_history)
+    {
+
+        $querySelect = "$cb_history, $cb_history" . "_TIME"; //
+
+        $curr_date = $this->request->getVar('start');
+        $end_date = $this->request->getVar('end');
+        $cbHistoryColumn = $cb_history . "_TIME";
+
+        $history = $this->historyModel
+            ->select($querySelect)
+            ->where("$cb_history IS NOT NULL", null, false)
+            ->where("DATE($cbHistoryColumn) <= '$end_date'")
+            ->where("DATE($cbHistoryColumn) >= '$curr_date'")
+            ->groupBy("$cb_history" . "_TIME")
+            // ->orderBy("$cb_history" . "_TIME", 'DESC')
+            // ->limit(500)
+            ->where('OUTGOING_ID', $outgoing_id);
+
+        $history = $history->get()->getResult();
+
+        $data_history = array_map(function ($value) use ($cb_history) {
+            return (array) [
+                'value' => $value->{"$cb_history"},
+                'time' => date('m-d-Y H:i:s', strtotime($value->{"$cb_history" . "_TIME"})),
+            ];
+        }, $history);
+        return $this->response->setJSON(['data' => array_values($data_history)]);
+    }
 }
