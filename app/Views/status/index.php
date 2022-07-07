@@ -324,6 +324,17 @@
             $('#modalDataHistory').modal('show')
         });
 
+        //js beban
+        $('.cubicle-beban').click(function() {
+            let id_cubicle = $(this).data('cubicle');
+            let cb_history = $(this).data('name');
+
+            $('#id_cubicle').html(id_cubicle);
+            $('#cb_history').html(cb_history);
+
+            $('a.cubicle-chart').attr('href', `http://localhost:8080/status/chart?cubicle=${id_cubicle}&history=${cb_history}`);
+        });
+
         //table history
         var tableHistory = $('#tableCubicleHistory').DataTable({
             "bDestroy": true,
