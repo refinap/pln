@@ -9,17 +9,17 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <p><img width=60 src="/image/openn.png" alt="">Open</p>
-        <p><img width=60 src="/image/closee.png" alt="">Close</p>
-        <p><img width=60 src="/image/cadangann.png" alt="">Cadangan</p>
-        <p><img width=60 src="/image/invalidd.png" alt="">Invalid</p>
-        <p><img width=50 src="/image/readyy.png" alt="">Relay Ready</p>
-        <p><img width=50 src="/image/notreadyy.png" alt="">Relay Not Ready</p>
-        <p><img width=50 src="/image/remotee.png" alt="">Remote</p>
-        <p><img width=50 src="/image/lokall.png" alt="">Local</p>
-        <p><img width=50 src="/image/rackinn.png" alt="">CB Position Rack In</p>
-        <p><img width=50 src="/image/notgroundd.png" alt="">Earth Switch Not Ground</p>
-        <p><img width=50 src="/image/groundd.png" alt="">Earth Switch Ground</p>
+        <p><img width=60 src="<?php echo base_url() . '/image/openn.png'; ?> " alt="">Open</p>
+        <p><img width=60 src="<?php echo base_url() . '/image/closee.png'; ?>" alt="">Close</p>
+        <p><img width=60 src="<?php echo base_url() . '/image/cadangann.png'; ?>" alt="">Cadangan</p>
+        <p><img width=60 src="<?php echo base_url() . '/image/invalidd.png'; ?>" alt="">Invalid</p>
+        <p><img width=50 src="<?php echo base_url() . '/image/readyy.png'; ?>" alt="">Relay Ready</p>
+        <p><img width=50 src="<?php echo base_url() . '/image/notreadyy.png'; ?>" alt="">Relay Not Ready</p>
+        <p><img width=50 src="<?php echo base_url() . '/image/remotee.png'; ?>" alt="">Remote</p>
+        <p><img width=50 src="<?php echo base_url() . '/image/lokall.png'; ?>" alt="">Local</p>
+        <p><img width=50 src="<?php echo base_url() . '/image/rackinn.png'; ?>" alt="">CB Position Rack In</p>
+        <p><img width=50 src="<?php echo base_url() . '/image/notgroundd.png'; ?>" alt="">Earth Switch Not Ground</p>
+        <p><img width=50 src="<?php echo base_url() . '/image/groundd.png'; ?>" alt="">Earth Switch Ground</p>
     </div>
 </div>
 <div class="container possition-relative">
@@ -49,7 +49,7 @@
 
                                 <div class="accordion-body">
 
-                                    <!-- <a href="/status/tambah" class="btn btn-primary mb-3">Tambah Data Cubicle</a><br> -->
+                                    <!-- <a href="<?php echo base_url(); ?>/status/tambah" class="btn btn-primary mb-3">Tambah Data Cubicle</a><br> -->
                                     <div class="container">
                                         <?php foreach ($a->gi as $g) : ?>
                                             <span class="fs-4"> GI <?php echo $g['GARDU_INDUK_NAMA']; ?></span>
@@ -109,28 +109,31 @@
                                                                                         }
                                                                                         ?>
 
-                                                                                        <img class="img-fluid" src="/image/<?php echo $img ?>.png" alt="">
+                                                                                        <!-- <img class="img-fluid" src="../image/<?php echo $img ?>.png" alt=""> -->
+                                                                                        <img class="img-fluid" src="<?php echo base_url(); ?>/image/<?php echo $img ?>.png" alt="">
+
+
                                                                                         <!-- < ?php if ($cubic['SESW_INV'] == '1') {
                                                                                             echo $cubic['SESW'] ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/ground.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="/image/notground.png" alt="">';
                                                                                         } else {
                                                                                             echo '<img class="img-fluid position-absolute top-0 start-0" src="/image/ground.png" alt="">';
                                                                                         } ?> -->
 
-                                                                                        <?php echo $cubic['SESW']  = 0 ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/ground.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="/image/notground.png" alt="">' ?>
+                                                                                        <?php echo $cubic['SESW']  = 0 ? '<img class="img-fluid position-absolute top-0 start-0" src="' . base_url() . '/image/ground.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="' . base_url() . '/image/notground.png" alt="">' ?>
 
-                                                                                        <?php echo $cubic['SCBP']  ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/rackin.png" alt="">' : null ?>
+                                                                                        <?php echo $cubic['SCBP']  ? '<img class="img-fluid position-absolute top-0 start-0" src="' . base_url() . '/image/rackin.png" alt="">' : null ?>
 
-                                                                                        <?php echo $cubic['SLR']  ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/remote.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="/image/lokal.png" alt="">' ?>
+                                                                                        <?php echo $cubic['SLR']  ? '<img class="img-fluid position-absolute top-0 start-0" src="' . base_url() . '/image/remote.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="' . base_url() . '/image/lokal.png" alt="">' ?>
 
-                                                                                        <?php echo $cubic['SRNR']  ? '<img class="img-fluid position-absolute top-0 start-0" src="/image/ready.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="/image/notready.png" alt="">' ?>
+                                                                                        <?php echo $cubic['SRNR']  ? '<img class="img-fluid position-absolute top-0 start-0" src="' . base_url() . '/image/ready.png" alt="">' : '<img class="img-fluid position-absolute top-0 start-0" src="' . base_url() . '/image/notready.png" alt="">' ?>
 
                                                                                     </div>
                                                                                 </div>
 
                                                                                 <div class="card-footer py-0 text-muted">
                                                                                     <h6 class="" id="l"> Grafik Beban
-                                                                                        <a href="/status/beban" class="btn btn-default cubicle-chart" data-toggle="tooltip" data-placement="top" title="Grafik">
-                                                                                            <img src="/image/grafik.png" width=20 alt="">
+                                                                                        <a href="<?php echo base_url(); ?>/status/beban" class="btn btn-default cubicle-chart" data-toggle="tooltip" data-placement="top" title="Grafik">
+                                                                                            <img src="<?php echo base_url() . '/image/grafik.png'; ?>" width=20 alt="">
                                                                                         </a>
                                                                                     </h6>
                                                                                     <div class="row">
@@ -203,10 +206,10 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title" id="modalDataLabel">Riwayat Beban
-                        <span id="cb_history"></span>
-                        <a href="/status/chart" class="btn btn-default cubicle-chart" data-toggle="tooltip" data-placement="top" title="Grafik">
-                            <img src="/image/grafik.png" width=25 alt="">
+                    <h2 class="modal-title" id="modalDataHistLabel">Riwayat Beban
+                        <span id="cb_history"></span> <span id="cb_name"></span>
+                        <a href="<?php echo base_url(); ?>/status/chart" class="btn btn-default cubicle-chart" data-toggle="tooltip" data-placement="top" title="Grafik">
+                            <img src="<?php echo base_url() . '/image/grafik.png'; ?>" width=25 alt="">
                         </a>
                     </h2>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -264,11 +267,11 @@
             $('#cb_name').html(cb_name);
             $('#id_cubicle').html(id_cubicle)
 
-            $("a#edit").attr("href", `Status/edit/${id_cubicle}`);
-            $('form#delete').attr('action', `Status/delete/${id_cubicle}`);
+            $("a#edit").attr("href", `<?php echo base_url(); ?>/Status/edit/${id_cubicle}`);
+            $('form#delete').attr('action', `<?php echo base_url(); ?>/Status/delete/${id_cubicle}`);
 
             table.clear();
-            table.ajax.url(`http://localhost:8080/status/getInformasi/${id_cubicle}`).load();
+            table.ajax.url(`<?php echo base_url(); ?>/status/getInformasi/${id_cubicle}`).load();
             setInterval(function() {
                 console.log(1)
                 table.ajax.reload();
@@ -304,14 +307,14 @@
         $('.cubicle-history').click(function() {
             let id_cubicle = $(this).data('cubicle');
             let cb_history = $(this).data('name'); // ambil atribut data name
-            let cb_name = $(this).data('cubic');
+            let cb_name = $(this).data('nama');
 
             $('#cb_name').html(cb_name);
             $('#id_cubicle').html(id_cubicle);
             $('#cb_history').html(cb_history); //rewrite cb_history , history IA
 
             tableHistory.clear();
-            tableHistory.ajax.url(`http://localhost:8080/status/getHistory/${id_cubicle}/${cb_history}`).load();
+            tableHistory.ajax.url(`<?php echo base_url(); ?>/status/getHistory/${id_cubicle}/${cb_history}`).load();
 
             setInterval(function() { //refresh data tiap 1 menit
                 console.log(1)
@@ -319,7 +322,7 @@
             }, 60000);
 
             // set new atribut href with jquery
-            $('a.cubicle-chart').attr('href', `http://localhost:8080/status/chart?cubicle=${id_cubicle}&history=${cb_history}`);
+            $('a.cubicle-chart').attr('href', `<?php echo base_url(); ?>/status/chart?cubicle=${id_cubicle}&history=${cb_history}`);
 
             $('#modalDataHistory').modal('show')
         });
@@ -332,7 +335,15 @@
             $('#id_cubicle').html(id_cubicle);
             $('#cb_history').html(cb_history);
 
-            $('a.cubicle-chart').attr('href', `http://localhost:8080/status/chart?cubicle=${id_cubicle}&history=${cb_history}`);
+            tableHistory.clear();
+            tableHistory.ajax.url(`<?php echo base_url(); ?>/status/getBeban/${id_cubicle}/${cb_history}`).load();
+
+            setInterval(function() { //refresh data tiap 1 menit
+                console.log(1)
+                tableHistory.ajax.reload();
+            }, 60000);
+
+            $('a.cubicle-chart').attr('href', `<?php echo base_url(); ?>/status/chart?cubicle=${id_cubicle}&history=${cb_history}`);
         });
 
         //table history
