@@ -8,7 +8,7 @@
     <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
         <h1>Monitoring Realtime Scada Jateng-DIY</h1>
         <!-- <h2>We are team of talented designers making websites with Bootstrap</h2> -->
-        <a href="/status/" class="btn-get-started">Klik Di Sini</a>
+        <a href="<?php echo base_url(); ?>/status/" class="btn-get-started">Klik Di Sini</a>
     </div>
 </section><!-- End Backgorund Section -->
 
