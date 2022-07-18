@@ -2,7 +2,8 @@
 
 <?= $this->section('content'); ?>
 <div class="container">
-      <h1 class="mt-3">Grafik Riwayat Beban</h1>
+      <h1 class="mt-3">Grafik Riwayat Beban <span id="id_cubicle"></span><span id="cb_history"></span>
+      </h1>
       <input type="text" name="daterange" value="05/10/2022 - 06/10/2022" />
       <div id="chart" style="width:100%; height:450px;"></div>
       <button class="btn btn-success" onclick="downlaodCsv()">
@@ -86,8 +87,11 @@
             let id_cubicle = paramsy.get('cubicle')
             let cb_history = paramsy.get('history')
 
+            $('#id_cubicle').html(id_cubicle)
+            $('#cb_history').html(cb_history)
+
             // data ini berbentuk json array;
-            let data = await fetch(`/status/getChart/${id_cubicle}/${cb_history}?${params}`);
+            let data = await fetch(`<?php echo base_url(); ?>/status/getChart/${id_cubicle}/${cb_history}?${params}`);
             data.json().then(res => {
                   console.log(res);
                   lineArray = res.data;
@@ -147,6 +151,13 @@
             //document.body.appendChild(link);
             link.click();
       }
+
+      $('.cubicle').click(function() {
+            let id_cubicle = $(this).data('cubicle');
+            let cb_name = $(this).data('name');
+            $('#cb_name').html(cb_name);
+            $('#id_cubicle').html(id_cubicle)
+      });
 </script>
 <?= $this->endSection(); ?>
 </div>
