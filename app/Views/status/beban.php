@@ -27,14 +27,11 @@
       const chartByPayment = async (params = '') => {
             console.log(1)
             byPaymentChart = echarts.init(document.getElementById('chart'));
-            // let label, order, sold, cancel;
+
             let options = {
                   tooltip: {
                         trigger: 'axis'
                   },
-                  // legend: {
-                  //       data: ['IA', 'IB', 'IC', 'Nilai']
-                  // },
                   toolbox: {
                         show: true,
                         feature: {
@@ -72,7 +69,7 @@
                   series: []
             };
 
-            // LET HISTORY GET PARAMETER WITH JS
+            // LET BEBAN GET PARAMETER WITH JS
 
 
             // LET OUTGOING
@@ -86,7 +83,7 @@
             let cb_history = paramsy.get('history')
 
             // data ini berbentuk json array;
-            let data = await fetch(`/status/getBeban/${id_cubicle}/${cb_history}?${params}`);
+            let data = await fetch(`<?php echo base_url(); ?>/status/getBeban/${id_cubicle}/${cb_history}?${params}`);
             data.json().then(res => {
                   console.log(res);
                   lineArray = res.data;
