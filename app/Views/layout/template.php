@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>/css/style.css">
 
     <title>Monitoring Realtime</title>
 </head>
@@ -40,7 +40,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="/echarts-5.3.2/dist/echarts.js"></script>
+    <script src="<?php echo base_url(); ?>/echarts-5.3.2/dist/echarts.js"></script>
 
     <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
