@@ -60,7 +60,16 @@
 
                                                         <div class="col-md-12 text-center">
                                                             <?php foreach ($g['incoming'] as $income) : ?>
-                                                                <span class="fw-bold fs-5"><?php echo $income['NAMA_ALIAS_INCOMING']; ?></span>
+                                                                <button type="button" data-toggle="tooltip" data-placement="top" title="Trafo" class="card-header text-center card-header-color trafo btn-secondary">
+                                                                    <span class=" fw-bold fs-5"><?php echo $income['NAMA_ALIAS_INCOMING']; ?></span>
+                                                                </button>
+                                                                <!-- <div class="row">
+                                                                    <div class="col-4 border border-dark" data-toggle="tooltip" data-placement="top" title="Beban Trafo IA"> <strong role="button" class="trafo-history" data-trafo="" data-name="IA"><u>IA</u></strong> <br> </div>
+                                                                    <div class="col-4 border border-dark" data-toggle="tooltip" data-placement="top" title="Beban Trafo IB"> <strong role="button" class="trafo-history" data-trafo="" data-name="IB"><u>IB</u></strong> <br> </div>
+                                                                    <div class="col-4 border border-dark" data-toggle="tooltip" data-placement="top" title="Beban Trafo IC"> <strong role="button" class="trafo-history" data-trafo="" data-name="IC"><u>IC</u></strong> <br> </div>
+                                                                    <div class="col-6 border border-dark" data-toggle="tooltip" data-placement="top" title="Beban Trafo IG"> <strong role="button" class="trafo-history" data-trafo="" data-name="IG"><u>IG</u></strong> <br> </div>
+                                                                    <div class="col-6 border border-dark" data-toggle="tooltip" data-placement="top" title="Beban Trafo KW"> <strong role="button" class="trafo-history" data-trafo="" data-name="KW"><u>KW</u></strong> <br> </div>
+                                                                </div> -->
                                                                 <br>
                                                                 <div class="row">
                                                                     <?php foreach ($income['cubicle'] as $cubic) : ?>
@@ -241,6 +250,36 @@
         </div>
     </div>
 
+    <!-- Modal Trafo -->
+    <div class="modal fade" id="modalDataTrafo" tabindex="-1" aria-labelledby="modalDataLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="modalDataLabel">Informasi Trafo <span id=""></span></h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <span id="id_cubicle"></span> -->
+                    <table id="tableTrafoHistory" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="text-align:center">Keterangan</th>
+                                <th scope="col" style="text-align:center">Nilai</th>
+                                <th scope="col" style="text-align:center">Waktu</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" style="min-width:75px;" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <?= $this->endSection(); ?>
 
 
@@ -327,25 +366,6 @@
             $('#modalDataHistory').modal('show')
         });
 
-        //js beban
-        $('.cubicle-beban').click(function() {
-            let id_cubicle = $(this).data('cubicle');
-            let cb_history = $(this).data('name');
-
-            $('#id_cubicle').html(id_cubicle);
-            $('#cb_history').html(cb_history);
-
-            tableHistory.clear();
-            tableHistory.ajax.url(`<?php echo base_url(); ?>/status/getBeban/${id_cubicle}/${cb_history}`).load();
-
-            setInterval(function() { //refresh data tiap 1 menit
-                console.log(1)
-                tableHistory.ajax.reload();
-            }, 60000);
-
-            $('a.cubicle-chart').attr('href', `<?php echo base_url(); ?>/status/chart?cubicle=${id_cubicle}&history=${cb_history}`);
-        });
-
         //table history
         var tableHistory = $('#tableCubicleHistory').DataTable({
             "bDestroy": true,
@@ -369,6 +389,72 @@
                 }
             ]
         });
+
+        //js trafo
+        $('.trafo').click(function() {
+            let id_cubicle = $(this).data('cubicle');
+            let cb_history = $(this).data('name'); // ambil atribut data name
+            let cb_name = $(this).data('nama');
+
+            $('#cb_name').html(cb_name);
+            $('#id_cubicle').html(id_cubicle);
+            $('#cb_history').html(cb_history); //rewrite cb_history , history IA
+
+            tableTrafoHistory.clear();
+            tableTrafoHistory.ajax.url(`<?php echo base_url(); ?>/status/getTrafo/${id_cubicle}`).load();
+
+            setInterval(function() { //refresh data tiap 1 menit
+                console.log(1)
+                tableTrafoHistory.ajax.reload();
+            }, 60000);
+
+            $('#modalDataTrafo').modal('show')
+        });
+
+        //table trafo history
+        var tableTrafoHistory = $('#tableTrafoHistory').DataTable({
+            "bDestroy": true,
+            "autoWidth": false,
+            "ordering": false,
+            "paging": false,
+            "bFilter": false,
+            "info": false,
+            "lengthMenu": [
+                [-1],
+                ["All"]
+            ],
+            columns: [{
+                    data: 'name'
+                },
+                {
+                    data: 'nilai'
+                },
+                {
+                    data: 'time'
+                }
+            ]
+        });
+
+        //js beban
+        $('.cubicle-beban').click(function() {
+            let id_cubicle = $(this).data('cubicle');
+            let cb_history = $(this).data('name');
+
+            $('#id_cubicle').html(id_cubicle);
+            $('#cb_history').html(cb_history);
+
+            tableHistory.clear();
+            tableHistory.ajax.url(`<?php echo base_url(); ?>/status/getBeban/${id_cubicle}/${cb_history}`).load();
+
+            setInterval(function() { //refresh data tiap 1 menit
+                console.log(1)
+                tableHistory.ajax.reload();
+            }, 60000);
+
+            $('a.cubicle-chart').attr('href', `<?php echo base_url(); ?>/status/chart?cubicle=${id_cubicle}&history=${cb_history}`);
+        });
+
+
 
         var minDate, maxDate;
         // Custom filtering function which will search data in column four between two values

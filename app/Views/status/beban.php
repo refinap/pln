@@ -5,7 +5,9 @@
       <h1 class="mt-3">Grafik Beban</h1>
       <input type="text" name="daterange" value="05/10/2022 - 06/10/2022" />
       <div id="chart" style="width:100%; height:450px;"></div>
-      <button class="btn btn-success" onclick="downlaodCsv()">Download as CSV</button>
+      <button class="btn btn-success" onclick="downlaodCsv()">
+            Download as CSV
+      </button>
 </div>
 <?= $this->endSection(); ?>
 
@@ -107,24 +109,24 @@
                               show: true,
                               position: 'top'
                         }
-                  }, {
-                        name: 'Nilai 2',
-                        label: labelOption,
-                        type: 'line',
-                        data: order,
-                        label: {
-                              show: true,
-                              position: 'top'
-                        }
-                  }, {
-                        name: 'Nilai 3',
-                        label: labelOption,
-                        type: 'line',
-                        data: order,
-                        label: {
-                              show: true,
-                              position: 'top'
-                        }
+                        // }, {
+                        //       name: 'Nilai 2',
+                        //       label: labelOption,
+                        //       type: 'line',
+                        //       data: order,
+                        //       label: {
+                        //             show: true,
+                        //             position: 'top'
+                        //       }
+                        // }, {
+                        //       name: 'Nilai 3',
+                        //       label: labelOption,
+                        //       type: 'line',
+                        //       data: order,
+                        //       label: {
+                        //             show: true,
+                        //             position: 'top'
+                        //       }
                   })
                   byPaymentChart.setOption(options, true)
             })

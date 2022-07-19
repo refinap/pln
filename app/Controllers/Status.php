@@ -573,13 +573,18 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
         return redirect()->to('/status');
     }
 
-    public function history($id)
+    public function history($id, $id2)
     {
         $history = $this->historyModel
             ->where('OUTGOING_METER_ID', $id)->first();
+
+        $cubicle = $this->cubicleModel
+            ->where('OUTGOING_ID', $id2)->first();
+
         $data = [
             'title' => 'History',
-            'h' => $history
+            'h' => $history,
+            'c' => $cubicle
         ];
         return view('status/history', $data);
     }
