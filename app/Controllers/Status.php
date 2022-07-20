@@ -63,7 +63,7 @@ class Status extends BaseController
 
             foreach ($gi as $gi_keys => $gi_items) {
                 $incoming = $this->incomingModel
-                    ->select('INCOMING_ID, GARDU_INDUK_ID, NAMA_ALIAS_INCOMING')
+                    ->select('INCOMING_ID, GARDU_INDUK_ID, NAMA_ALIAS_INCOMING, DAYA_REAKTIF_TRAFO, IA, IB, IC, IG, KW')
                     ->where('GARDU_INDUK_ID', $gi_items['GARDU_INDUK_ID'])->findAll();
 
                 // get data cubicle

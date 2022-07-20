@@ -59,18 +59,16 @@
 
                                                         <div class="col-md-12 text-center">
                                                             <?php foreach ($g['incoming'] as $income) : ?>
-                                                                <button type="button" data-toggle="tooltip" data-placement="top" title="Trafo" class="card-header text-center card-header-color trafo btn-secondary">
-                                                                    <span class=" fw-bold fs-5"><?php echo $income['NAMA_ALIAS_INCOMING']; ?></span>
-                                                                </button>
-
+                                                                <span class=" fw-bold fs-5"><?php echo $income['NAMA_ALIAS_INCOMING']; ?></span>
                                                                 <table id="" class="table table-bordered">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IA"><strong role="" class="" data-cubicle="" data-name="IA"><u>IA</u></strong></th>
-                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IB"><strong role="" class="" data-cubicle="" data-name="IA"><u>IB</u></strong></th>
-                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IC"><strong role="" class="" data-cubicle="" data-name="IA"><u>IC</u></strong></th>
-                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IG"><strong role="" class="" data-cubicle="" data-name="IA"><u>IG</u></strong></th>
-                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo KW"><strong role="" class="" data-cubicle="" data-name="IA"><u>KW</u></strong></th>
+                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IA"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="IA">IA</strong><br> <?php echo $income['IA'] ?? 0 ?> </th>
+                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IB"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="IB">IB</strong><br> <?php echo $income['IB'] ?? 0 ?> </th>
+                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IC"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="IC">IC</strong><br> <?php echo $income['IC'] ?? 0 ?> </th>
+                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IG"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="IG">IG</strong><br> <?php echo $income['IG'] ?? 0 ?> </th>
+                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo KW"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="KW">KW</strong><br> <?php echo $income['KW'] ?? 0 ?> </th>
+                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo DAYA_REAKTIF_TRAFO"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="DAYA_REAKTIF_TRAFO">DAYA TRAFO</strong><br> <?php echo $income['DAYA_REAKTIF_TRAFO'] ?? 0 ?> </th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody class="text-center">
