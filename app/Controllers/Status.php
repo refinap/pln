@@ -446,6 +446,38 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
         return $this->response->setJSON(['data' => $data_cubicle]);
     }
 
+    public function getInformasiTrafo($id)
+    {
+        $trafo = $this->incomingModel
+            ->where('INCOMING_ID', $id)->first();
+
+        $data_trafo = array(
+            array(
+                'name'  => 'IA',
+                'nilai'  => $trafo['IA']
+            ),
+            array(
+                'name'  => 'IB',
+                'nilai'  => $trafo['IB']
+            ),
+            array(
+                'name'  => 'IC',
+                'nilai'  => $trafo['IC']
+            ),
+            array(
+                'name'  => 'IG',
+                'nilai'  => $trafo['IG']
+            ),
+
+            array(
+                'name'  => 'KW',
+                'nilai'  => $trafo['KW']
+            ),
+
+        );
+        return $this->response->setJSON(['data' => $data_trafo]);
+    }
+
     public function delete($OUTGOING_ID)
     {
         $this->cubicleModel->where("OUTGOING_ID", $OUTGOING_ID)->delete();

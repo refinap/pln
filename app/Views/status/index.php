@@ -29,7 +29,6 @@
         <div class="row overflow-auto">
             <div class="col">
                 <br>
-
                 <h1 class="text-center mt-2">Monitoring Realtime SCADA</h1>
                 <h2 class="text-center mt-2">Unit Pelaksana Pelayanan Pelanggan (UP3)</h2>
                 <?php if (session()->getFlashdata('pesan')) : ?>
@@ -63,13 +62,21 @@
                                                                 <button type="button" data-toggle="tooltip" data-placement="top" title="Trafo" class="card-header text-center card-header-color trafo btn-secondary">
                                                                     <span class=" fw-bold fs-5"><?php echo $income['NAMA_ALIAS_INCOMING']; ?></span>
                                                                 </button>
-                                                                <!-- <div class="row">
-                                                                    <div class="col-4 border border-dark" data-toggle="tooltip" data-placement="top" title="Beban Trafo IA"> <strong role="button" class="trafo-history" data-trafo="" data-name="IA"><u>IA</u></strong> <br> </div>
-                                                                    <div class="col-4 border border-dark" data-toggle="tooltip" data-placement="top" title="Beban Trafo IB"> <strong role="button" class="trafo-history" data-trafo="" data-name="IB"><u>IB</u></strong> <br> </div>
-                                                                    <div class="col-4 border border-dark" data-toggle="tooltip" data-placement="top" title="Beban Trafo IC"> <strong role="button" class="trafo-history" data-trafo="" data-name="IC"><u>IC</u></strong> <br> </div>
-                                                                    <div class="col-6 border border-dark" data-toggle="tooltip" data-placement="top" title="Beban Trafo IG"> <strong role="button" class="trafo-history" data-trafo="" data-name="IG"><u>IG</u></strong> <br> </div>
-                                                                    <div class="col-6 border border-dark" data-toggle="tooltip" data-placement="top" title="Beban Trafo KW"> <strong role="button" class="trafo-history" data-trafo="" data-name="KW"><u>KW</u></strong> <br> </div>
-                                                                </div> -->
+
+                                                                <table id="" class="table table-bordered">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IA"><strong role="" class="" data-cubicle="" data-name="IA"><u>IA</u></strong></th>
+                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IB"><strong role="" class="" data-cubicle="" data-name="IA"><u>IB</u></strong></th>
+                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IC"><strong role="" class="" data-cubicle="" data-name="IA"><u>IC</u></strong></th>
+                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IG"><strong role="" class="" data-cubicle="" data-name="IA"><u>IG</u></strong></th>
+                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo KW"><strong role="" class="" data-cubicle="" data-name="IA"><u>KW</u></strong></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody class="text-center">
+                                                                    </tbody>
+                                                                </table>
+
                                                                 <br>
                                                                 <div class="row">
                                                                     <?php foreach ($income['cubicle'] as $cubic) : ?>
@@ -263,9 +270,8 @@
                     <table id="tableTrafoHistory" class="table table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col" style="text-align:center">Keterangan</th>
-                                <th scope="col" style="text-align:center">Nilai</th>
-                                <th scope="col" style="text-align:center">Waktu</th>
+                                <th scope="col" class="col-6" style="text-align:center">Keterangan</th>
+                                <th scope="col" class="col-6" style="text-align:center">Nilai</th>
                             </tr>
                         </thead>
                         <tbody class="text-center">
@@ -301,16 +307,16 @@
 
         //js info
         $('.cubicle').click(function() {
-            let id_cubicle = $(this).data('cubicle');
+            let outgoing_id = $(this).data('cubicle');
             let cb_name = $(this).data('name');
             $('#cb_name').html(cb_name);
-            $('#id_cubicle').html(id_cubicle)
+            $('#outgoing_id').html(outgoing_id)
 
-            $("a#edit").attr("href", `<?php echo base_url(); ?>/Status/edit/${id_cubicle}`);
-            $('form#delete').attr('action', `<?php echo base_url(); ?>/Status/delete/${id_cubicle}`);
+            $("a#edit").attr("href", `<?php echo base_url(); ?>/Status/edit/${outgoing_id}`);
+            $('form#delete').attr('action', `<?php echo base_url(); ?>/Status/delete/${outgoing_id}`);
 
             table.clear();
-            table.ajax.url(`<?php echo base_url(); ?>/status/getInformasi/${id_cubicle}`).load();
+            table.ajax.url(`<?php echo base_url(); ?>/status/getInformasi/${outgoing_id}`).load();
             setInterval(function() {
                 console.log(1)
                 table.ajax.reload();
@@ -344,16 +350,16 @@
 
         //js history
         $('.cubicle-history').click(function() {
-            let id_cubicle = $(this).data('cubicle');
+            let outgoing_id = $(this).data('cubicle');
             let cb_history = $(this).data('name'); // ambil atribut data name
             let cb_name = $(this).data('nama');
 
             $('#cb_name').html(cb_name);
-            $('#id_cubicle').html(id_cubicle);
+            $('#outgoing_id').html(outgoing_id);
             $('#cb_history').html(cb_history); //rewrite cb_history , history IA
 
             tableHistory.clear();
-            tableHistory.ajax.url(`<?php echo base_url(); ?>/status/getHistory/${id_cubicle}/${cb_history}`).load();
+            tableHistory.ajax.url(`<?php echo base_url(); ?>/status/getHistory/${outgoing_id}/${cb_history}`).load();
 
             setInterval(function() { //refresh data tiap 1 menit
                 console.log(1)
@@ -361,7 +367,7 @@
             }, 60000);
 
             // set new atribut href with jquery
-            $('a.cubicle-chart').attr('href', `<?php echo base_url(); ?>/status/chart?cubicle=${id_cubicle}&history=${cb_history}`);
+            $('a.cubicle-chart').attr('href', `<?php echo base_url(); ?>/status/chart?cubicle=${outgoing_id}&history=${cb_history}`);
 
             $('#modalDataHistory').modal('show')
         });
@@ -392,16 +398,15 @@
 
         //js trafo
         $('.trafo').click(function() {
-            let id_cubicle = $(this).data('cubicle');
+            let outgoing_id = $(this).data('cubicle');
             let cb_history = $(this).data('name'); // ambil atribut data name
             let cb_name = $(this).data('nama');
 
             $('#cb_name').html(cb_name);
-            $('#id_cubicle').html(id_cubicle);
-            $('#cb_history').html(cb_history); //rewrite cb_history , history IA
+            $('#outgoing_id').html(outgoing_id);
 
             tableTrafoHistory.clear();
-            tableTrafoHistory.ajax.url(`<?php echo base_url(); ?>/status/getTrafo/${id_cubicle}`).load();
+            tableTrafoHistory.ajax.url(`<?php echo base_url(); ?>/status/getInformasiTrafo/${outgoing_id}`).load();
 
             setInterval(function() { //refresh data tiap 1 menit
                 console.log(1)
@@ -429,29 +434,26 @@
                 {
                     data: 'nilai'
                 },
-                {
-                    data: 'time'
-                }
             ]
         });
 
         //js beban
         $('.cubicle-beban').click(function() {
-            let id_cubicle = $(this).data('cubicle');
+            let outgoing_id = $(this).data('cubicle');
             let cb_history = $(this).data('name');
 
-            $('#id_cubicle').html(id_cubicle);
+            $('#outgoing_id').html(outgoing_id);
             $('#cb_history').html(cb_history);
 
             tableHistory.clear();
-            tableHistory.ajax.url(`<?php echo base_url(); ?>/status/getBeban/${id_cubicle}/${cb_history}`).load();
+            tableHistory.ajax.url(`<?php echo base_url(); ?>/status/getBeban/${outgoing_id}/${cb_history}`).load();
 
             setInterval(function() { //refresh data tiap 1 menit
                 console.log(1)
                 tableHistory.ajax.reload();
             }, 60000);
 
-            $('a.cubicle-chart').attr('href', `<?php echo base_url(); ?>/status/chart?cubicle=${id_cubicle}&history=${cb_history}`);
+            $('a.cubicle-chart').attr('href', `<?php echo base_url(); ?>/status/chart?cubicle=${outgoing_id}&history=${cb_history}`);
         });
 
 
