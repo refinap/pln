@@ -63,13 +63,13 @@ class Status extends BaseController
 
             foreach ($gi as $gi_keys => $gi_items) {
                 $incoming = $this->incomingModel
-                    ->select('INCOMING_ID, GARDU_INDUK_ID, NAMA_ALIAS_INCOMING, DAYA_REAKTIF_TRAFO, IA, IB, IC, IG, KW')
+                    ->select('INCOMING_ID, GARDU_INDUK_ID, NAMA_ALIAS_INCOMING, DAYA_REAKTIF_TRAFO, IA, IB, IC, IG KW')
                     ->where('GARDU_INDUK_ID', $gi_items['GARDU_INDUK_ID'])->findAll();
 
                 // get data cubicle
                 foreach ($incoming as $incoming_keys => $incoming_items) {
                     $cubicle = $this->cubicleModel
-                        ->select('OUTGOING_ID, APJ_ID, CUBICLE_NAME, MERK, IA, IB, IC, IN, IA2, IB2, IC2, IN2, VLL, KW,, IFA, IFB, IFC, IFN, SCB, SLR, SRNR, SESW, SCBP')
+                        ->select('OUTGOING_ID, APJ_ID, CUBICLE_NAME, MERK, IA, IB, IC, IN, IA2, IB2, IC2, IN2, VLL, KW, IFA, IFB, IFC, IFN, SCB, SLR, SRNR, SESW, SCBP')
                         ->where('INCOMING_ID', $incoming_items['INCOMING_ID'])->findAll();
                     $incoming[$incoming_keys]['cubicle'] = $cubicle;
                 };
@@ -695,33 +695,44 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
         return view('status/beban');
     }
 
-    public function getBeban($outgoing_id, $cb_history)
+    public function getBeban($outgoing_id)
     {
-
-        $querySelect = "$cb_history, $cb_history" . "_TIME"; //
-
         $curr_date = $this->request->getVar('start');
         $end_date = $this->request->getVar('end');
-        $cbHistoryColumn = $cb_history . "_TIME";
 
         $history = $this->historyModel
-            ->select($querySelect)
-            ->where("$cb_history IS NOT NULL", null, false)
-            ->where("DATE($cbHistoryColumn) <= '$end_date'")
-            ->where("DATE($cbHistoryColumn) >= '$curr_date'")
-            ->groupBy("$cb_history" . "_TIME")
-            // ->orderBy("$cb_history" . "_TIME", 'DESC')
-            // ->limit(500)
-            ->where('OUTGOING_ID', $outgoing_id);
+            ->select("IA, IA_TIME, IB, IB_TIME,IC ,IC_TIME")
+            ->where("DATE(IA_TIME) <= '$end_date'")
+            ->where("DATE(IA_TIME) >= '$curr_date'")
+            ->where('OUTGOING_ID', $outgoing_id)
+            ->limit(50)
+            ->get()
+            ->getResult();
 
-        $history = $history->get()->getResult();
+        // var_dump($history);
+        // exit;
 
-        $data_history = array_map(function ($value) use ($cb_history) {
-            return (array) [
-                'value' => $value->{"$cb_history"},
-                'time' => date('m-d-Y H:i:s', strtotime($value->{"$cb_history" . "_TIME"})),
-            ];
-        }, $history);
-        return $this->response->setJSON(['data' => array_values($data_history)]);
+        $wrapperData = [
+            'IA' => [],
+            'IB' => [],
+            'IC' => []
+        ];
+
+        for ($i = 0; $i < count($history); $i++) {
+            array_push($wrapperData['IA'], [
+                'value' => $history[$i]->IA,
+                'time' => date('m-d-Y H:i:s', strtotime($history[$i]->IA_TIME)),
+            ]);
+            array_push($wrapperData['IB'], [
+                'value' => $history[$i]->IB,
+                'time' => date('m-d-Y H:i:s', strtotime($history[$i]->IB_TIME)),
+            ]);
+            array_push($wrapperData['IC'], [
+                'value' => $history[$i]->IC,
+                'time' => date('m-d-Y H:i:s', strtotime($history[$i]->IC_TIME)),
+            ]);
+        }
+
+        return $this->response->setJSON(['data' => $wrapperData]);
     }
 }

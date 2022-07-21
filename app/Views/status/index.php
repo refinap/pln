@@ -59,23 +59,24 @@
 
                                                         <div class="col-md-12 text-center">
                                                             <?php foreach ($g['incoming'] as $income) : ?>
-                                                                <span class=" fw-bold fs-5"><?php echo $income['NAMA_ALIAS_INCOMING']; ?></span>
-                                                                <table id="" class="table table-bordered">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IA"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="IA">IA</strong><br> <?php echo $income['IA'] ?? 0 ?> </th>
-                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IB"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="IB">IB</strong><br> <?php echo $income['IB'] ?? 0 ?> </th>
-                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IC"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="IC">IC</strong><br> <?php echo $income['IC'] ?? 0 ?> </th>
-                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IG"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="IG">IG</strong><br> <?php echo $income['IG'] ?? 0 ?> </th>
-                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo KW"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="KW">KW</strong><br> <?php echo $income['KW'] ?? 0 ?> </th>
-                                                                            <th scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo DAYA_REAKTIF_TRAFO"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="DAYA_REAKTIF_TRAFO">DAYA TRAFO</strong><br> <?php echo $income['DAYA_REAKTIF_TRAFO'] ?? 0 ?> </th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody class="text-center">
-                                                                    </tbody>
-                                                                </table>
+                                                                <div class="card text-center">
+                                                                    <div class="card-header">
+                                                                        <span class=" fw-bold fs-5"><?php echo $income['NAMA_ALIAS_INCOMING']; ?></span>
+                                                                    </div>
+                                                                    <div class="card-body py-0">
+                                                                        <table id="" class="table table-bordered">
+                                                                            <div class="row">
+                                                                                <div class="col-2 border border-dark" scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IA"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="IA"><u>IA</u></strong><br> <?php echo $income['IA'] ?? 0 ?> </div>
+                                                                                <div class="col-2 border border-dark" scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IB"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="IB"><u>IB</u></strong><br> <?php echo $income['IB'] ?? 0 ?> </div>
+                                                                                <div class="col-2 border border-dark" scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IC"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="IC"><u>IC</u></strong><br> <?php echo $income['IC'] ?? 0 ?> </div>
+                                                                                <div class="col-2 border border-dark" scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo IG"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="IG"><u>IG</u></strong><br> <?php echo $income['IG'] ?? 0 ?> </div>
+                                                                                <div class="col-2 border border-dark" scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo KW"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="KW"><u>KW</u></strong><br> <?php echo $income['KW'] ?? 0 ?> </div>
+                                                                                <div class="col-2 border border-dark" scope="col" style="text-align:center" data-toggle="tooltip" data-placement="top" title="Beban Trafo DAYA REAKTIF TRAFO"><strong role="" class="" data-incoming="<?php echo $income['INCOMING_ID']; ?>" data-incoming-name="DAYA_REAKTIF_TRAFO">DAYA</strong><br> <?php echo $income['DAYA_REAKTIF_TRAFO'] ?? 0 ?> </div>
+                                                                            </div>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
 
-                                                                <br>
                                                                 <div class="row">
                                                                     <?php foreach ($income['cubicle'] as $cubic) : ?>
                                                                         <?php
@@ -146,7 +147,7 @@
 
                                                                                 <div class="card-footer py-0 text-muted">
                                                                                     <h6 class="" id="l"> Grafik Beban
-                                                                                        <a href="<?php echo base_url(); ?>/status/beban" class="btn btn-default cubicle-chart" data-toggle="tooltip" data-placement="top" title="Grafik">
+                                                                                        <a href="<?php echo base_url(); ?>/status/beban" class="btn btn-default cubicle-beban-chart" data-toggle="tooltip" data-placement="top" title="Grafik">
                                                                                             <img src="<?php echo base_url() . '/image/grafik.png'; ?>" width=20 alt="">
                                                                                         </a>
                                                                                     </h6>
@@ -198,7 +199,6 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-
                         </tbody>
                     </table>
                 </div>
@@ -394,66 +394,6 @@
             ]
         });
 
-        //js trafo
-        $('.trafo').click(function() {
-            let outgoing_id = $(this).data('cubicle');
-            let cb_history = $(this).data('name'); // ambil atribut data name
-            let cb_name = $(this).data('nama');
-
-            $('#cb_name').html(cb_name);
-            $('#outgoing_id').html(outgoing_id);
-
-            tableTrafoHistory.clear();
-            tableTrafoHistory.ajax.url(`<?php echo base_url(); ?>/status/getInformasiTrafo/${outgoing_id}`).load();
-
-            setInterval(function() { //refresh data tiap 1 menit
-                console.log(1)
-                tableTrafoHistory.ajax.reload();
-            }, 60000);
-
-            $('#modalDataTrafo').modal('show')
-        });
-
-        //table trafo history
-        var tableTrafoHistory = $('#tableTrafoHistory').DataTable({
-            "bDestroy": true,
-            "autoWidth": false,
-            "ordering": false,
-            "paging": false,
-            "bFilter": false,
-            "info": false,
-            "lengthMenu": [
-                [-1],
-                ["All"]
-            ],
-            columns: [{
-                    data: 'name'
-                },
-                {
-                    data: 'nilai'
-                },
-            ]
-        });
-
-        //js beban
-        $('.cubicle-beban').click(function() {
-            let outgoing_id = $(this).data('cubicle');
-            let cb_history = $(this).data('name');
-
-            $('#outgoing_id').html(outgoing_id);
-            $('#cb_history').html(cb_history);
-
-            tableHistory.clear();
-            tableHistory.ajax.url(`<?php echo base_url(); ?>/status/getBeban/${outgoing_id}/${cb_history}`).load();
-
-            setInterval(function() { //refresh data tiap 1 menit
-                console.log(1)
-                tableHistory.ajax.reload();
-            }, 60000);
-
-            $('a.cubicle-chart').attr('href', `<?php echo base_url(); ?>/status/chart?cubicle=${outgoing_id}&history=${cb_history}`);
-        });
-
 
 
         var minDate, maxDate;
@@ -492,6 +432,25 @@
                 table.draw();
             });
         });
+
+        //js beban
+        // $('.cubicle-beban').click(function() {
+        //     let outgoing_id = $(this).data('cubicle');
+        //     let cb_history = $(this).data('name');
+
+        //     $('#outgoing_id').html(outgoing_id);
+        //     $('#cb_history').html(cb_history);
+
+        //     tableHistory.clear();
+        //     tableHistory.ajax.url(`<?php echo base_url(); ?>/status/getBeban/${outgoing_id}/${cb_history}`).load();
+
+        //     setInterval(function() { //refresh data tiap 1 menit
+        //         console.log(1)
+        //         tableHistory.ajax.reload();
+        //     }, 60000);
+
+        //     $('a.cubicle-beban-chart').attr('href', `<?php echo base_url(); ?>/status/chart?cubicle=${outgoing_id}&history=${cb_history}`);
+        // });
     </script>
     <?= $this->endSection(); ?>
 </div>

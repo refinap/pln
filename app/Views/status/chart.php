@@ -2,7 +2,7 @@
 
 <?= $this->section('content'); ?>
 <div class="container">
-      <h1 class="mt-3">Grafik Riwayat Beban <span id="id_cubicle"></span><span id="cb_history"></span>
+      <h1 class="mt-3">Grafik Riwayat Beban <span id=""> </span><span id="cb_history"></span>
       </h1>
       <input type="text" name="daterange" value="05/10/2022 - 06/10/2022" />
       <div id="chart" style="width:100%; height:450px;"></div>
