@@ -63,7 +63,7 @@ class Status extends BaseController
 
             foreach ($gi as $gi_keys => $gi_items) {
                 $incoming = $this->incomingModel
-                    ->select('INCOMING_ID, GARDU_INDUK_ID, NAMA_ALIAS_INCOMING, DAYA_REAKTIF_TRAFO, IA, IB, IC, IG KW')
+                    ->select('INCOMING_ID, GARDU_INDUK_ID, NAMA_ALIAS_INCOMING, DAYA_REAKTIF_TRAFO, IA, IB, IC, IG, KW')
                     ->where('GARDU_INDUK_ID', $gi_items['GARDU_INDUK_ID'])->findAll();
 
                 // get data cubicle
@@ -663,6 +663,9 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
             // ->limit(500)
             ->where('OUTGOING_ID', $outgoing_id);
 
+        // var_dump($history);
+        // exit;
+
         $history = $history->get()->getResult();
 
         $data_history = array_map(function ($value) use ($cb_history) {
@@ -695,6 +698,7 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
         return view('status/beban');
     }
 
+
     public function getBeban($outgoing_id)
     {
         $curr_date = $this->request->getVar('start');
@@ -705,7 +709,18 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
             ->where("DATE(IA_TIME) <= '$end_date'")
             ->where("DATE(IA_TIME) >= '$curr_date'")
             ->where('OUTGOING_ID', $outgoing_id)
-            ->limit(50)
+
+            // ->select("AVG(IA) AS nilai, 
+            // DATEADD(MINUTE, DATEDIFF(MINUTE, '2000', 
+            // DATE_FORMAT(STR_TO_DATE(IA_TIME, '%m/%d/%Y %H:%i:%s'), '%d-%m-%Y %H:%i:%s')) / 10 * 10, '2000')
+            //                                                  AS date_truncated
+            // ")
+            // ->where('IA_TIME IS NOT NULL', null, false)
+            // ->limit(5)
+
+            // ->select("IA_TIME, IB_TIME, IC_TIME")
+            // ->groupBy("$end_date, $curr_date" / 10)
+
             ->get()
             ->getResult();
 
@@ -734,5 +749,7 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
         }
 
         return $this->response->setJSON(['data' => $wrapperData]);
+
+        // return $this->response->setJSON(['data' => $history]);
     }
 }
