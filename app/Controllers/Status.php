@@ -701,31 +701,53 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
 
     public function getBeban($outgoing_id)
     {
-        $curr_date = $this->request->getVar('start');
-        $end_date = $this->request->getVar('end');
-
         $history = $this->historyModel
-            ->select("IA, IA_TIME, IB, IB_TIME,IC ,IC_TIME")
-            ->where("DATE(IA_TIME) <= '$end_date'")
-            ->where("DATE(IA_TIME) >= '$curr_date'")
-            ->where('OUTGOING_ID', $outgoing_id)
+            ->query("Select AVG(IA), AVG(IB), AVG(IC),
+                FROM_UNIXTIME(
+                    FLOOR(( UNIX_TIMESTAMP(
+                            DATE_FORMAT(
+                                STR_TO_DATE(IA_TIME, '%Y-%m-%d %H:%i:%s'), 
+                                '%Y-%m-%d %H:%i:%s'
+                            )
+                        ))/300)*300) AS t
+                FROM sm_meter_gi 
+                WHERE 
+                IA_TIME is not null 
+                AND OUTGOING_ID=1
+                GROUP BY t 
+                ORDER BY t
+                limit 10 OFFSET 10;");
+        var_dump($history);
+        exit;
 
-            // ->select("AVG(IA) AS nilai, 
-            // DATEADD(MINUTE, DATEDIFF(MINUTE, '2000', 
-            // DATE_FORMAT(STR_TO_DATE(IA_TIME, '%m/%d/%Y %H:%i:%s'), '%d-%m-%Y %H:%i:%s')) / 10 * 10, '2000')
-            //                                                  AS date_truncated
-            // ")
-            // ->where('IA_TIME IS NOT NULL', null, false)
-            // ->limit(5)
-
-            // ->select("IA_TIME, IB_TIME, IC_TIME")
-            // ->groupBy("$end_date, $curr_date" / 10)
-
-            ->get()
-            ->getResult();
-
+        // $history = $this->historyModel
+        // ->selectAvg('IA')
+        // ->selectAvg('IB')
+        // ->selectAvg('IC')
+        // ->select(
+        //     "FROM_UNIXTIME(FLOOR((UNIX_TIMESTAMP(
+        //     DATE_FORMAT(
+        //         STR_TO_DATE(IA_TIME,'%m/%d/%Y %H:%i:%s'), 
+        //         '%Y-%m-%d %H:%i:%s'/300)*300)) AS t"
+        // )
+        // ->where('OUTGOING_ID', $outgoing_id)
+        // ->where('IA_TIME IS NOT NULL', null, false)
+        // ->groupBy("t")
+        // ->orderBy("t")
+        // ->limit(10)
+        // ->offset(10)
+        // ->get()
+        // ->getResult();
         // var_dump($history);
         // exit;
+
+        // ->select("IA, IA_TIME, IB, IB_TIME, IC, IC_TIME")
+        // ->where("DATE(IA_TIME) <= '$end_date'")
+        // ->where("DATE(IA_TIME) >= '$curr_date'")
+        // ->where("OUTGOING_ID", $outgoing_id)
+        // ->limit(50)
+        // ->get()
+        // ->getResult();
 
         $wrapperData = [
             'IA' => [],
@@ -736,20 +758,18 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
         for ($i = 0; $i < count($history); $i++) {
             array_push($wrapperData['IA'], [
                 'value' => $history[$i]->IA,
-                'time' => date('m-d-Y H:i:s', strtotime($history[$i]->IA_TIME)),
+                'time' => date('m-d-Y H:i:s',  strtotime($history[$i]->IA_TIME)),
             ]);
             array_push($wrapperData['IB'], [
                 'value' => $history[$i]->IB,
-                'time' => date('m-d-Y H:i:s', strtotime($history[$i]->IB_TIME)),
+                'time' => date('m-d-Y H:i:s',  strtotime($history[$i]->IB_TIME)),
             ]);
             array_push($wrapperData['IC'], [
                 'value' => $history[$i]->IC,
-                'time' => date('m-d-Y H:i:s', strtotime($history[$i]->IC_TIME)),
+                'time' => date('m-d-Y H:i:s',  strtotime($history[$i]->IC_TIME)),
             ]);
         }
 
         return $this->response->setJSON(['data' => $wrapperData]);
-
-        // return $this->response->setJSON(['data' => $history]);
     }
 }
