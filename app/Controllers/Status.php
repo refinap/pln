@@ -644,7 +644,7 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
         return view('status/chart');
     }
 
-    public function getChart($outgoing_id, $cb_history)
+    public function getChart($id_cubicle, $cb_history)
     {
 
         $querySelect = "$cb_history, $cb_history" . "_TIME"; //
@@ -661,7 +661,7 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
             ->groupBy("$cb_history" . "_TIME")
             // ->orderBy("$cb_history" . "_TIME", 'DESC')
             // ->limit(500)
-            ->where('OUTGOING_ID', $outgoing_id);
+            ->where('OUTGOING_ID', $id_cubicle);
 
         // var_dump($history);
         // exit;
@@ -701,8 +701,24 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
 
     public function getBeban($outgoing_id)
     {
+        set_time_limit(500);
+        $curr_date = $this->request->getVar('start');
+        $end_date = $this->request->getVar('end');
+        // $db = \Config\Database::connect();
+
+        // $query = $db->query("SELECT AVG(IA) AS IA, AVG(IB) AS IB, AVG(IC) AS IC,
+        // FROM_UNIXTIME(FLOOR((UNIX_TIMESTAMP(
+        // DATE_FORMAT(STR_TO_DATE(IA_TIME, '%m/%d/%Y %H:%i:%s'), 
+        // '%Y-%m-%d %H:%i:%s')))/300)*300) AS t
+        // FROM sm_meter_gi       
+        // WHERE IA_TIME is not null AND OUTGOING_ID=96 
+        // GROUP BY t 
+        // ORDER BY t");
+
+        // $history = $query->getResultArray();
+
         $history = $this->historyModel
-            ->query("Select AVG(IA), AVG(IB), AVG(IC),
+            ->query("Select ROUND(AVG(IA),2) as IA, ROUND(AVG(IB),2) as IB, ROUND(AVG(IC),2) as IC,
                 FROM_UNIXTIME(
                     FLOOR(( UNIX_TIMESTAMP(
                             DATE_FORMAT(
@@ -712,64 +728,38 @@ class="btn cubicle btn-' . $arr[0] . ' "> ' . $arr[1] . ' </button>';
                         ))/300)*300) AS t
                 FROM sm_meter_gi 
                 WHERE 
-                IA_TIME is not null 
-                AND OUTGOING_ID=1
+                OUTGOING_ID= " . $outgoing_id . "
                 GROUP BY t 
+                HAVING t IS NOT NULL
+                AND t between ' $curr_date' and ' $end_date'
                 ORDER BY t
-                limit 10 OFFSET 10;");
-        var_dump($history);
-        exit;
+                ")->getresult();
 
-        // $history = $this->historyModel
-        // ->selectAvg('IA')
-        // ->selectAvg('IB')
-        // ->selectAvg('IC')
-        // ->select(
-        //     "FROM_UNIXTIME(FLOOR((UNIX_TIMESTAMP(
-        //     DATE_FORMAT(
-        //         STR_TO_DATE(IA_TIME,'%m/%d/%Y %H:%i:%s'), 
-        //         '%Y-%m-%d %H:%i:%s'/300)*300)) AS t"
-        // )
-        // ->where('OUTGOING_ID', $outgoing_id)
-        // ->where('IA_TIME IS NOT NULL', null, false)
-        // ->groupBy("t")
-        // ->orderBy("t")
-        // ->limit(10)
-        // ->offset(10)
-        // ->get()
-        // ->getResult();
         // var_dump($history);
         // exit;
 
-        // ->select("IA, IA_TIME, IB, IB_TIME, IC, IC_TIME")
-        // ->where("DATE(IA_TIME) <= '$end_date'")
-        // ->where("DATE(IA_TIME) >= '$curr_date'")
-        // ->where("OUTGOING_ID", $outgoing_id)
-        // ->limit(50)
-        // ->get()
-        // ->getResult();
-
         $wrapperData = [
+            'tanggal' => [],
             'IA' => [],
             'IB' => [],
             'IC' => []
         ];
 
         for ($i = 0; $i < count($history); $i++) {
-            array_push($wrapperData['IA'], [
+            array_push($wrapperData["IA"], [
                 'value' => $history[$i]->IA,
-                'time' => date('m-d-Y H:i:s',  strtotime($history[$i]->IA_TIME)),
+                'time' => date('m-d-Y H:i:s',  strtotime($history[$i]->t)),
             ]);
-            array_push($wrapperData['IB'], [
+            array_push($wrapperData["IB"], [
                 'value' => $history[$i]->IB,
-                'time' => date('m-d-Y H:i:s',  strtotime($history[$i]->IB_TIME)),
+                'time' => date('m-d-Y H:i:s',  strtotime($history[$i]->t)),
             ]);
-            array_push($wrapperData['IC'], [
+            array_push($wrapperData["IC"], [
                 'value' => $history[$i]->IC,
-                'time' => date('m-d-Y H:i:s',  strtotime($history[$i]->IC_TIME)),
+                'time' => date('m-d-Y H:i:s',  strtotime($history[$i]->t)),
             ]);
         }
-
-        return $this->response->setJSON(['data' => $wrapperData]);
+        // set_time_limit(500);
+        return $this->response->setJSON(['data' => $history]);
     }
 }
