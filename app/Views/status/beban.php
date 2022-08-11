@@ -34,6 +34,9 @@
                   tooltip: {
                         trigger: 'axis'
                   },
+                  legend: {
+                        data: ['IA', 'IB', 'IC']
+                  },
                   toolbox: {
                         show: true,
                         feature: {
@@ -85,11 +88,17 @@
             let cb_history = paramsy.get('history')
 
             // data ini berbentuk json array;
-            let data = await fetch(`<?php echo base_url(); ?>/status/getBeban/${id_cubicle}/${cb_history}?${params}`);
+            let data = await fetch(`<?php echo base_url(); ?>/status/getBeban/${id_cubicle}?${params}`);
             data.json().then(res => {
-                  console.log(res);
+                  //console.log(res.data[0].IA);
                   lineArray = res.data;
-                  label = res.data.map(i => i.time)
+
+                  //deklarasi label
+                  label = [];
+                  //loop data untuk di masukkan ke array 'label'
+                  for (let x = 0; x < lineArray.length; x++) {
+                        label.push(lineArray[x].t);
+                  };
                   options.xAxis.data = label;
                   const labelOption = {
                         normal: {
@@ -99,34 +108,50 @@
                         }
                   }
 
-                  order = res.data.map(i => i.value)
+                  //deklarasi array
+                  dataIA = [];
+                  dataIB = [];
+                  dataIC = [];
+                  //loop data untuk di masukkan ke array
+                  for (let x = 0; x < lineArray.length; x++) {
+                        dataIA.push(lineArray[x].IA);
+                  };
+                  for (let x = 0; x < res.data.length; x++) {
+                        dataIB.push(lineArray[x].IB);
+                  };
+                  for (let x = 0; x < res.data.length; x++) {
+                        dataIC.push(lineArray[x].IC);
+                  };
+                  console.log('data IA: ' + dataIA);
+                  console.log('data IB: ' + dataIB);
+                  console.log('data IC: ' + dataIC);
                   options.series.push({
-                        name: 'Nilai 1',
+                        name: 'IA',
                         label: labelOption,
                         type: 'line',
-                        data: order,
+                        data: dataIA,
                         label: {
-                              show: true,
+                              show: false,
                               position: 'top'
                         }
-                        // }, {
-                        //       name: 'Nilai 2',
-                        //       label: labelOption,
-                        //       type: 'line',
-                        //       data: order,
-                        //       label: {
-                        //             show: true,
-                        //             position: 'top'
-                        //       }
-                        // }, {
-                        //       name: 'Nilai 3',
-                        //       label: labelOption,
-                        //       type: 'line',
-                        //       data: order,
-                        //       label: {
-                        //             show: true,
-                        //             position: 'top'
-                        //       }
+                  }, {
+                        name: 'IB',
+                        label: labelOption,
+                        type: 'line',
+                        data: dataIB,
+                        label: {
+                              show: false,
+                              position: 'top'
+                        }
+                  }, {
+                        name: 'IC',
+                        label: labelOption,
+                        type: 'line',
+                        data: dataIC,
+                        label: {
+                              show: false,
+                              position: 'top'
+                        }
                   })
                   byPaymentChart.setOption(options, true)
             })
@@ -163,6 +188,12 @@
             //document.body.appendChild(link);
             link.click();
       }
+      $('.cubicle').click(function() {
+            let id_cubicle = $(this).data('cubicle');
+            let cb_name = $(this).data('name');
+            $('#cb_name').html(cb_name);
+            $('#id_cubicle').html(id_cubicle)
+      });
 </script>
 <?= $this->endSection(); ?>
 </div>
