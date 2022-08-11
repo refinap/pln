@@ -147,7 +147,7 @@
 
                                                                                 <div class="card-footer py-0 text-muted">
                                                                                     <h6 class="" id="l"> Grafik Beban
-                                                                                        <a href="<?php echo base_url(); ?>/status/beban" class="btn btn-default cubicle-beban-chart" data-toggle="tooltip" data-placement="top" title="Grafik">
+                                                                                        <a href="<?php echo base_url(); ?>/status/beban?cubicle=<?php echo $cubic['OUTGOING_ID']; ?>" class="btn btn-default cubicle-beban-chart" data-toggle="tooltip" data-placement="top" title="Grafik">
                                                                                             <img src="<?php echo base_url() . '/image/grafik.png'; ?>" width=20 alt="">
                                                                                         </a>
                                                                                     </h6>
